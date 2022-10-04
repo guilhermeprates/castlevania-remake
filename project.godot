@@ -8,10 +8,38 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Entrance",
+"language": "GDScript",
+"path": "res://Source/Entrance/Entrance.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://Source/Player/Player.gd"
+}, {
+"base": "Control",
+"class": "TitleScreen",
+"language": "GDScript",
+"path": "res://Source/TitleScreen/TitleScreen.gd"
+} ]
+_global_script_class_icons={
+"Entrance": "",
+"Player": "",
+"TitleScreen": ""
+}
+
 [application]
 
 config/name="castlevania-remake"
+run/main_scene="res://Source/Entrance/Entrance.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [gui]
 
@@ -23,4 +51,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
