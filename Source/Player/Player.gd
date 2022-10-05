@@ -1,19 +1,12 @@
 class_name Player extends KinematicBody2D
 
-export (int) var speed: int = 250
-export (int) var rotation_speed: int = 1.5
-export (int) var gravity: int = 2500
-export (int) var jump_speed: int = 900
-
-var velocity: Vector2 = Vector2()
-
 onready var sprite: AnimatedSprite = $AnimatedSprite
 
-func _ready() -> void:
-	pass
+export (int) var speed: int = 150
+export (int) var gravity: int = 2500
+export (int) var jump_speed: int = 700
 
-func _process(delta: float) -> void:
-	pass
+var velocity: Vector2 = Vector2.ZERO
 
 func _physics_process(delta: float) -> void:
 	_get_input()
@@ -26,10 +19,12 @@ func _get_input():
 	
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = -jump_speed
-		
+	
 	if velocity.x < 0:
+		sprite.flip_h = false
 		sprite.play("walk")
 	elif velocity.x > 0:
+		sprite.flip_h = true
 		sprite.play("walk")
 	else:
 		sprite.frame = 0

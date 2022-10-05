@@ -1,7 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/simon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/simon2.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 240, 111, 40, 37 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -20,10 +25,15 @@ region = Rect2( 390, 0, 130, 195 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ SubResource( 8 ) ],
+"loop": true,
+"name": "jump",
+"speed": 12.0
+}, {
 "frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "walk",
-"speed": 5.0
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
