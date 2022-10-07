@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/simon.png" type="Texture" id=2]
+[ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
@@ -44,7 +45,7 @@ centered = false
 position = Vector2( 10, 2.875 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 current = true
 limit_left = -10000
 limit_top = -10000
@@ -54,8 +55,12 @@ limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
-drag_margin_left = 0.5
-drag_margin_top = 0.5
-drag_margin_right = 0.5
-drag_margin_bottom = 0.5
+smoothing_speed = 1.0
+drag_margin_left = 0.1
+drag_margin_top = 0.75
+drag_margin_right = 0.1
+editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource( 3 )
+
+[node name="ShiftTween" type="Tween" parent="PlayerCamera"]
