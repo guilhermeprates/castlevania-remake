@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_franguin.png-37dd06b0df1de5d4bab08c57c2cbb67e.stex"
+path="res://.import/tile_2.png-e054150b0d5082ca15addcb935966cae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/icons/icon_franguin.png"
-dest_files=[ "res://.import/icon_franguin.png-37dd06b0df1de5d4bab08c57c2cbb67e.stex" ]
+source_file="res://Assets/Sprites/tiles/tile_2.png"
+dest_files=[ "res://.import/tile_2.png-e054150b0d5082ca15addcb935966cae.stex" ]
 
 [params]
 

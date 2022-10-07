@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_heartzinho.png-914cfc06ab0ceae461eb4372dcf05c2d.stex"
+path="res://.import/icon_heartzinho.png-e960d4dac087b8e96760a4c957839dad.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/icon_heartzinho.png"
-dest_files=[ "res://.import/icon_heartzinho.png-914cfc06ab0ceae461eb4372dcf05c2d.stex" ]
+source_file="res://Assets/Sprites/icons/icon_heartzinho.png"
+dest_files=[ "res://.import/icon_heartzinho.png-e960d4dac087b8e96760a4c957839dad.stex" ]
 
 [params]
 

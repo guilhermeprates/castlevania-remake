@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arm_bom.png-1ada5a618f1768de5cc0c16e2956ab85.stex"
+path="res://.import/arm_bom.png-45637d35dd1178305388e24908fc2e03.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapon mov/arm_bom.png"
-dest_files=[ "res://.import/arm_bom.png-1ada5a618f1768de5cc0c16e2956ab85.stex" ]
+source_file="res://Assets/Sprites/weapon mov/arm_bom.png"
+dest_files=[ "res://.import/arm_bom.png-45637d35dd1178305388e24908fc2e03.stex" ]
 
 [params]
 
