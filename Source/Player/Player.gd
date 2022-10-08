@@ -57,7 +57,7 @@ func _get_input():
 		else:
 			is_jumping = false
 		
-		# TODO: manter o sprite de pulo até tocar no chão
+		# TODO: manter o sprite de pulo até tocar no chão, mudar só se atacar
 		
 		if Input.is_action_pressed("attack"):
 			pass
