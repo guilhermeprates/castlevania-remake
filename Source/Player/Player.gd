@@ -34,18 +34,43 @@ func _get_input():
 	velocity.x = Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left")
 	velocity.x = velocity.x * SPEED
 	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = -JUMP_SPEED
-	
-	if velocity.x < 0:
-		sprite.flip_h = false
-		sprite.play("walk")
-	elif velocity.x > 0:
-		sprite.flip_h = true
-		sprite.play("walk")
+	if Input.is_action_pressed("jump") and !is_grounded:
+		sprite.play("jump")
+		if Input.is_action_pressed("attack"):
+			pass
+	elif Input.is_action_pressed("ducking") and is_grounded:
+		if Input.is_action_pressed("attack"):
+			pass
+		if velocity.x < 0:
+			sprite.flip_h = true
+			sprite.play("ducking")
+		elif velocity.x > 0:
+			sprite.flip_h = false
+			sprite.play("ducking")
+		else:
+			sprite.play("idle_ducking")
+			sprite.stop()
 	else:
-		sprite.frame = 0
-		sprite.stop()
+		if Input.is_action_pressed("jump") and is_grounded:
+			is_jumping = true
+			velocity.y = -JUMP_SPEED
+		else:
+			is_jumping = false
+		
+		# TODO: manter o sprite de pulo até tocar no chão
+		
+		if Input.is_action_pressed("attack"):
+			pass
+		
+		if velocity.x < 0:
+			sprite.flip_h = true
+			sprite.play("walk")
+		elif velocity.x > 0:
+			sprite.flip_h = false
+			sprite.play("walk")
+		else:
+			sprite.play("idle")
+			sprite.stop()
 
 func _set_connections() -> void:
 	pass

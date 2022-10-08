@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex"
+path="res://.import/simon_belmont_jump_nude.png-bb49e4b8de623a464d534ff65345d091.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/simon.png"
-dest_files=[ "res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex" ]
+source_file="res://Assets/Sprites/simon_belmont_jump_nude.png"
+dest_files=[ "res://.import/simon_belmont_jump_nude.png-bb49e4b8de623a464d534ff65345d091.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
