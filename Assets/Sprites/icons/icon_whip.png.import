@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_whip.png-a3ab236d5584ccb4f325c1b9424da2b7.stex"
+path="res://.import/icon_whip.png-80b35d9309500e65fa80a8bb943bedce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/icon_whip.png"
-dest_files=[ "res://.import/icon_whip.png-a3ab236d5584ccb4f325c1b9424da2b7.stex" ]
+source_file="res://Assets/Sprites/icons/icon_whip.png"
+dest_files=[ "res://.import/icon_whip.png-80b35d9309500e65fa80a8bb943bedce.stex" ]
 
 [params]
 
