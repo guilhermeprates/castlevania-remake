@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/simon_belmont_ducking_nude.png" type="Texture" id=2]
@@ -138,6 +138,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=21]
 resource_name = "Walk"
 length = 0.6
+step = 0.166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -151,29 +152,28 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=25]
+[sub_resource type="AnimationNodeAnimation" id=24]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeTransition" id=29]
-input_count = 2
-input_0/name = "Idle"
-input_0/auto_advance = false
-input_1/name = "Walk"
-input_1/auto_advance = false
-
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Walk"
 
-[sub_resource type="AnimationNodeBlendTree" id=24]
-graph_offset = Vector2( 254.462, -78.6914 )
-nodes/idle/node = SubResource( 25 )
-nodes/idle/position = Vector2( 320, -60 )
-nodes/movement/node = SubResource( 29 )
-nodes/movement/position = Vector2( 720, 0 )
-nodes/output/position = Vector2( 1100, -40 )
-nodes/walk/node = SubResource( 28 )
-nodes/walk/position = Vector2( 320, 80 )
-node_connections = [ "output", 0, "movement", "movement", 0, "idle", "movement", 1, "walk" ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=22]
+states/Idle/node = SubResource( 24 )
+states/Idle/position = Vector2( 393, 99 )
+states/Walk/node = SubResource( 25 )
+states/Walk/position = Vector2( 568, 99 )
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -5.30311, -4.65601 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 19.5, 31.5625 )
@@ -204,11 +204,10 @@ anims/RESET = SubResource( 20 )
 anims/Walk = SubResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 24 )
+tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-process_mode = 0
-parameters/movement/current = 1
+parameters/playback = SubResource( 23 )
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( -27, 75 )

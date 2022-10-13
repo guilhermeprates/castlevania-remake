@@ -1,4 +1,5 @@
-class_name PlayerCamera extends Camera2D
+class_name PlayerCamera 
+extends Camera2D
 
 enum FACING { NONE = 0, LEFT = -1, RIGHT = 1 }
 
@@ -7,10 +8,10 @@ const SHIFT_TRANS = Tween.TRANS_SINE
 const SHIFT_EASE = Tween.EASE_OUT
 const SHIFT_DURATION = 1.0
 
+var facing = FACING.NONE
+
 onready var previous_camera_position: Vector2 = get_camera_position()
 onready var tween: Tween = $ShiftTween
-
-var facing = FACING.NONE
 
 func _ready() -> void:
 	_set_connections()

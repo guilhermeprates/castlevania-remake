@@ -1,4 +1,5 @@
-class_name Player extends KinematicBody2D
+class_name Player 
+extends KinematicBody2D
 
 signal on_grounded_updated(is_grounded)
 
@@ -18,13 +19,12 @@ var _grounded: bool = true
 onready var camera: Camera2D = $PlayerCamera
 onready var sprite: Sprite = $Sprite
 onready var animationTree: AnimationTree = $AnimationTree
-onready var animationTransition = animationTree.get("parameters/transition")
 
 func _ready() -> void:
 	_set_connections()
 
 func _physics_process(delta: float) -> void:
-	_get_input()
+	_ready_inputs()
 	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	
@@ -36,20 +36,21 @@ func _physics_process(delta: float) -> void:
 func _reset_state() -> void:
 	_velocity = Vector2.ZERO
 
-func _get_input():
+func _ready_inputs():
 	_velocity.x = Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left")
 	_velocity.x = _velocity.x * SPEED
 	
-
+	var playback = animationTree.get("parameters/playback")
+	
 	if _velocity.x > 0 and not _attacking:
 		sprite.flip_h = false
-		animationTree.set("parameters/movement/current", 1)
+		playback.travel("Walk")
 	elif _velocity.x < 0 and not _attacking:
 		sprite.flip_h = true
-		animationTree.set("parameters/movement/current", 4)
+		playback.travel("Walk")
 	else:
 		if not _attacking:
-			animationTree.set("parameters/movement/current", 1)
+			playback.travel("Idle")
 #			
 #	if Input.get_action_strength("attack"):
 #		sprite.play("attacking")
