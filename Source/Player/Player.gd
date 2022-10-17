@@ -61,7 +61,7 @@ func _ready_inputs():
 	_jumping = Input.get_action_strength("jump")
 	_ducking = Input.get_action_strength("ducking")
 	
-	animationTree.set("parameters/conditions/grounded", !_ducking)
+	animationTree.set("parameters/conditions/ducking", !_ducking)
 
 	if _velocity.x > 0: 
 		sprite.flip_h = false
@@ -77,11 +77,10 @@ func _ready_inputs():
 		if _ducking:
 			playback.travel("Ducking-Walk")
 		else:
-			playback.travel("Walk")	
+			playback.travel("Walk")
 	elif _ducking and not _jumping:
 		playback.travel("Ducking")
-		
-	if _jumping and _grounded and not _attacking:
+	elif _jumping and _grounded and not _attacking and not _ducking:
 		_velocity.y = -JUMP_FORCE
 		playback.travel("Jump")
 		
