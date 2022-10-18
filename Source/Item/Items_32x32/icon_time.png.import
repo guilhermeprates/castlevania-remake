@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/map_obj01.png-e8cb981fac84f33a6f22f3d1000cb059.stex"
+path="res://.import/icon_time.png-00c1ddc1bab949da96dd1359300448a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/obj_2x/map_obj01.png"
-dest_files=[ "res://.import/map_obj01.png-e8cb981fac84f33a6f22f3d1000cb059.stex" ]
+source_file="res://Source/Item/Items_32x32/icon_time.png"
+dest_files=[ "res://.import/icon_time.png-00c1ddc1bab949da96dd1359300448a4.stex" ]
 
 [params]
 

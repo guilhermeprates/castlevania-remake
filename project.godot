@@ -19,6 +19,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Entrance/Entrance.gd"
 }, {
+"base": "Area2D",
+"class": "Interactable",
+"language": "GDScript",
+"path": "res://Source/HUD/BoxType1.gd"
+}, {
+"base": "Resource",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Source/Item/Item.gd"
+}, {
+"base": "Node2D",
+"class": "ItemBox",
+"language": "GDScript",
+"path": "res://Source/HUD/item_box01.gd"
+}, {
+"base": "Node2D",
+"class": "ItemBox2",
+"language": "GDScript",
+"path": "res://Source/HUD/item_box02.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -33,19 +53,29 @@ _global_script_classes=[ {
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://Source/TitleScreen/TitleScreen.gd"
+}, {
+"base": "Area2D",
+"class": "Whip",
+"language": "GDScript",
+"path": "res://whip.gd"
 } ]
 _global_script_class_icons={
 "AttackHitBox": "",
 "Entrance": "",
+"Interactable": "",
+"Item": "",
+"ItemBox": "",
+"ItemBox2": "",
 "Player": "",
 "PlayerCamera": "",
-"TitleScreen": ""
+"TitleScreen": "",
+"Whip": ""
 }
 
 [application]
 
 config/name="castlevania-remake"
-run/main_scene="res://Source/Entrance/Entrance.tscn"
+run/main_scene="res://intro.tscn"
 config/icon="res://icon.png"
 
 [debug]
@@ -61,6 +91,9 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+config/name="rmk"
+run/main_scene="res://intro.tscn"
+config/icon="res://icon.png"
 
 [gui]
 
@@ -121,6 +154,18 @@ ducking={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
+ui_open={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":79,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="items"
+2d_physics/layer_4="world"
 
 [physics]
 
