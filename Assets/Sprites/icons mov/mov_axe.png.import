@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mov_axe.png-704c0cdddf771f4de4dd9452647c8d9a.stex"
+path="res://.import/mov_axe.png-aea1720c0a5dcc9aea47eb89b151135b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons mov/mov_axe.png"
-dest_files=[ "res://.import/mov_axe.png-704c0cdddf771f4de4dd9452647c8d9a.stex" ]
+source_file="res://Assets/Sprites/icons mov/mov_axe.png"
+dest_files=[ "res://.import/mov_axe.png-aea1720c0a5dcc9aea47eb89b151135b.stex" ]
 
 [params]
 

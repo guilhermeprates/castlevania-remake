@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_holy_w.png-7d3bcf65a94f583a8a12e73443493791.stex"
+path="res://.import/icon_holy_w.png-b459cfb9b44c05e145305130f50acbd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/icon_holy_w.png"
-dest_files=[ "res://.import/icon_holy_w.png-7d3bcf65a94f583a8a12e73443493791.stex" ]
+source_file="res://Assets/Sprites/icons/icon_holy_w.png"
+dest_files=[ "res://.import/icon_holy_w.png-b459cfb9b44c05e145305130f50acbd7.stex" ]
 
 [params]
 

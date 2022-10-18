@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="castlevania-remake"
+run/main_scene="res://Map/Level1_1.tscn"
 config/icon="res://icon.png"
 
 [gui]
