@@ -5,18 +5,22 @@
 [ext_resource path="res://Assets/Sprites/icons mov_32x32/fire.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 100, 200, 100 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 200, 100, 200, 100 )
 
@@ -52,9 +56,5 @@ collision_layer = 4
 position = Vector2( -5, 20 )
 shape = SubResource( 6 )
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
