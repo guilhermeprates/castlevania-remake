@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile01_.png-1fa7ad23cc33cc6b8d2cd411b8b1487f.stex"
+path="res://.import/icon_axe.png-5a2fc2b687a084bcfebf236978f6e422.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/tiles/tile01_.png"
-dest_files=[ "res://.import/tile01_.png-1fa7ad23cc33cc6b8d2cd411b8b1487f.stex" ]
+source_file="res://Assets/Sprites/icons_32x32/icon_axe.png"
+dest_files=[ "res://.import/icon_axe.png-5a2fc2b687a084bcfebf236978f6e422.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.5
+svg/scale=1.0
