@@ -5,10 +5,12 @@
 [ext_resource path="res://BoxType1.gd" type="Script" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 100, 200, 100 )
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 200, 100, 200, 100 )
 
@@ -30,6 +32,7 @@ health = 1
 [node name="Texture" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
 animation = "map_obj01"
+frame = 1
 playing = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -39,5 +42,4 @@ shape = SubResource( 4 )
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource( 3 )
 
-[connection signal="body_entered" from="." to="." method="_on_BoxType1_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="." to="." method="_on_BoxType1_area_entered"]

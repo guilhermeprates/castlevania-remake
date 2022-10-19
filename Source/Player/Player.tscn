@@ -27,7 +27,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.32 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 4, 8, 12 ]
@@ -43,6 +43,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray(  ),
 "update": 1,
 "values": [  ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "disable_whipcollitionshap"
+} ]
 }
 
 [sub_resource type="Animation" id=44]
@@ -168,7 +182,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=50]
 resource_name = "Ducking-Walk"
-length = 0.4
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -343,7 +357,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=21]
 resource_name = "Walk"
-step = 0.25
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -363,7 +377,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
+"times": PoolRealArray( 0, 0.123333, 0.206667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18 ]
@@ -474,7 +488,7 @@ states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 589, 104 )
 transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Jump", "Idle", SubResource( 42 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -28.3031, -70.1777 )
+graph_offset = Vector2( -28.3031, 51.7263 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -525,12 +539,13 @@ parameters/conditions/grounded = true
 position = Vector2( -21, 72 )
 shape = SubResource( 1 )
 
-[node name="AttackHitBox" type="Area2D" parent="."]
+[node name="AttackHitBox" type="Area2D" parent="." groups=["Whip"]]
 script = ExtResource( 7 )
 
 [node name="WhipCollisionShape" type="CollisionShape2D" parent="AttackHitBox"]
 position = Vector2( 44, 65 )
 shape = SubResource( 19 )
+disabled = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 current = true

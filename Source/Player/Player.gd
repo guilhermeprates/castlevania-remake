@@ -18,10 +18,10 @@ var _attacking: bool = false
 var _ducking: bool = false
 var _grounded: bool = true
 
-
 onready var camera: Camera2D = $PlayerCamera
 onready var sprite: Sprite = $Sprite
 onready var animationTree: AnimationTree = $AnimationTree
+onready var whipCollisionShape: CollisionShape2D = $AttackHitBox/WhipCollisionShape
 onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
@@ -85,10 +85,14 @@ func _ready_inputs():
 		playback.travel("Jump")
 		
 	if _attacking:
+		whipCollisionShape.disabled = false
 		if _ducking:
 			playback.travel("Ducking-Attack")
 		else:
 			playback.travel("Attack")
+
+func disable_whipcollitionshap() -> void:
+	whipCollisionShape.disabled = true
 
 func _set_connections() -> void:
 	pass
