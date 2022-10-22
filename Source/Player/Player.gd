@@ -19,9 +19,9 @@ var _ducking: bool = false
 var _grounded: bool = true
 
 onready var camera: Camera2D = $PlayerCamera
-onready var sprite: Sprite = $Sprite
+onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
-onready var whipCollisionShape: CollisionShape2D = $AttackHitBox/WhipCollisionShape
+onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
 onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
@@ -64,9 +64,9 @@ func _ready_inputs():
 	animationTree.set("parameters/conditions/ducking", !_ducking)
 
 	if _velocity.x > 0: 
-		sprite.flip_h = false
+		position2D.scale.x = 1
 	elif _velocity.x < 0:
-		sprite.flip_h = true 
+		position2D.scale.x = -1 
 	
 	if _velocity.x > 0 and not _jumping and not _attacking:
 		if _ducking:
