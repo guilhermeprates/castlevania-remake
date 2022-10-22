@@ -14,30 +14,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/AttackHitBox.gd"
 }, {
-"base": "Area2D",
-"class": "Interactable",
-"language": "GDScript",
-"path": "res://Source/HUD/BoxType1.gd"
-}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Source/Items/Item.gd"
 }, {
 "base": "Node2D",
-"class": "ItemBox",
-"language": "GDScript",
-"path": "res://Source/HUD/item_box01.gd"
-}, {
-"base": "Node2D",
-"class": "ItemBox2",
-"language": "GDScript",
-"path": "res://Source/HUD/item_box02.gd"
-}, {
-"base": "Node2D",
 "class": "Level",
 "language": "GDScript",
 "path": "res://Source/Levels/Level.gd"
+}, {
+"base": "Area2D",
+"class": "LevelObject",
+"language": "GDScript",
+"path": "res://Source/LevelObjects/LevelObject.gd"
+}, {
+"base": "Item",
+"class": "MoneyBag",
+"language": "GDScript",
+"path": "res://Source/Items/MoneyBag.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -49,8 +44,13 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/PlayerCamera.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "SubWeapon",
+"language": "GDScript",
+"path": "res://Source/Items/SubWeapon.gd"
+}, {
 "base": "Level",
-"class": "TextLevel",
+"class": "TestLevel",
 "language": "GDScript",
 "path": "res://Source/Levels/Test/TestLevel.gd"
 }, {
@@ -59,28 +59,28 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/TitleScreen/TitleScreen.gd"
 }, {
-"base": "Reference",
-"class": "Whip",
+"base": "Node",
+"class": "Weapon",
 "language": "GDScript",
-"path": "res://Source/Items/whip.gd"
+"path": "res://Source/Items/Weapon.gd"
 } ]
 _global_script_class_icons={
 "AttackHitBox": "",
-"Interactable": "",
 "Item": "",
-"ItemBox": "",
-"ItemBox2": "",
 "Level": "",
+"LevelObject": "",
+"MoneyBag": "",
 "Player": "",
 "PlayerCamera": "",
-"TextLevel": "",
+"SubWeapon": "",
+"TestLevel": "",
 "TitleScreen": "",
-"Whip": ""
+"Weapon": ""
 }
 
 [application]
 
-config/name="castlevania-remake"
+config/name="Castlevania Remake"
 run/main_scene="res://Source/Levels/Test/TestLevel.tscn"
 config/icon="res://icon.png"
 

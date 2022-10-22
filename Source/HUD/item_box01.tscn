@@ -1,8 +1,34 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Source/HUD/item_box01.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprites/obj_2x/map_obj01.png" type="Texture" id=2]
+[ext_resource path="res://Source/LevelObjects/Sprites/LargeCandle.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/icons mov_32x32/fire.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=7]
+script/source = "class_name ItemBox
+extends Node2D
+
+signal on_break_object
+
+export(String, \"Heartzinho\") var item = \"Heartzinho\" # colocar nos () os itens possiveis; var item = o que vai aparecer em cada box/padrao
+
+onready var sprite: AnimatedSprite = $Sprite
+
+var open = false # se a box esta quebrada ou nao
+var on_box = false # player na area2d
+
+func _process(delta: float) -> void:
+	pass
+
+func _on_Area_area_entered(area: Area2D) -> void:
+	if area.is_in_group(\"Whip\"):
+		self.on_box = true
+		$Sprite.play(\"off\")
+
+
+func _on_Sprite_animation_finished() -> void:
+	if $Sprite.animation == \"off\":
+		emit_signal(\"on_break_object\", position)
+"
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -15,12 +41,10 @@ atlas = ExtResource( 3 )
 region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 100, 200, 100 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 200, 100, 200, 100 )
 
@@ -41,7 +65,7 @@ animations = [ {
 extents = Vector2( 28, 30 )
 
 [node name="BoxType1" type="Node2D"]
-script = ExtResource( 1 )
+script = SubResource( 7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )

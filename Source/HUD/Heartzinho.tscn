@@ -1,6 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Source/HUD/heartzinho.gd" type="Script" id=1]
+[sub_resource type="GDScript" id=2]
+script/source = "#class_name Heart
+extends Area2D
+
+func _on_Heartzinho_body_entered(body: Node) -> void:
+	if body.is_in_group(\"Player\"):
+		body.heartzinho = true
+
+func _on_Heartzinho_body_exited(_body: Node) -> void:
+	queue_free()
+
+"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 8 )
@@ -8,7 +19,7 @@ extents = Vector2( 7, 8 )
 [node name="Heartzinho" type="Area2D"]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource( 1 )
+script = SubResource( 2 )
 
 [node name="Texture" type="Sprite" parent="."]
 

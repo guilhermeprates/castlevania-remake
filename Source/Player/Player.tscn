@@ -15,48 +15,24 @@ extents = Vector2( 22.5, 12.5 )
 resource_name = "Attack"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.32 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 4, 8, 12 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -69,40 +45,16 @@ tracks/3/keys = {
 resource_name = "Death"
 length = 0.7
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 29, 30 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=58]
@@ -110,240 +62,96 @@ resource_name = "Ducking"
 length = 0.5
 step = 0.25
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 20 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=51]
 resource_name = "Ducking-Attack"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 5, 9, 13 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=50]
 resource_name = "Ducking-Walk"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 20, 21, 22 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=43]
 resource_name = "GetHit"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 28 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=16]
 resource_name = "Idle"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 16 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:flip_h")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=39]
 resource_name = "Jump"
 length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ 20 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=20]
@@ -365,40 +173,16 @@ tracks/0/keys = {
 resource_name = "Walk"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Position2D/Sprite:texture")
+tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Position2D/Sprite:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
 "times": PoolRealArray( 0, 0.123333, 0.206667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Position2D/Sprite:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"update": 1,
-"values": [  ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=36]
@@ -494,7 +278,7 @@ states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 589, 104 )
 transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Jump", "Idle", SubResource( 42 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -28.3031, 51.7263 )
+graph_offset = Vector2( -28.3031, -130.841 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -518,7 +302,7 @@ hframes = 4
 vframes = 8
 frame = 16
 region_enabled = true
-region_rect = Rect2( 0.459984, 4.29099, 563.242, 642.038 )
+region_rect = Rect2( 2.01556, 4.242, 557.958, 644.464 )
 region_filter_clip = true
 
 [node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
