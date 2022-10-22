@@ -9,7 +9,7 @@ onready var sprite: AnimatedSprite = $sprite
 
 var open = false #se a box esta quebrada ou nao
 var on_box = false #player na area2d
-var timer = $Timer as Timer
+#var timer = $Timer as Timer
 
 func _process(delta: float) -> void:
 	if not (on_box and !open) and Input.is_action_just_pressed("ui_open"):
