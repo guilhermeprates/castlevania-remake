@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/AttackHitBox.gd"
 }, {
-"base": "Node2D",
-"class": "Entrance",
-"language": "GDScript",
-"path": "res://Source/Entrance/Entrance.gd"
-}, {
 "base": "Area2D",
 "class": "Interactable",
 "language": "GDScript",
@@ -27,7 +22,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Source/Item/Item.gd"
+"path": "res://Source/Items/Item.gd"
 }, {
 "base": "Node2D",
 "class": "ItemBox",
@@ -39,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/HUD/item_box02.gd"
 }, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Source/Levels/Level.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -49,25 +49,31 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/PlayerCamera.gd"
 }, {
+"base": "Level",
+"class": "TextLevel",
+"language": "GDScript",
+"path": "res://Source/Levels/Test/TestLevel.gd"
+}, {
 "base": "Control",
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://Source/TitleScreen/TitleScreen.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "Whip",
 "language": "GDScript",
-"path": "res://whip.gd"
+"path": "res://Source/Items/whip.gd"
 } ]
 _global_script_class_icons={
 "AttackHitBox": "",
-"Entrance": "",
 "Interactable": "",
 "Item": "",
 "ItemBox": "",
 "ItemBox2": "",
+"Level": "",
 "Player": "",
 "PlayerCamera": "",
+"TextLevel": "",
 "TitleScreen": "",
 "Whip": ""
 }
@@ -75,7 +81,7 @@ _global_script_class_icons={
 [application]
 
 config/name="castlevania-remake"
-run/main_scene="res://intro.tscn"
+run/main_scene="res://Source/Levels/Test/TestLevel.tscn"
 config/icon="res://icon.png"
 
 [debug]

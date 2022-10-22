@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simon_belmont_test.png-de2a9812571b06f91d7200148a35b15b.stex"
+path="res://.import/icon_jogandoaguinha.png-3fb70d1426bfff8b07d56837b08d1482.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Source/Player/simon_belmont_test.png"
-dest_files=[ "res://.import/simon_belmont_test.png-de2a9812571b06f91d7200148a35b15b.stex" ]
+source_file="res://Source/Items/Items_32x32/icon_jogandoaguinha.png"
+dest_files=[ "res://.import/icon_jogandoaguinha.png-3fb70d1426bfff8b07d56837b08d1482.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
