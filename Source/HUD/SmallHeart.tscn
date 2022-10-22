@@ -1,7 +1,0 @@
-[gd_scene format=2]
-
-[node name="heart" type="Area2D"]
-
-[node name="heart" type="Sprite" parent="."]
-
-[node name="heart_collision" type="CollisionShape2D" parent="."]
