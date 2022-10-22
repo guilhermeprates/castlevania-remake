@@ -18,6 +18,8 @@ var _attacking: bool = false
 var _ducking: bool = false
 var _grounded: bool = true
 
+onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
@@ -26,6 +28,7 @@ onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
 	_set_connections()
+	state_machine.initialize_state_machine(self)
 
 func _physics_process(delta: float) -> void:
 	_ready_inputs()
@@ -42,7 +45,7 @@ func _physics_process(delta: float) -> void:
 #	_dead = true
 #	animationTree.set("parameters/conditions/dead", _dead)
 
-func _reset_state() -> void:
+func _reset_velocity() -> void:
 	_velocity = Vector2.ZERO
 
 func _ready_inputs():
