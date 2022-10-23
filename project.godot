@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/AttackHitBox.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Collectable",
+"language": "GDScript",
+"path": "res://Source/Items/Collectable.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -58,14 +63,10 @@ _global_script_classes=[ {
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://Source/TitleScreen/TitleScreen.gd"
-}, {
-"base": "Node",
-"class": "Weapon",
-"language": "GDScript",
-"path": "res://Source/Items/Weapon.gd"
 } ]
 _global_script_class_icons={
 "AttackHitBox": "",
+"Collectable": "",
 "Item": "",
 "Level": "",
 "LevelObject": "",
@@ -74,8 +75,7 @@ _global_script_class_icons={
 "PlayerCamera": "",
 "SubWeapon": "",
 "TestLevel": "",
-"TitleScreen": "",
-"Weapon": ""
+"TitleScreen": ""
 }
 
 [application]
