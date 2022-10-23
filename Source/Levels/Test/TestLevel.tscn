@@ -60,7 +60,7 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 1/z_index = 0
 
 [node name="TestLevel" type="Node2D"]
-position = Vector2( 14, 16 )
+position = Vector2( 0, 1 )
 script = ExtResource( 6 )
 items = [ ExtResource( 7 ), ExtResource( 8 ) ]
 
