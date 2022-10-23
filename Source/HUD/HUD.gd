@@ -1,7 +1,6 @@
-class_name HUD
 extends CanvasLayer
 
-onready var heartsLabel = $Control/HBoxContainer/HeartsLabel
+onready var heartsLabel = $Control/HeartsLabel
 
 func _process(delta: float) -> void:
 	var hearts = PlayerVariables.hearts

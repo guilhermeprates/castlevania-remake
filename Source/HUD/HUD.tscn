@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Source/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Source/Items/Sprites/SmallHeart.png" type="Texture" id=2]
+[ext_resource path="res://Source/HUD/Retro Gaming.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 4 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -13,18 +20,20 @@ margin_left = -948.0
 margin_right = 948.0
 margin_bottom = 213.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
-margin_right = 597.0
-margin_bottom = 39.0
-
-[node name="HeartImage" type="TextureRect" parent="Control/HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 39.0
+[node name="HeartImage" type="TextureRect" parent="Control"]
+margin_right = 105.0
+margin_bottom = 110.0
+theme = SubResource( 1 )
 texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
 
-[node name="HeartsLabel" type="Label" parent="Control/HBoxContainer"]
-margin_left = 36.0
-margin_top = 12.0
-margin_right = 61.0
-margin_bottom = 26.0
+[node name="HeartsLabel" type="Label" parent="Control"]
+anchor_right = 0.082
+anchor_bottom = 0.26
+margin_left = 110.0
+margin_top = 49.0
+margin_right = 479.528
+margin_bottom = 34.62
+custom_fonts/font = SubResource( 2 )
 text = "- 00"

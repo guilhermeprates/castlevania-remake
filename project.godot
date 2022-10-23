@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Items/Collectable.gd"
 }, {
-"base": "CanvasLayer",
-"class": "HUD",
-"language": "GDScript",
-"path": "res://Source/HUD/HUD.gd"
-}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -72,7 +67,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AttackHitBox": "",
 "Collectable": "",
-"HUD": "",
 "Item": "",
 "Level": "",
 "LevelObject": "",
@@ -94,6 +88,7 @@ config/icon="res://icon.png"
 
 Global="*res://Source/AutoLoads/Global.gd"
 PlayerVariables="*res://Source/AutoLoads/PlayerVariables.gd"
+Hud="*res://Source/HUD/HUD.tscn"
 
 [debug]
 
