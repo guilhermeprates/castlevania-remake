@@ -1,4 +1,5 @@
-class_name Enemies extends KinematicBody2D
+class_name Enemies 
+extends KinematicBody2D
 
 const SPEED: int = 150
 const GRAVITY: int = 2500
@@ -22,14 +23,28 @@ func _set_animation():
 #	if $AnimationZombie.assigned_animation != anim:
 #		$anim.play(anim)
 
-func _on_Hitbox_body_entered(body: Node) -> void:
+#func _on_Hitbox_body_entered(body: Node) -> void:
+#	print("Player")
+#	hitted = true #colidiu
+#	health_points -= 1
+#	yield(get_tree().create_timer(0.2), "timeout") #quando der o timeout, outra linha vai começar:
+#	hitted = false
+#	if health_points <1:
+#		$AnimationZombie.play("death")
+#		yield(get_tree().create_timer(0.4), "timeout")
+#		queue_free()
+#		get_node("Hitbox/CollisionHitbox").set_deferred("disable", true) #inimigo vai morrer sem ter problemas na colisão
+
+
+func _on_Hitbox_area_entered(area: Area2D) -> void:
 	print("Player")
 	hitted = true #colidiu
 	health_points -= 1
-	yield(get_tree().create_timer(0.1), "timeout") #quando der o timeout, outra linha vai começar:
+	yield(get_tree().create_timer(0.2), "timeout") #quando der o timeout, outra linha vai começar:
 	hitted = false
 	if health_points <1:
 		$AnimationZombie.play("death")
-		yield(get_tree().create_timer(0.3), "timeout")
+		yield(get_tree().create_timer(0.4), "timeout")
 		queue_free()
 		get_node("Hitbox/CollisionHitbox").set_deferred("disable", true) #inimigo vai morrer sem ter problemas na colisão
+
