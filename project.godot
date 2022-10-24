@@ -88,7 +88,7 @@ config/icon="res://icon.png"
 
 Global="*res://Source/AutoLoads/Global.gd"
 PlayerVariables="*res://Source/AutoLoads/PlayerVariables.gd"
-Hud="*res://Source/HUD/HUD.tscn"
+HUD="*res://Source/HUD/HUD.tscn"
 
 [debug]
 
@@ -166,9 +166,9 @@ ducking={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777234,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_open={
+special_attack={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":79,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 
