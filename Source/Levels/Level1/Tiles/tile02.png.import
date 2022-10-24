@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex"
+path="res://.import/tile02.png-b5771aa36b94ad42f8395feb09f6ee18.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/simon.png"
-dest_files=[ "res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex" ]
+source_file="res://Source/Levels/Level1/Tiles/tile02.png"
+dest_files=[ "res://.import/tile02.png-b5771aa36b94ad42f8395feb09f6ee18.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.5
+svg/scale=1.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex"
+path="res://.import/RedMoneyBag.png-7639f0529b68c7775a14b7d758e1a734.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/simon.png"
-dest_files=[ "res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex" ]
+source_file="res://Source/Items/Sprites/RedMoneyBag.png"
+dest_files=[ "res://.import/RedMoneyBag.png-7639f0529b68c7775a14b7d758e1a734.stex" ]
 
 [params]
 
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.5
+svg/scale=1.0

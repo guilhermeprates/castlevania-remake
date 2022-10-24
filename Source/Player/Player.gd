@@ -1,32 +1,98 @@
-class_name Player extends KinematicBody2D
+class_name Player 
+extends KinematicBody2D
 
-onready var sprite: AnimatedSprite = $AnimatedSprite
+signal on_grounded_updated(is_grounded)
 
-export (int) var speed: int = 150
-export (int) var gravity: int = 2500
-export (int) var jump_speed: int = 700
+const SPEED: int = 150
+const JUMP_FORCE: int = 700
+const GRAVITY: int = 2500
 
+export(int) var health_points: int = 100
+export(int) var hearts: int = 0
+export(int) var base_attack: int = 10
 
-var velocity: Vector2 = Vector2.ZERO
+var _velocity: Vector2 = Vector2.ZERO
+var _dead: bool = false
+var _jumping: bool = false
+var _attacking: bool = false
+var _ducking: bool = false
+var _grounded: bool = true
+
+onready var camera: Camera2D = $PlayerCamera
+onready var position2D: Position2D = $Position2D
+onready var animationTree: AnimationTree = $AnimationTree
+onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
+onready var playback = animationTree.get("parameters/playback")
+
+func _ready() -> void:
+	_set_connections()
 
 func _physics_process(delta: float) -> void:
-	_get_input()
-	velocity.y += gravity * delta
-	velocity = move_and_slide(velocity, Vector2.UP)
+	_ready_inputs()
+	_velocity.y += GRAVITY * delta
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+	
+	var was_grounded = _grounded
+	_grounded = is_on_floor()
+	animationTree.set("parameters/conditions/grounded", _grounded)
+	if was_grounded == null || _grounded != was_grounded:
+		emit_signal("on_grounded_updated", _grounded)
+	
+	# Descomentar p/ testar animação de morte
+#	_dead = true
+#	animationTree.set("parameters/conditions/dead", _dead)
 
-func _get_input():
-	velocity.x = Input.get_action_strength("ui_right")-Input.get_action_strength("ui_left")
-	velocity.x = velocity.x * speed
+func _reset_state() -> void:
+	_velocity = Vector2.ZERO
+
+func _ready_inputs():
+	# Descomentar p/ testar animação de morte, aperte enter p/ testar
+#	if Input.get_action_strength("ui_accept"):
+#		playback.travel("GetHit")
 	
-	if Input.is_action_pressed("jump") and is_on_floor():
-		velocity.y = -jump_speed
+	if _dead: return
 	
-	if velocity.x < 0:
-		sprite.flip_h = false
-		sprite.play("walk")
-	elif velocity.x > 0:
-		sprite.flip_h = true
-		sprite.play("walk")
-	else:
-		sprite.frame = 0
-		sprite.stop()
+	var right = Input.get_action_strength("ui_right")
+	var left = Input.get_action_strength("ui_left")
+	
+	_velocity.x = right - left
+	_velocity.x = _velocity.x * SPEED
+	_attacking = Input.get_action_strength("attack")
+	_jumping = Input.get_action_strength("jump")
+	_ducking = Input.get_action_strength("ducking")
+	
+	animationTree.set("parameters/conditions/ducking", !_ducking)
+
+	if _velocity.x > 0: 
+		position2D.scale.x = 1
+	elif _velocity.x < 0:
+		position2D.scale.x = -1 
+	
+	if _velocity.x > 0 and not _jumping and not _attacking:
+		if _ducking:
+			playback.travel("Ducking-Walk")
+		else:
+			playback.travel("Walk")
+	elif _velocity.x < 0 and not _jumping and not _attacking:
+		if _ducking:
+			playback.travel("Ducking-Walk")
+		else:
+			playback.travel("Walk")
+	elif _ducking and not _jumping:
+		playback.travel("Ducking")
+	elif _jumping and _grounded and not _attacking and not _ducking:
+		_velocity.y = -JUMP_FORCE
+		playback.travel("Jump")
+		
+	if _attacking:
+		whipCollisionShape.disabled = false
+		if _ducking:
+			playback.travel("Ducking-Attack")
+		else:
+			playback.travel("Attack")
+
+func disable_whipcollitionshap() -> void:
+	whipCollisionShape.disabled = true
+
+func _set_connections() -> void:
+	pass

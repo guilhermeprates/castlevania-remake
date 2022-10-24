@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex"
+path="res://.import/HolyWater.png-54190e6fdbb39b523121c91f810bc078.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/simon.png"
-dest_files=[ "res://.import/simon.png-4e9994c447f848c732afa8004d553bd9.stex" ]
+source_file="res://Source/Items/Sprites/HolyWater.png"
+dest_files=[ "res://.import/HolyWater.png-54190e6fdbb39b523121c91f810bc078.stex" ]
 
 [params]
 
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=2.5
+svg/scale=1.0
