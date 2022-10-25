@@ -6,7 +6,7 @@ signal on_break_level_object(position)
 var _broke = false
 
 func _ready() -> void:
-	add_to_group("Whip")
+	add_to_group("LevelObject")
 	var _result = connect("area_entered", self, "_level_object_area_entered")
 
 func _process(delta: float) -> void:

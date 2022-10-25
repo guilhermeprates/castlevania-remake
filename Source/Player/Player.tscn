@@ -282,7 +282,7 @@ graph_offset = Vector2( -28.3031, -130.841 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 position = Vector2( 960, 542 )
 script = ExtResource( 1 )
 
@@ -305,7 +305,7 @@ region_enabled = true
 region_rect = Rect2( 2.01556, 4.242, 557.958, 644.464 )
 region_filter_clip = true
 
-[node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
+[node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Enemy", "LevelObject"]]
 position = Vector2( 28, 1 )
 script = ExtResource( 7 )
 
