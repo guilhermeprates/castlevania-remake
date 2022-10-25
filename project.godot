@@ -20,9 +20,9 @@ _global_script_classes=[ {
 "path": "res://Source/Items/Collectable.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Enemies",
+"class": "Enemy",
 "language": "GDScript",
-"path": "res://Source/Enemies/Zombie.gd"
+"path": "res://Source/Enemies/Enemy.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -68,11 +68,16 @@ _global_script_classes=[ {
 "class": "TitleScreen",
 "language": "GDScript",
 "path": "res://Source/TitleScreen/TitleScreen.gd"
+}, {
+"base": "Enemy",
+"class": "Zombie",
+"language": "GDScript",
+"path": "res://Source/Enemies/Zombie.gd"
 } ]
 _global_script_class_icons={
 "AttackHitBox": "",
 "Collectable": "",
-"Enemies": "",
+"Enemy": "",
 "Item": "",
 "Level": "",
 "LevelObject": "",
@@ -81,7 +86,8 @@ _global_script_class_icons={
 "PlayerCamera": "",
 "SubWeapon": "",
 "TestLevel": "",
-"TitleScreen": ""
+"TitleScreen": "",
+"Zombie": ""
 }
 
 [application]

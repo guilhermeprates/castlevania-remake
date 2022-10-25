@@ -9,6 +9,8 @@ func _ready() -> void:
 	for node in get_children():
 		if node is LevelObject:
 			node.connect("on_break_level_object", self, "_spawn_item")
+		if node is Enemy:
+			node.connect("on_kill_enemy", self, "_spawn_item")
 
 func _process(delta: float) -> void:
 	pass
