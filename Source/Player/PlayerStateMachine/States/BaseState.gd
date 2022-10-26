@@ -3,10 +3,11 @@ extends Node
 
 #Script de um estado genérico, herdado por todos os estados do jogo
 
-var state_machine: PlayerStateMachine
+var state_machine
 
 #Método chamado logo que o estado for ativado
 func enter() -> void:
+	
 	pass
 
 #Método chamado logo antes de o estado acabar

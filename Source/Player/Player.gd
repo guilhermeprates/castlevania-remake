@@ -18,7 +18,7 @@ var _attacking: bool = false
 var _ducking: bool = false
 var _grounded: bool = true
 
-onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+onready var state_machine = $PlayerStateMachine
 
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
@@ -99,3 +99,15 @@ func disable_whipcollitionshap() -> void:
 
 func _set_connections() -> void:
 	pass
+
+func flip_sprite():
+	if _velocity.x > 0: 
+		position2D.scale.x = 1
+	elif _velocity.x < 0:
+		position2D.scale.x = -1 
+
+func add_velocity(left, right, delta):
+	_velocity.x = right - left
+	_velocity.x = _velocity.x * SPEED
+	_velocity.y += GRAVITY * delta
+	_velocity = move_and_slide(_velocity, Vector2.UP)
