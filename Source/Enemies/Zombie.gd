@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _on_area_entered(area: Area2D) -> void:
-	if not _dead:
+	if area.is_in_group("Whip") and not _dead:
 		_dead = true
 		$AnimationZombie.play("death")
 		emit_signal("on_kill_enemy", position)

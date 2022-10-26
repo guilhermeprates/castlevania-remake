@@ -9,6 +9,7 @@
 extents = Vector2( 16.5, 33 )
 
 [sub_resource type="RectangleShape2D" id=62]
+extents = Vector2( 17, 33 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 22.5, 12.5 )
@@ -284,17 +285,16 @@ graph_offset = Vector2( -28.3031, -130.841 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[node name="Player" type="KinematicBody2D" groups=["Player"]]
+[node name="Player" type="KinematicBody2D"]
 position = Vector2( 960, 542 )
 script = ExtResource( 1 )
 
-[node name="PlayerCollisionShape" type="CollisionShape2D" parent="." groups=["Player"]]
+[node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="PlayerHitBox" type="Area2D" parent="."]
+[node name="PlayerHitBox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
-position = Vector2( -55, -2 )
 shape = SubResource( 62 )
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -310,7 +310,7 @@ region_enabled = true
 region_rect = Rect2( 2.01556, 4.242, 557.958, 644.464 )
 region_filter_clip = true
 
-[node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Enemy", "LevelObject"]]
+[node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
 position = Vector2( 28, 1 )
 script = ExtResource( 7 )
 

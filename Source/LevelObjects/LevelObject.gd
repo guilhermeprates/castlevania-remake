@@ -12,8 +12,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _level_object_area_entered(_area: Area2D) -> void:
-	if not _broke:
+func _level_object_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Whip") and not _broke:
 		_broke = true
 		emit_signal("on_break_level_object", position)
 		yield(get_tree().create_timer(0.5), "timeout")

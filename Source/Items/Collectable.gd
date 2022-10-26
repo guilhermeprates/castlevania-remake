@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func _collectable_body_entered(body: Node) -> void:
+func _collectable_body_entered(body: Node2D) -> void:
 	if body is Player:
 		emit_signal("on_touch_collectable")
 		yield(get_tree().create_timer(0.1), "timeout")
