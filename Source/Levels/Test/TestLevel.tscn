@@ -84,9 +84,12 @@ position = Vector2( 432, 433 )
 
 [node name="Zombie" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1096, 386 )
+player = NodePath("../Player")
 
 [node name="Zombie2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1258, 387 )
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 201, 463 )
+health_points = 3

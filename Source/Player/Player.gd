@@ -29,6 +29,7 @@ onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/Whip
 onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
+	PlayerVariables.health_points = health_points
 	_set_connections()
 
 func _physics_process(delta: float) -> void:
@@ -96,15 +97,18 @@ func _ready_inputs():
 		else:
 			playback.travel("Attack")
 
-func disable_whipcollitionshap() -> void:
+func enable_whip_collision_shape() -> void:
+	whipCollisionShape.disabled = false
+
+func disable_whip_collision_shape() -> void:
 	whipCollisionShape.disabled = true
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
-		if health_points > 0:
+		if health_points > 1:
 			health_points -= 1
-			PlayerVariables.health = health_points
+			PlayerVariables.health_points = health_points
 			playback.travel("GetHit")
 			_getting_hit = true
 			playerHitBoxCollisionShape.set_deferred("disable", true)
@@ -117,7 +121,8 @@ func _on_body_entered(body: Node2D) -> void:
 		else:
 			_dead = true
 			animationTree.set("parameters/conditions/dead", _dead)
+			playback.travel("GetHit")
 
 func _set_connections() -> void:
-	playerHitBox.connect("body_entered", self, "_on_body_entered")
+	var _result = playerHitBox.connect("body_entered", self, "_on_body_entered")
 	pass

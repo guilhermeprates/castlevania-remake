@@ -36,11 +36,14 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "disable_whipcollitionshap"
+"method": "enable_whip_collision_shape"
+}, {
+"args": [  ],
+"method": "disable_whip_collision_shape"
 } ]
 }
 
