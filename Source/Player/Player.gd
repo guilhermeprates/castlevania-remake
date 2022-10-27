@@ -43,19 +43,11 @@ func _physics_process(delta: float) -> void:
 	animationTree.set("parameters/conditions/grounded", _grounded)
 	if was_grounded == null || _grounded != was_grounded:
 		emit_signal("on_grounded_updated", _grounded)
-	
-	# Descomentar p/ testar animação de morte
-#	_dead = true
-#	animationTree.set("parameters/conditions/dead", _dead)
 
 func _reset_state() -> void:
 	_velocity = Vector2.ZERO
 
 func _ready_inputs():
-	# Descomentar p/ testar animação de morte, aperte enter p/ testar
-#	if Input.get_action_strength("ui_accept"):
-#		playback.travel("GetHit")
-	
 	if _dead or _getting_hit: return
 	
 	var right = Input.get_action_strength("ui_right")
@@ -67,6 +59,7 @@ func _ready_inputs():
 	_jumping = Input.get_action_strength("jump")
 	_ducking = Input.get_action_strength("ducking")
 	
+	# p/ q o player não fique abaixado sem apertar o botão
 	animationTree.set("parameters/conditions/ducking", !_ducking)
 
 	if _velocity.x > 0: 
@@ -97,12 +90,6 @@ func _ready_inputs():
 		else:
 			playback.travel("Attack")
 
-func enable_whip_collision_shape() -> void:
-	whipCollisionShape.disabled = false
-
-func disable_whip_collision_shape() -> void:
-	whipCollisionShape.disabled = true
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
@@ -119,10 +106,17 @@ func _on_body_entered(body: Node2D) -> void:
 			yield(get_tree().create_timer(1.0), "timeout")
 			_intangible = false
 		else:
+			health_points -= 1
+			PlayerVariables.health_points = health_points
 			_dead = true
 			animationTree.set("parameters/conditions/dead", _dead)
 			playback.travel("GetHit")
 
 func _set_connections() -> void:
 	var _result = playerHitBox.connect("body_entered", self, "_on_body_entered")
-	pass
+
+func enable_whip_collision_shape() -> void:
+	whipCollisionShape.disabled = false
+
+func disable_whip_collision_shape() -> void:
+	whipCollisionShape.disabled = true
