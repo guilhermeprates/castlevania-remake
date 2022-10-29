@@ -91,5 +91,5 @@ position = Vector2( 1258, 387 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 201, 463 )
+position = Vector2( 1988, 462 )
 health_points = 3

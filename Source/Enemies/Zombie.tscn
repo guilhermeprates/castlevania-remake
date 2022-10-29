@@ -6,7 +6,7 @@
 [ext_resource path="res://Source/Enemies/Hitbox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 23.25, 53.8423 )
+extents = Vector2( 18.5, 53.1712 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -174,15 +174,24 @@ script = ExtResource( 3 )
 [node name="Position2D" type="Position2D" parent="."]
 
 [node name="SpriteZombie" type="Sprite" parent="Position2D"]
-position = Vector2( -1.25, -2 )
+position = Vector2( -63.5, -66 )
 scale = Vector2( 1.34375, 1.25 )
 texture = ExtResource( 1 )
+centered = false
 flip_h = true
 hframes = 6
 vframes = 2
 
+[node name="Hitbox" parent="Position2D" groups=["Enemy"] instance=ExtResource( 4 )]
+modulate = Color( 0.419608, 0.0196078, 0.945098, 1 )
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionHitbox" parent="Position2D/Hitbox" index="0"]
+position = Vector2( 3, -0.5 )
+
 [node name="CollisionShapeZombie" type="CollisionShape2D" parent="."]
-position = Vector2( 19, 0 )
+position = Vector2( 0.5, 0 )
 shape = SubResource( 4 )
 
 [node name="AnimationZombie" type="AnimationPlayer" parent="."]
@@ -191,13 +200,4 @@ anims/RESET = SubResource( 5 )
 anims/death = SubResource( 7 )
 anims/run = SubResource( 6 )
 
-[node name="Hitbox" parent="." groups=["Enemy"] instance=ExtResource( 4 )]
-modulate = Color( 0.419608, 0.0196078, 0.945098, 1 )
-position = Vector2( 20.5, 9 )
-collision_layer = 2
-collision_mask = 9
-
-[node name="CollisionHitbox" parent="Hitbox" index="0"]
-position = Vector2( -1.5, -8.5 )
-
-[editable path="Hitbox"]
+[editable path="Position2D/Hitbox"]
