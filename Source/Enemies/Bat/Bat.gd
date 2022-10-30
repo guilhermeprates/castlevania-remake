@@ -1,19 +1,53 @@
 class_name Bat
 extends Enemy
 
+enum MoveDirection { UP, DOWN }
+
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
 onready var tween: Tween = $Tween
 
+var _direction = MoveDirection.DOWN
+var _target = position.y + 10
+
 func _ready() -> void:
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
-
+	tween.connect("tween_completed", self, "_on_tween_completed")
+	tween.interpolate_property(
+		self, 
+		"position:y", 
+		position.y, 
+		position.y - 10,
+		0.5, 
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
+	)
+	tween.interpolate_property(
+		self, 
+		"position:y", 
+		position.y - 5, 
+		position.y + 10,
+		0.5, 
+		Tween.TRANS_LINEAR,
+		Tween.EASE_OUT
+	)
+	tween.start()
+	print(position.y)
+	
 func _physics_process(delta: float) -> void:
 	if not _dead: 
 		if not _moving:
 			_look_for_player()
 		else:
 			_move(delta)
+	print(position.y)
+
+func _on_tween_completed(object, key) -> void:
+	pass
+#	if _direction == MoveDirection.DOWN:
+#		_direction = MoveDirection.UP
+#	else:
+#		_direction = MoveDirection.DOWN
 
 func _move(delta: float) -> void:
 	_velocity.x = SPEED * _move_direction
