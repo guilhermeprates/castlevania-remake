@@ -17,17 +17,17 @@ func _ready() -> void:
 		self, 
 		"position:y", 
 		position.y, 
-		position.y - 10,
-		0.5, 
+		position.y - 30,
+		1, 
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN
 	)
 	tween.interpolate_property(
 		self, 
 		"position:y", 
-		position.y - 5, 
-		position.y + 10,
-		0.5, 
+		position.y, 
+		position.y + 30,
+		1, 
 		Tween.TRANS_LINEAR,
 		Tween.EASE_OUT
 	)
@@ -40,7 +40,6 @@ func _physics_process(delta: float) -> void:
 			_look_for_player()
 		else:
 			_move(delta)
-	print(position.y)
 
 func _on_tween_completed(object, key) -> void:
 	pass

@@ -1,30 +1,44 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Source/Enemies/Bat/Bat.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/enemies/Boss.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 100, 100 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 100, 0, 100, 100 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 16, 7 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 16, 16 )
+extents = Vector2( 16, 7 )
 
 [node name="Bat" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.507813, 0.5 )
+position = Vector2( -0.195325, 0 )
+scale = Vector2( 0.323906, 0.32 )
 frames = SubResource( 2 )
+frame = 1
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -32,6 +46,7 @@ shape = SubResource( 1 )
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Hitbox"]
+position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="."]
