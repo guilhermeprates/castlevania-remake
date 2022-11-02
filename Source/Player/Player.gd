@@ -7,10 +7,13 @@ const SPEED: int = 150
 const JUMP_FORCE: int = 700
 const GRAVITY: int = 2500
 
+var knockback_dir = 1 
+
 export(int) var health_points: int = 10
 export(int) var hearts: int = 0
 export(int) var base_attack: int = 1
 
+var _knockback = Vector2.ZERO
 var _velocity: Vector2 = Vector2.ZERO
 var _dead: bool = false
 var _jumping: bool = false
@@ -19,6 +22,7 @@ var _ducking: bool = false
 var _grounded: bool = true
 var _getting_hit: bool = false
 var _intangible: bool = false
+var _freezeControl = false 
 
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
@@ -37,15 +41,20 @@ func _physics_process(delta: float) -> void:
 	if not _getting_hit:
 		_velocity.y += GRAVITY * delta
 		_velocity = move_and_slide(_velocity, Vector2.UP)
-		
+
 	var was_grounded = _grounded
 	_grounded = is_on_floor()
 	animationTree.set("parameters/conditions/grounded", _grounded)
 	if was_grounded == null || _grounded != was_grounded:
 		emit_signal("on_grounded_updated", _grounded)
+	
+	# distancia do empurrao:
+	_knockback = _knockback.move_toward(Vector2.UP, 100 * delta)
+	_knockback = move_and_slide(_knockback)
 
 func _reset_state() -> void:
 	_velocity = Vector2.ZERO
+	_knockback = Vector2.ZERO
 
 func _ready_inputs():
 	if _dead or _getting_hit: return
@@ -64,8 +73,10 @@ func _ready_inputs():
 
 	if _velocity.x > 0: 
 		position2D.scale.x = 1
+		knockback_dir = _velocity
 	elif _velocity.x < 0:
 		position2D.scale.x = -1 
+		knockback_dir = _velocity
 	
 	if _velocity.x > 0 and not _jumping and not _attacking:
 		if _ducking:
@@ -93,6 +104,8 @@ func _ready_inputs():
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
+		_knockback = Vector2.LEFT * 400
+		_velocity.y = -200 # pulinho 
 		if health_points > 1:
 			health_points -= 1
 			PlayerVariables.health_points = health_points
