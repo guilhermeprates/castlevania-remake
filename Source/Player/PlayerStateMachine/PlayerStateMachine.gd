@@ -8,6 +8,8 @@ onready var my_player
 onready var idle_state = $Idle
 onready var walk_state = $Walk
 onready var jump_state = $Jump
+onready var attack_state = $Attack
+onready var air_state = $Air
 
 func _ready() -> void:
 	current_state = idle_state
@@ -22,6 +24,7 @@ func initialize_state_machine(player):
 
 func _process(delta: float) -> void:
 	current_state.tick(delta)
+
 
 func _physics_process(delta: float) -> void:
 	current_state.physics_tick(delta)

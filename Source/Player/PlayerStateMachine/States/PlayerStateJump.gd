@@ -13,7 +13,6 @@ func tick(delta):
 	pass
 
 
-
 func physics_tick(delta):
 	state_machine.my_player.set_gravity(delta)
 
@@ -23,9 +22,13 @@ func exit():
 	print ("Exit Jump State")
 
 
-func _on_Player_on_grounded_updated(is_grounded) -> void:
-	transition_to_idle()
 
 
-func transition_to_idle():
-	state_machine.change_state("Idle")
+
+func transition_to_air():
+	state_machine.change_state("Air")
+
+
+func _on_Player_on_animation_ended() -> void:
+	if(state_machine.current_state == state_machine.get_node("Jump")):
+		transition_to_air()

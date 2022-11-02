@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_test.png" type="Texture" id=2]
@@ -8,12 +8,30 @@
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateJump.gd" type="Script" id=6]
 [ext_resource path="res://Source/Player/AttackHitBox.gd" type="Script" id=7]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateWalk.gd" type="Script" id=8]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAttack.gd" type="Script" id=9]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAir.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.5, 33 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 22.5, 12.5 )
+
+[sub_resource type="Animation" id=65]
+resource_name = "Air"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
 
 [sub_resource type="Animation" id=35]
 resource_name = "Attack"
@@ -65,7 +83,7 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "disable_whipcollitionshap"
+"method": "animation_ended"
 } ]
 }
 
@@ -349,6 +367,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [  ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "animation_ended"
+} ]
+}
 
 [sub_resource type="Animation" id=20]
 length = 0.001
@@ -406,6 +438,9 @@ tracks/2/keys = {
 "values": [  ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=66]
+animation = "Air"
+
 [sub_resource type="AnimationNodeAnimation" id=36]
 animation = "Attack"
 
@@ -440,16 +475,14 @@ advance_condition = "Walk"
 advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
+advance_condition = "Attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
 switch_mode = 2
-auto_advance = true
+advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 advance_condition = "Jump"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=42]
-advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
@@ -479,9 +512,29 @@ priority = 2
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+advance_condition = "Jump"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+advance_condition = "Air"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+advance_condition = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+advance_condition = "Air"
+
 [sub_resource type="AnimationNodeStateMachine" id=22]
+states/Air/node = SubResource( 66 )
+states/Air/position = Vector2( 589.697, 316.344 )
 states/Attack/node = SubResource( 36 )
-states/Attack/position = Vector2( 393, 227.344 )
+states/Attack/position = Vector2( 393, 316.344 )
 states/Death/node = SubResource( 45 )
 states/Death/position = Vector2( 209.697, 227.344 )
 states/Ducking/node = SubResource( 53 )
@@ -495,12 +548,12 @@ states/GetHit/position = Vector2( 209.697, 104 )
 states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( 393, 104 )
 states/Jump/node = SubResource( 40 )
-states/Jump/position = Vector2( 589, 227.344 )
+states/Jump/position = Vector2( 763, 316.344 )
 states/Walk/node = SubResource( 25 )
-states/Walk/position = Vector2( 589, 104 )
-transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Jump", "Idle", SubResource( 42 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ) ]
+states/Walk/position = Vector2( 763, 104 )
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ), "Walk", "Attack", SubResource( 63 ), "Walk", "Jump", SubResource( 64 ), "Jump", "Air", SubResource( 67 ), "Air", "Attack", SubResource( 68 ), "Air", "Idle", SubResource( 69 ), "Attack", "Air", SubResource( 70 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -203.303, 26.5263 )
+graph_offset = Vector2( 28.697, 125.078 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -537,6 +590,7 @@ shape = SubResource( 19 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Air = SubResource( 65 )
 anims/Attack = SubResource( 35 )
 anims/Death = SubResource( 44 )
 anims/Ducking = SubResource( 58 )
@@ -553,6 +607,8 @@ tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 23 )
+parameters/conditions/Air = false
+parameters/conditions/Attack = false
 parameters/conditions/Idle = false
 parameters/conditions/Jump = false
 parameters/conditions/Walk = false
@@ -596,4 +652,12 @@ script = ExtResource( 8 )
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
 
-[connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_grounded_updated"]
+[node name="Attack" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 9 )
+
+[node name="Air" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 10 )
+
+[connection signal="on_animation_ended" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_animation_ended"]
+[connection signal="on_animation_ended" from="." to="PlayerStateMachine/Attack" method="_on_Player_on_animation_ended"]
+[connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Air" method="_on_Player_on_grounded_updated"]
