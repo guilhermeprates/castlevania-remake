@@ -9,6 +9,7 @@ const GRAVITY: int = 2500
 export(NodePath) var player: NodePath
 export(int) var target_distance: int = 500
 export(int) var health_points: int = 1
+export(int) var points: int = 0
 
 var _player_node: Node2D
 var _dead: bool = false

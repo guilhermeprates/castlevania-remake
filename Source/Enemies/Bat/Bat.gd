@@ -1,12 +1,12 @@
 class_name Bat
 extends Enemy
 
+var _time = 0
 
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
-onready var tween: Tween = $Tween
-
-var _time = 0
+onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/CollisionShape2D
+onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
@@ -27,19 +27,19 @@ func _move(delta: float) -> void:
 
 func _look_for_player() -> void:
 	if _player_node.position.x < position.x:
-		position2D.scale.x = 1
+		position2D.scale.x = -1
 		_move_direction = -1
 	else:
-		position2D.scale.x = -1
+		position2D.scale.x = 1
 		_move_direction = 1
 	_moving = distance_to_player() < target_distance
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Whip") and not _dead:
 		_dead = true
-		get_node("Position2D/Hitbox/CollisionShape2D").set_deferred("disable", true)
+		hitboxCollisionShape2D.set_deferred("disable", true)
 		yield(get_tree().create_timer(0.2), "timeout")
-#		$AnimationZombie.play("death")
+#		animationPlayer.play("death")
 		emit_signal("on_kill_enemy", position)
 		yield(get_tree().create_timer(0.4), "timeout")
 		queue_free()
