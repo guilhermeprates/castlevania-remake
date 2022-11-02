@@ -368,6 +368,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=21]
 resource_name = "Walk"
 length = 0.3
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Position2D/Sprite:texture")
 tracks/0/interp = 1
@@ -433,10 +434,10 @@ animation = "Jump"
 animation = "Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
+advance_condition = "Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=27]
-switch_mode = 2
-auto_advance = true
+advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
@@ -445,9 +446,10 @@ switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
+advance_condition = "Jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
-advance_condition = "grounded"
+advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 
@@ -498,7 +500,7 @@ states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 589, 104 )
 transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Jump", "Idle", SubResource( 42 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -28.3031, 51.7263 )
+graph_offset = Vector2( -203.303, 26.5263 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -551,10 +553,12 @@ tree_root = SubResource( 22 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 23 )
+parameters/conditions/Idle = false
+parameters/conditions/Jump = false
+parameters/conditions/Walk = false
 parameters/conditions/alive = true
 parameters/conditions/dead = false
 parameters/conditions/ducking = false
-parameters/conditions/grounded = true
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 1, -139 )
@@ -591,3 +595,5 @@ script = ExtResource( 8 )
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
+
+[connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_grounded_updated"]

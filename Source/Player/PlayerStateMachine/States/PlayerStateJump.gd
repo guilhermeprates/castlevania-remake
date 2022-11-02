@@ -3,6 +3,29 @@ extends BaseState
 
 func enter():
 	print ("Enter Jump State")
+	state_machine.my_player.animationTree.set("parameters/conditions/Jump", true)
+	if(state_machine.last_state == state_machine.idle_state):
+		state_machine.my_player.set_upward_jump()
+	elif(state_machine.last_state == state_machine.walk_state):
+		state_machine.my_player.set_forward_jump()
+
+func tick(delta):
+	pass
+
+
+
+func physics_tick(delta):
+	state_machine.my_player.set_gravity(delta)
+
 
 func exit():
+	state_machine.my_player.animationTree.set("parameters/conditions/Jump", false)
 	print ("Exit Jump State")
+
+
+func _on_Player_on_grounded_updated(is_grounded) -> void:
+	transition_to_idle()
+
+
+func transition_to_idle():
+	state_machine.change_state("Idle")
