@@ -12,7 +12,6 @@ func _process(delta: float) -> void:
 	healthLabel.text = "P-" + str(health_points)
 	
 func _on_Timer_timeout() -> void:
-	print("tempo")
 	timer -= 1
 	timerLabel.text = "TIME 0" + str(timer)
 	

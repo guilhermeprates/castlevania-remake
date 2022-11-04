@@ -1,9 +1,8 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_test.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
-[ext_resource path="res://Source/Player/AttackHitBox.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16.5, 33 )
@@ -301,12 +300,13 @@ states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 589, 104 )
 transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Jump", "Idle", SubResource( 42 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -28.3031, -130.841 )
+graph_offset = Vector2( -28.3031, -66.681 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 960, 542 )
+collision_mask = 8
 script = ExtResource( 1 )
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
@@ -332,7 +332,6 @@ region_filter_clip = true
 
 [node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
 position = Vector2( 28, 1 )
-script = ExtResource( 7 )
 
 [node name="WhipCollisionShape" type="CollisionShape2D" parent="Position2D/AttackHitBox"]
 position = Vector2( 32, -5 )

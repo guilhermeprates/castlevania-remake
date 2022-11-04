@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
-"class": "AttackHitBox",
+"base": "Enemy",
+"class": "Bat",
 "language": "GDScript",
-"path": "res://Source/Player/AttackHitBox.gd"
+"path": "res://Source/Enemies/Bat/Bat.gd"
+}, {
+"base": "Enemy",
+"class": "BlackPanther",
+"language": "GDScript",
+"path": "res://Source/Enemies/BlackPanther/BlackPanther.gd"
 }, {
 "base": "RigidBody2D",
 "class": "Collectable",
@@ -24,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Enemies/Enemy.gd"
 }, {
+"base": "Enemy",
+"class": "FishMan",
+"language": "GDScript",
+"path": "res://Source/Enemies/FishMan/FishMan.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -33,6 +43,11 @@ _global_script_classes=[ {
 "class": "Level",
 "language": "GDScript",
 "path": "res://Source/Levels/Level.gd"
+}, {
+"base": "Camera2D",
+"class": "LevelCamera",
+"language": "GDScript",
+"path": "res://Source/Levels/LevelCamera.gd"
 }, {
 "base": "Area2D",
 "class": "LevelObject",
@@ -72,14 +87,17 @@ _global_script_classes=[ {
 "base": "Enemy",
 "class": "Zombie",
 "language": "GDScript",
-"path": "res://Source/Enemies/Zombie.gd"
+"path": "res://Source/Enemies/Zombie/Zombie.gd"
 } ]
 _global_script_class_icons={
-"AttackHitBox": "",
+"Bat": "",
+"BlackPanther": "",
 "Collectable": "",
 "Enemy": "",
+"FishMan": "",
 "Item": "",
 "Level": "",
+"LevelCamera": "",
 "LevelObject": "",
 "MoneyBag": "",
 "Player": "",
