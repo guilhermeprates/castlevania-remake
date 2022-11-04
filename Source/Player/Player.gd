@@ -49,8 +49,9 @@ func _physics_process(delta: float) -> void:
 		emit_signal("on_grounded_updated", _grounded)
 	
 	# distancia do empurrao:
-	_knockback = _knockback.move_toward(Vector2.UP, 100 * delta)
-	_knockback = move_and_slide(_knockback)
+#	_knockback = _knockback.move_toward(Vector2.ZERO, 10 * delta)
+#	_knockback = move_and_slide(_knockback)
+	move_and_collide(_knockback)
 
 func _reset_state() -> void:
 	_velocity = Vector2.ZERO
