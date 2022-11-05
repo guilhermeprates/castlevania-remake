@@ -11,6 +11,7 @@ onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/Collis
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	animationPlayer.play("Walk")
 	_last_position = position
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 

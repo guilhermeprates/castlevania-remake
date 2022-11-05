@@ -105,8 +105,8 @@ func _ready_inputs():
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
-		_knockback = Vector2.LEFT * 400
-		_velocity.y = -200 # pulinho 
+#		_knockback = Vector2.LEFT * 400
+#		_velocity.y = -200 # pulinho 
 		if health_points > 1:
 			health_points -= 1
 			PlayerVariables.health_points = health_points

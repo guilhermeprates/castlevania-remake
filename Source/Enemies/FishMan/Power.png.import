@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Power.png-1f2dc297e1ba412f471d07d117af4e98.stex"
+path="res://.import/Power.png-7a68db7983123385f3d2702eb1e63d00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/enemies/Power.png"
-dest_files=[ "res://.import/Power.png-1f2dc297e1ba412f471d07d117af4e98.stex" ]
+source_file="res://Source/Enemies/FishMan/Power.png"
+dest_files=[ "res://.import/Power.png-7a68db7983123385f3d2702eb1e63d00.stex" ]
 
 [params]
 

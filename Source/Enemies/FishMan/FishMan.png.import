@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_knife.png-7874367fba0c63ff462d4bec9ce44a57.stex"
+path="res://.import/FishMan.png-5a55cc2006f05f85fd0a4de6295b7afb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Source/Item/Items_32x32/icon_knife.png"
-dest_files=[ "res://.import/icon_knife.png-7874367fba0c63ff462d4bec9ce44a57.stex" ]
+source_file="res://Source/Enemies/FishMan/FishMan.png"
+dest_files=[ "res://.import/FishMan.png-5a55cc2006f05f85fd0a4de6295b7afb.stex" ]
 
 [params]
 
