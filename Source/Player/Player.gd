@@ -2,8 +2,11 @@ class_name Player
 extends KinematicBody2D
 
 signal on_grounded_updated(is_grounded)
+signal on_animation_ended()
+
 
 const SPEED: int = 150
+const HORIZONTAL_JUMP_FORCE = 200
 const JUMP_FORCE: int = 700
 const GRAVITY: int = 2500
 
@@ -12,6 +15,7 @@ var knockback_dir = 1
 export(int) var health_points: int = 10
 export(int) var hearts: int = 0
 export(int) var base_attack: int = 1
+
 
 var _knockback = Vector2.ZERO
 var _velocity: Vector2 = Vector2.ZERO
@@ -24,6 +28,8 @@ var _getting_hit: bool = false
 var _intangible: bool = false
 var _freezeControl = false 
 
+onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
@@ -34,19 +40,21 @@ onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
 	PlayerVariables.health_points = health_points
+	state_machine.initialize_state_machine(self)
 	_set_connections()
 
 func _physics_process(delta: float) -> void:
-	_ready_inputs()
-	if not _getting_hit:
-		_velocity.y += GRAVITY * delta
-		_velocity = move_and_slide(_velocity, Vector2.UP)
-
-	var was_grounded = _grounded
-	_grounded = is_on_floor()
-	animationTree.set("parameters/conditions/grounded", _grounded)
-	if was_grounded == null || _grounded != was_grounded:
-		emit_signal("on_grounded_updated", _grounded)
+	ground_check()
+#	_ready_inputs()
+#	if not _getting_hit:
+#		_velocity.y += GRAVITY * delta
+#		_velocity = move_and_slide(_velocity, Vector2.UP)
+#
+#	var was_grounded = _grounded
+#	_grounded = is_on_floor()
+#	animationTree.set("parameters/conditions/grounded", _grounded)
+#	if was_grounded == null || _grounded != was_grounded:
+#		emit_signal("on_grounded_updated", _grounded)
 	
 	# distancia do empurrao:
 #	_knockback = _knockback.move_toward(Vector2.ZERO, 10 * delta)
@@ -102,6 +110,9 @@ func _ready_inputs():
 		else:
 			playback.travel("Attack")
 
+
+
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
@@ -128,6 +139,56 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _set_connections() -> void:
 	var _result = playerHitBox.connect("body_entered", self, "_on_body_entered")
+
+
+
+##### Métodos####
+func _reset_velocity() -> void:
+	_velocity = Vector2.ZERO
+
+func flip_sprite():
+	if _velocity.x > 0: 
+		position2D.scale.x = 1
+	elif _velocity.x < 0:
+		position2D.scale.x = -1 
+
+func ground_check():
+	var was_grounded = _grounded
+	_grounded = is_on_floor()
+	animationTree.set("parameters/conditions/grounded", _grounded)
+	if was_grounded == null || _grounded != was_grounded:
+		emit_signal("on_grounded_updated", _grounded)
+
+func animation_ended():
+	emit_signal("on_animation_ended")
+
+func set_movement(delta):
+	var right = Input.get_action_strength("ui_right")
+	var left = Input.get_action_strength("ui_left")
+	_velocity.x = right - left
+	_velocity.x = _velocity.x * SPEED
+	_velocity.y += GRAVITY * delta
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func set_gravity(delta):
+	_velocity.y += GRAVITY * delta
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func set_upward_jump():
+	_velocity.y = -JUMP_FORCE
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func set_forward_jump():
+	if(_velocity.x > 0):
+		_velocity.x = HORIZONTAL_JUMP_FORCE
+	elif(_velocity.x < 0):
+		_velocity.x = -HORIZONTAL_JUMP_FORCE
+	_velocity.y = -JUMP_FORCE
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func set_movement_momentum():
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
 
 func enable_whip_collision_shape() -> void:
 	whipCollisionShape.disabled = false

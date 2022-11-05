@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "BaseState",
+"language": "GDScript",
+"path": "res://Source/Player/PlayerStateMachine/States/BaseState.gd"
+}, {
 "base": "Enemy",
 "class": "Bat",
 "language": "GDScript",
@@ -79,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Player/PlayerCamera.gd"
 }, {
+"base": "Node",
+"class": "PlayerStateMachine",
+"language": "GDScript",
+"path": "res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "SubWeapon",
 "language": "GDScript",
@@ -100,6 +110,7 @@ _global_script_classes=[ {
 "path": "res://Source/Enemies/Zombie/Zombie.gd"
 } ]
 _global_script_class_icons={
+"BaseState": "",
 "Bat": "",
 "BlackPanther": "",
 "Boss": "",
@@ -114,6 +125,7 @@ _global_script_class_icons={
 "MoneyBag": "",
 "Player": "",
 "PlayerCamera": "",
+"PlayerStateMachine": "",
 "SubWeapon": "",
 "TestLevel": "",
 "TitleScreen": "",
