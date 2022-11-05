@@ -10,6 +10,8 @@ onready var walk_state = $Walk
 onready var jump_state = $Jump
 onready var attack_state = $Attack
 onready var air_state = $Air
+onready var get_hit_state = $GetHit
+onready var death_state = $Death
 
 func _ready() -> void:
 	current_state = idle_state
