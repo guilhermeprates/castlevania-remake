@@ -6,8 +6,7 @@
 [ext_resource path="res://Source/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Source/LevelObjects/Candle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Source/Levels/Test/TestLevel.gd" type="Script" id=6]
-[ext_resource path="res://Source/Items/Resources/SmallHeart.tres" type="Resource" id=7]
-[ext_resource path="res://Source/Items/Resources/LargeHeart.tres" type="Resource" id=8]
+[ext_resource path="res://Source/Enemies/GiantBat/GiantBat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Source/Enemies/Zombie/Zombie.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Source/Enemies/Bat/Bat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.tscn" type="PackedScene" id=11]
@@ -66,10 +65,12 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 13.5, 7.75 )
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 75.5, 133.5 )
+
 [node name="TestLevel" type="Node2D"]
 position = Vector2( 0, 1 )
 script = ExtResource( 6 )
-items = [ ExtResource( 7 ), ExtResource( 8 ) ]
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -14, -16 )
@@ -98,17 +99,21 @@ position = Vector2( 367, 390 )
 player = NodePath("../Player")
 
 [node name="Bat" parent="." instance=ExtResource( 10 )]
-position = Vector2( 2691, 403 )
+position = Vector2( 546, 405 )
 scale = Vector2( 2, 2 )
 player = NodePath("../Player")
 
 [node name="FishMan" parent="." instance=ExtResource( 11 )]
-position = Vector2( 2016, 708 )
+position = Vector2( 1255, 453 )
 player = NodePath("../Player")
 target_distance = 700
 
 [node name="BlackPanther" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1503, 351 )
+player = NodePath("../Player")
+
+[node name="GiantBat" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2423, 293 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
@@ -120,3 +125,9 @@ health_points = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 1407, 360 )
 shape = SubResource( 7 )
+
+[node name="BossEventArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossEventArea"]
+position = Vector2( 2691, 360 )
+shape = SubResource( 8 )

@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 func _spawn_item(position: Vector2) -> void:
 	print(position)
 	var collectable = collectableScene.instance()
-	collectable.item = items[0]
+#	collectable.item = items[0]
 	collectable.position = position
 	collectable.connect("on_touch_collectable", self, "_collect_item")
 	yield(get_tree().create_timer(0.5), "timeout")
