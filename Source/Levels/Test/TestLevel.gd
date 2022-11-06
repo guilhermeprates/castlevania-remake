@@ -9,4 +9,5 @@ func _ready() -> void:
 
 func _on_boss_event_area_entered(area: Area2D) -> void:
 	print("Boss Event")
-	giantBat.boss_event_trigged = true
+	if area.is_in_group("Player"):
+		giantBat.boss_event_trigged = true

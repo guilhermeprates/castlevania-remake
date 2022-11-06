@@ -1,8 +1,10 @@
 class_name FishMan
 extends Enemy
 
+export (int, 1000, 10000) var attack_speed: int = 1000
+export (float, 0, 1) var attack_rate: float = 0.5
+
 var _jump: bool = true
-var _last_position: Vector2 
 
 onready var collisionShape: CollisionShape2D = $CollisionShape2D
 onready var position2D: Position2D = $Position2D
@@ -12,7 +14,6 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	animationPlayer.play("Walk")
-	_last_position = position
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 
 func _physics_process(delta: float) -> void:
@@ -25,23 +26,16 @@ func _physics_process(delta: float) -> void:
 			_move(delta)
 	
 func _move(delta: float) -> void:
-#	if global_position.y > 700:
-#		_enable_map_collision_mask()
 	if is_on_floor():
 		_velocity.x = SPEED * _move_direction
 	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _jump() -> void:
-#	_disable_map_collision_mask()
 	_jump = false
 	_velocity.y += -1300
-	print(_velocity.y)
-	print(position.y)
-	print(global_position.y)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
-	
 func _disable_map_collision_mask() -> void:
 	set_collision_mask_bit(3, false)
 
