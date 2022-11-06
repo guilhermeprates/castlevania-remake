@@ -144,10 +144,6 @@ Global="*res://Source/AutoLoads/Global.gd"
 PlayerVariables="*res://Source/AutoLoads/PlayerVariables.gd"
 HUD="*res://Source/HUD/HUD.tscn"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/width=1920

@@ -40,3 +40,7 @@ func change_state(new_state_name: String):
 func _unhandled_input(event: InputEvent) -> void:
 	current_state.input_handler(event)
 
+
+
+func _on_Player_on_player_damaged() -> void:
+	change_state("GetHit")

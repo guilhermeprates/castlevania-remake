@@ -28,5 +28,7 @@ func transition_to_attack():
 	state_machine.change_state("Attack")
 
 func _on_Player_on_grounded_updated(is_grounded) -> void:
+	if(state_machine.current_state == state_machine.get_node("Air")):
 		print ("Grounded again")
 		transition_to_idle()
+

@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal on_grounded_updated(is_grounded)
 signal on_animation_ended()
+signal on_player_damaged()
 
 
 const SPEED: int = 150
@@ -33,8 +34,12 @@ onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
-onready var playerHitBox: Area2D = $PlayerHitBox
-onready var playerHitBoxCollisionShape: CollisionShape2D = $PlayerHitBox/CollisionShape2D
+
+onready var playerFrontalHitBox: Area2D = $Position2D/FrontalHitBox
+onready var playerFrontalHitBoxCollision: CollisionShape2D = $Position2D/FrontalHitBox/CollisionShape2D
+onready var playerBackHitBox: Area2D = $Position2D/BackHitBox
+onready var playerBackHitBoxCollision: CollisionShape2D = $Position2D/BackHitBox/CollisionShape2D
+
 onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
 onready var playback = animationTree.get("parameters/playback")
 
@@ -115,30 +120,33 @@ func _ready_inputs():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
-		print("dano")
-#		_knockback = Vector2.LEFT * 400
-#		_velocity.y = -200 # pulinho 
-		if health_points > 1:
-			health_points -= 1
-			PlayerVariables.health_points = health_points
-			playback.travel("GetHit")
-			_getting_hit = true
-			playerHitBoxCollisionShape.set_deferred("disable", true)
-			yield(get_tree().create_timer(0.4), "timeout")
-			_getting_hit = false
-			_intangible = true
-			playerHitBoxCollisionShape.set_deferred("disable", false)
-			yield(get_tree().create_timer(1.0), "timeout")
-			_intangible = false
-		else:
-			health_points -= 1
-			PlayerVariables.health_points = health_points
-			_dead = true
-			animationTree.set("parameters/conditions/dead", _dead)
-			playback.travel("GetHit")
+		
+		print(body)
+		emit_signal("on_player_damaged")
+##		_knockback = Vector2.LEFT * 400
+##		_velocity.y = -200 # pulinho 
+#		if health_points > 1:
+#			health_points -= 1
+#			PlayerVariables.health_points = health_points
+#			playback.travel("GetHit")
+#			_getting_hit = true
+#			playerFrontalHitBoxCollision.set_deferred("disable", true)
+#			yield(get_tree().create_timer(0.4), "timeout")
+#			_getting_hit = false
+#			_intangible = true
+#			playerFrontalHitBoxCollision.set_deferred("disable", false)
+#			yield(get_tree().create_timer(1.0), "timeout")
+#			_intangible = false
+#		else:
+#			health_points -= 1
+#			PlayerVariables.health_points = health_points
+#			_dead = true
+#			animationTree.set("parameters/conditions/dead", _dead)
+#			playback.travel("GetHit")
 
 func _set_connections() -> void:
-	var _result = playerHitBox.connect("body_entered", self, "_on_body_entered")
+	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered")
+	playerBackHitBox.connect("body_entered", self, "_on_body_entered")
 
 
 
@@ -151,6 +159,20 @@ func flip_sprite():
 		position2D.scale.x = 1
 	elif _velocity.x < 0:
 		position2D.scale.x = -1 
+
+func take_damage():
+	health_points -= 1
+	PlayerVariables.health_points = health_points
+
+func disable_player_hitboxes():
+	playerFrontalHitBoxCollision.set_deferred("disable", true)
+	playerBackHitBoxCollision.set_deferred("disable", true)
+
+
+func enable_player_hitboxes():
+	playerFrontalHitBoxCollision.set_deferred("disable", false)
+	playerBackHitBoxCollision.set_deferred("disable", false)
+
 
 func ground_check():
 	var was_grounded = _grounded
@@ -185,6 +207,12 @@ func set_forward_jump():
 		_velocity.x = -HORIZONTAL_JUMP_FORCE
 	_velocity.y = -JUMP_FORCE
 	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func set_knockback():
+	_velocity = Vector2(1,-1) * 500
+	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+
 
 func set_movement_momentum():
 	_velocity = move_and_slide(_velocity, Vector2.UP)
