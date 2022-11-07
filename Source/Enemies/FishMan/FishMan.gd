@@ -2,15 +2,18 @@ class_name FishMan
 extends Enemy
 
 export (int, 1000, 10000) var attack_speed: int = 1000
-export (float, 0, 1) var attack_rate: float = 0.5
+export (float, 0, 10) var attack_rate: float = 5.0
 
 var _jump: bool = true
+var _can_attack: bool = false
 
+onready var timer: Timer = $Timer
 onready var collisionShape: CollisionShape2D = $CollisionShape2D
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
 onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/CollisionShape2D
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+onready var projectile = preload("res://Source/Projectile/Projectile.tscn")
 
 func _ready() -> void:
 	animationPlayer.play("Walk")
@@ -23,7 +26,11 @@ func _physics_process(delta: float) -> void:
 		else:
 			if _jump:
 				_jump()
-			_move(delta)
+#			_move(delta)
+			if !_can_attack:
+				_move(delta)
+			else:
+				_attack()
 	
 func _move(delta: float) -> void:
 	if is_on_floor():
@@ -33,14 +40,24 @@ func _move(delta: float) -> void:
 
 func _jump() -> void:
 	_jump = false
+	_can_attack = true
 	_velocity.y += -1300
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
-func _disable_map_collision_mask() -> void:
-	set_collision_mask_bit(3, false)
-
-func _enable_map_collision_mask() -> void:
-	set_collision_mask_bit(3, true)
+func _attack() -> void:
+	if not _dead and _can_attack:
+		var projectile_instance = projectile.instance()
+		projectile_instance.position = $Position2D/Node2D.global_position
+		projectile_instance.player_direction = player_direction()
+		get_tree().get_root().add_child(projectile_instance)
+		_can_attack = false
+		animationPlayer.play("Attack")
+		timer.start(0.3) 
+		yield(timer, "timeout")
+		animationPlayer.play("Walk")
+		timer.start(attack_rate) 
+		yield(timer, "timeout")
+		_can_attack = true
 
 func _look_for_player() -> void:
 	if _player_node.position.x < position.x:

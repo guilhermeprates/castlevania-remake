@@ -24,3 +24,9 @@ func _ready() -> void:
 func distance_to_player() -> float:
 	var direction_to_target = _player_node.position - position
 	return direction_to_target.length()
+
+func player_direction() -> int:
+	if _player_node.position.x < position.x:
+		return -1
+	else:
+		return 1
