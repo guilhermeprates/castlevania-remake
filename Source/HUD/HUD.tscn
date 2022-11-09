@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Source/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Source/Items/Sprites/SmallHeart.png" type="Texture" id=2]
 [ext_resource path="res://Source/HUD/PressStart2P.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Source/HUD/hp_bg.png" type="Texture" id=4]
+[ext_resource path="res://Source/HUD/hp.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=5]
 size = 30
@@ -119,5 +121,29 @@ margin_right = 254.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 3 )
 text = "STAGE 01"
+
+[node name="PlayerLifeBar" type="TextureProgress" parent="Control"]
+margin_left = 211.607
+margin_top = 81.6667
+margin_right = 274.607
+margin_bottom = 89.6667
+rect_scale = Vector2( 5, 5 )
+max_value = 16.0
+value = 16.0
+texture_under = ExtResource( 4 )
+texture_progress = ExtResource( 5 )
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Control"]
+margin_left = 5.35714
+margin_top = 62.5
+margin_right = 387.357
+margin_bottom = 125.0
+
+[node name="PlayerLabel" type="Label" parent="Control/HBoxContainer6"]
+margin_top = 16.0
+margin_right = 190.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 3 )
+text = "PLAYER"
 
 [connection signal="timeout" from="Control/HBoxContainer4/Timer" to="." method="_on_Timer_timeout"]
