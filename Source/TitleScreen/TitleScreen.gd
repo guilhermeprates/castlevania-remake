@@ -1,4 +1,5 @@
-class_name TitleScreen extends Control
+class_name TitleScreen 
+extends Control
 
 func _ready() -> void:
 	pass

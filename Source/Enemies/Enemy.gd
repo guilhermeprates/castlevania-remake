@@ -1,6 +1,7 @@
 class_name Enemy
 extends KinematicBody2D
 
+# warning-ignore:unused_signal
 signal on_kill_enemy(position)
 
 const SPEED: int = 150
