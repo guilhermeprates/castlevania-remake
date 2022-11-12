@@ -235,7 +235,7 @@ texture = ExtResource( 6 )
 position = Vector2( 1638, 661 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 39 )
-frame = 14
+frame = 36
 playing = true
 
 [node name="Start" type="Button" parent="."]

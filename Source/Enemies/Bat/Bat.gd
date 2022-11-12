@@ -40,7 +40,7 @@ func _on_area_entered(area: Area2D) -> void:
 		_dead = true
 		hitboxCollisionShape2D.set_deferred("disable", true)
 		yield(get_tree().create_timer(0.2), "timeout")
-#		animationPlayer.play("death")
+		animationPlayer.play("Death")
 		emit_signal("on_kill_enemy", position)
 		yield(get_tree().create_timer(0.4), "timeout")
 		queue_free()

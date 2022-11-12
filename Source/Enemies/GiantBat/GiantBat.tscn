@@ -52,7 +52,6 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="Position2D"]
 texture = ExtResource( 2 )
 hframes = 3
-frame = 1
 
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 
@@ -67,3 +66,5 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Flying = SubResource( 4 )
 anims/Idle = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="."]

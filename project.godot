@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Levels/Level.gd"
 }, {
-"base": "Level",
+"base": "Reference",
 "class": "Level1",
 "language": "GDScript",
 "path": "res://Source/Levels/Level1/Level1.gd"
@@ -93,6 +93,11 @@ _global_script_classes=[ {
 "class": "PlayerStateMachine",
 "language": "GDScript",
 "path": "res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd"
+}, {
+"base": "Area2D",
+"class": "Projectile",
+"language": "GDScript",
+"path": "res://Source/Projectile/Projectile.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "SubWeapon",
@@ -132,6 +137,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerCamera": "",
 "PlayerStateMachine": "",
+"Projectile": "",
 "SubWeapon": "",
 "TestLevel": "",
 "TitleScreen": "",
