@@ -35,10 +35,10 @@ margin_bottom = 140.0
 rect_scale = Vector2( 1.12, 1.2 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
-margin_left = -18.75
-margin_top = -20.0
-margin_right = 38.25
-margin_bottom = 20.0
+margin_left = -19.0
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 48.0
 rect_scale = Vector2( 34.1375, 4.68 )
 color = Color( 0, 0, 0, 1 )
 

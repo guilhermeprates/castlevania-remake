@@ -93,11 +93,11 @@ position = Vector2( 294, 395 )
 position = Vector2( 432, 433 )
 
 [node name="Zombie" parent="." instance=ExtResource( 9 )]
-position = Vector2( 133, 390 )
+position = Vector2( 133, 452 )
 player = NodePath("../Player")
 
 [node name="Zombie2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 367, 390 )
+position = Vector2( 89, 451 )
 player = NodePath("../Player")
 
 [node name="Bat" parent="." instance=ExtResource( 10 )]
