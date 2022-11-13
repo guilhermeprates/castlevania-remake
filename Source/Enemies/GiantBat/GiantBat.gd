@@ -1,8 +1,8 @@
 class_name GiantBat
 extends Boss
 
-var _trigged: bool = false
 var _time: int = 0
+var _trigged: bool = false
 var _attack_trigged: bool = false
 
 onready var timer: Timer = $Timer
@@ -12,6 +12,7 @@ onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/Collis
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	_experience = 3000
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 	animationPlayer.play("Idle") 
 	timer.set_wait_time(3.0)
@@ -35,8 +36,6 @@ func _trigger_attack() -> void:
 	_attack_trigged = true
 
 func _attack(delta: float) -> void:
-#	position = position.linear_interpolate(_player_node.position, 1)
-#	set_rotation(position.angle_to_point(_player_node.position))
 	pass
 
 func _retreat(delta: float) -> void:
@@ -61,11 +60,13 @@ func _look_for_player() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Whip") and not _dead:
 		health_points =- 1
+		Game.boss_health_points = health_points
 		if health_points == 0:
+			Game.player_score += _experience
 			_dead = true
 			hitboxCollisionShape2D.set_deferred("disable", true)
 			yield(get_tree().create_timer(0.2), "timeout")
-	#		animationPlayer.play("death")
+			animationPlayer.play("Death")
 			emit_signal("on_kill_boss", position)
 			yield(get_tree().create_timer(0.4), "timeout")
 			queue_free()

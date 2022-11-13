@@ -35,10 +35,10 @@ margin_bottom = 140.0
 rect_scale = Vector2( 1.12, 1.2 )
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
-margin_left = -18.75
-margin_top = -20.0
-margin_right = 38.25
-margin_bottom = 20.0
+margin_left = -19.0
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 48.0
 rect_scale = Vector2( 34.1375, 4.68 )
 color = Color( 0, 0, 0, 1 )
 
@@ -73,7 +73,7 @@ margin_top = 106.667
 margin_right = 1439.75
 margin_bottom = 151.667
 
-[node name="HealthLabel" type="Label" parent="Control/HBoxContainer2"]
+[node name="LifePointsLabel" type="Label" parent="Control/HBoxContainer2"]
 margin_top = 7.0
 margin_right = 126.0
 margin_bottom = 37.0
@@ -123,7 +123,7 @@ margin_bottom = 40.0
 custom_fonts/font = SubResource( 3 )
 text = "STAGE 01"
 
-[node name="PlayerLifeBar" type="TextureProgress" parent="Control"]
+[node name="PlayerHealthBar" type="TextureProgress" parent="Control"]
 margin_left = 250.0
 margin_top = 78.3333
 margin_right = 315.0
@@ -135,7 +135,7 @@ value = 16.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
 
-[node name="EnemyLifeBar" type="TextureProgress" parent="Control"]
+[node name="BossHealthBar" type="TextureProgress" parent="Control"]
 margin_left = 250.0
 margin_top = 111.667
 margin_right = 310.0

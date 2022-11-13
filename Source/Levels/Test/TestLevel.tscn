@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Source/LevelObjects/LargeCandle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Source/Tiles/tile_intro2.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Source/Enemies/Bat/Bat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Source/Enemies/BlackPanther/BlackPanther.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Source/HUD/HUD.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Source/Enemies/GiantBat/GiantBat.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -90,15 +92,15 @@ position = Vector2( 294, 395 )
 position = Vector2( 432, 433 )
 
 [node name="Zombie" parent="." instance=ExtResource( 9 )]
-position = Vector2( 133, 390 )
+position = Vector2( 133, 452 )
 player = NodePath("../Player")
 
 [node name="Zombie2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 367, 390 )
+position = Vector2( 89, 451 )
 player = NodePath("../Player")
 
 [node name="Bat" parent="." instance=ExtResource( 10 )]
-position = Vector2( 2691, 403 )
+position = Vector2( 2265, 705 )
 scale = Vector2( 2, 2 )
 player = NodePath("../Player")
 
@@ -111,12 +113,21 @@ target_distance = 700
 position = Vector2( 1503, 351 )
 player = NodePath("../Player")
 
+[node name="GiantBat" parent="." instance=ExtResource( 14 )]
+position = Vector2( 2451, 283 )
+player = NodePath("../Player")
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 682, 401 )
-health_points = 3
+position = Vector2( 2174, 459 )
 
-[node name="Area2D" type="Area2D" parent="." groups=["End"]]
+[node name="JumpArea1" type="Area2D" parent="." groups=["JumpArea"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea1"]
+position = Vector2( 2017, 356 )
+shape = SubResource( 7 )
+
+[node name="JumpArea2" type="Area2D" parent="." groups=["JumpArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2"]
 position = Vector2( 1407, 360 )
 shape = SubResource( 7 )

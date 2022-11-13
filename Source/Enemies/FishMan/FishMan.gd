@@ -16,6 +16,7 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var projectile = preload("res://Source/Projectile/Projectile.tscn")
 
 func _ready() -> void:
+	_experience = 300
 	animationPlayer.play("Walk")
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 
@@ -26,7 +27,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			if _jump:
 				_jump()
-#			_move(delta)
 			if !_can_attack:
 				_move(delta)
 			else:
@@ -70,6 +70,7 @@ func _look_for_player() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Whip") and not _dead:
+		Game.player_score += _experience
 		_dead = true
 		hitboxCollisionShape2D.set_deferred("disable", true)
 		yield(get_tree().create_timer(0.2), "timeout")

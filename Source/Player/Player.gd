@@ -12,7 +12,7 @@ const GRAVITY: int = 2500
 
 var knockback_dir = 1 
 
-export(int) var health_points: int = 10
+export(int) var health_points: int = 16
 export(int) var hearts: int = 0
 export(int) var base_attack: int = 1
 
@@ -39,7 +39,7 @@ onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/Whip
 onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
-	PlayerVariables.health_points = health_points
+	Game.player_health_points = health_points
 	state_machine.initialize_state_machine(self)
 	_set_connections()
 
@@ -110,17 +110,14 @@ func _ready_inputs():
 		else:
 			playback.travel("Attack")
 
-
-
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		print("dano")
 #		_knockback = Vector2.LEFT * 400
 #		_velocity.y = -200 # pulinho 
-		if health_points > 1:
-			health_points -= 1
-			PlayerVariables.health_points = health_points
+		health_points -= 2
+		Game.player_health_points = health_points
+		if health_points > 0:
 			playback.travel("GetHit")
 			_getting_hit = true
 			playerHitBoxCollisionShape.set_deferred("disable", true)
@@ -131,8 +128,6 @@ func _on_body_entered(body: Node2D) -> void:
 			yield(get_tree().create_timer(1.0), "timeout")
 			_intangible = false
 		else:
-			health_points -= 1
-			PlayerVariables.health_points = health_points
 			_dead = true
 			animationTree.set("parameters/conditions/dead", _dead)
 			playback.travel("GetHit")
