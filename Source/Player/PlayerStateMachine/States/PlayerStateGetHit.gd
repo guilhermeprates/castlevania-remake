@@ -8,12 +8,11 @@ func enter():
 	state_machine.my_player.take_damage()
 	state_machine.my_player.set_knockback()
 	
-	
-	
 
 
 func exit():
 	print ("Exit GetHit State")
+	state_machine.my_player.back_from_hit()
 	state_machine.my_player.animationTree.set("parameters/conditions/GetHit", false)
 	count = 0
 

@@ -11,8 +11,9 @@ func exit():
 	state_machine.my_player.animationTree.set("parameters/conditions/Idle", false)
 
 func tick(delta):
+
+	
 	if (state_machine.my_player._velocity.x != 0):
-		print ("Velocity changed")
 		transition_to_walk()
 	
 	if(Input.get_action_strength("jump")):
@@ -23,6 +24,9 @@ func tick(delta):
 
 
 func physics_tick(delta):
+#	var down = Input.get_action_raw_strength("ui_down")
+#	state_machine.my_player.animationTree.set("parameters/Idleblend/blend_position", down)
+
 	state_machine.my_player.set_movement(delta)
 	state_machine.my_player.set_gravity(delta)
 

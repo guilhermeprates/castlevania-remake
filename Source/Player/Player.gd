@@ -34,6 +34,7 @@ onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
+onready var sprite: Sprite = $Position2D/Sprite
 
 onready var playerFrontalHitBox: Area2D = $Position2D/FrontalHitBox
 onready var playerFrontalHitBoxCollision: CollisionShape2D = $Position2D/FrontalHitBox/CollisionShape2D
@@ -50,21 +51,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	ground_check()
-#	_ready_inputs()
-#	if not _getting_hit:
-#		_velocity.y += GRAVITY * delta
-#		_velocity = move_and_slide(_velocity, Vector2.UP)
-#
-#	var was_grounded = _grounded
-#	_grounded = is_on_floor()
-#	animationTree.set("parameters/conditions/grounded", _grounded)
-#	if was_grounded == null || _grounded != was_grounded:
-#		emit_signal("on_grounded_updated", _grounded)
-	
-	# distancia do empurrao:
-#	_knockback = _knockback.move_toward(Vector2.ZERO, 10 * delta)
-#	_knockback = move_and_slide(_knockback)
-	move_and_collide(_knockback)
+
 
 func _reset_state() -> void:
 	_velocity = Vector2.ZERO
@@ -118,37 +105,6 @@ func _ready_inputs():
 
 
 
-func _on_body_entered(body: Node2D) -> void:
-	if body is Enemy and not _intangible:
-		
-		print(body)
-		emit_signal("on_player_damaged")
-##		_knockback = Vector2.LEFT * 400
-##		_velocity.y = -200 # pulinho 
-#		if health_points > 1:
-#			health_points -= 1
-#			PlayerVariables.health_points = health_points
-#			playback.travel("GetHit")
-#			_getting_hit = true
-#			playerFrontalHitBoxCollision.set_deferred("disable", true)
-#			yield(get_tree().create_timer(0.4), "timeout")
-#			_getting_hit = false
-#			_intangible = true
-#			playerFrontalHitBoxCollision.set_deferred("disable", false)
-#			yield(get_tree().create_timer(1.0), "timeout")
-#			_intangible = false
-#		else:
-#			health_points -= 1
-#			PlayerVariables.health_points = health_points
-#			_dead = true
-#			animationTree.set("parameters/conditions/dead", _dead)
-#			playback.travel("GetHit")
-
-func _set_connections() -> void:
-	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered")
-	playerBackHitBox.connect("body_entered", self, "_on_body_entered")
-
-
 
 ##### Métodos####
 func _reset_velocity() -> void:
@@ -159,6 +115,31 @@ func flip_sprite():
 		position2D.scale.x = 1
 	elif _velocity.x < 0:
 		position2D.scale.x = -1 
+
+func back_from_hit():
+	sprite.modulate.a = 0
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 1
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 0
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 1
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 0
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 1
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 0
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 1
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 0
+	yield(get_tree().create_timer(0.1), "timeout")
+	sprite.modulate.a = 1
+	yield(get_tree().create_timer(0.1), "timeout")
+	_intangible = false
+
+
 
 func take_damage():
 	health_points -= 1
@@ -208,14 +189,31 @@ func set_forward_jump():
 	_velocity.y = -JUMP_FORCE
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
+
 func set_knockback():
 	_velocity = Vector2(1,-1) * 500
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 
-
 func set_movement_momentum():
 	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+
+func _on_body_entered_front(body: Node2D) -> void:
+	if body is Enemy and not _intangible:
+		_intangible = true
+		emit_signal("on_player_damaged")
+
+func _on_body_entered_back(body: Node2D) -> void:
+	if body is Enemy and not _intangible:
+		_intangible = true
+		position2D.scale.x *= -1
+		emit_signal("on_player_damaged")
+
+
+func _set_connections() -> void:
+	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered_front")
+	playerBackHitBox.connect("body_entered", self, "_on_body_entered_back")
 
 
 func enable_whip_collision_shape() -> void:

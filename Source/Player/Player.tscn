@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_test.png" type="Texture" id=2]
@@ -94,6 +94,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=58]
 resource_name = "Ducking"
 length = 0.2
+loop = true
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("Position2D/Sprite:frame")
@@ -176,6 +177,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=16]
 resource_name = "Idle"
 length = 0.2
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Position2D/Sprite:frame")
 tracks/0/interp = 1
@@ -263,9 +265,6 @@ animation = "Death"
 [sub_resource type="AnimationNodeAnimation" id=52]
 animation = "Ducking-Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=59]
-animation = "Ducking-Walk"
-
 [sub_resource type="AnimationNodeAnimation" id=53]
 animation = "Ducking"
 
@@ -275,6 +274,19 @@ animation = "GetHit"
 [sub_resource type="AnimationNodeAnimation" id=24]
 animation = "Idle"
 
+[sub_resource type="AnimationNodeAnimation" id=76]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=77]
+animation = "Ducking"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=78]
+blend_point_0/node = SubResource( 76 )
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource( 77 )
+blend_point_1/pos = 1.0
+snap = 1.0
+
 [sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Jump"
 
@@ -283,9 +295,6 @@ animation = "Walk"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=26]
 advance_condition = "Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
-advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 advance_condition = "Attack"
@@ -321,12 +330,6 @@ priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-switch_mode = 2
-auto_advance = true
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=65]
 advance_condition = "Air"
 
@@ -345,30 +348,48 @@ advance_condition = "Jump"
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 advance_condition = "Idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+advance_condition = "Idleblend"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=80]
+advance_condition = "Idle"
+
 [sub_resource type="AnimationNodeStateMachine" id=22]
 states/Air/node = SubResource( 64 )
-states/Air/position = Vector2( 565.697, 284.344 )
+states/Air/position = Vector2( 581.697, 356.344 )
 states/Attack/node = SubResource( 36 )
-states/Attack/position = Vector2( 393, 284.344 )
+states/Attack/position = Vector2( 393, 356.344 )
 states/Death/node = SubResource( 45 )
-states/Death/position = Vector2( 132.697, 252.344 )
+states/Death/position = Vector2( 952, -71 )
 states/Ducking/node = SubResource( 53 )
-states/Ducking/position = Vector2( 393, -4.17773 )
+states/Ducking/position = Vector2( 393, -151.178 )
 states/Ducking-Attack/node = SubResource( 52 )
-states/Ducking-Attack/position = Vector2( 619.697, -4.17773 )
-states/Ducking-Walk/node = SubResource( 59 )
-states/Ducking-Walk/position = Vector2( 187.697, -4.17773 )
+states/Ducking-Attack/position = Vector2( 732, -151.178 )
 states/GetHit/node = SubResource( 46 )
-states/GetHit/position = Vector2( 132.697, 104 )
+states/GetHit/position = Vector2( 581.697, -71 )
 states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( 393, 104 )
+states/Idleblend/node = SubResource( 78 )
+states/Idleblend/position = Vector2( 945.514, 104 )
 states/Jump/node = SubResource( 40 )
-states/Jump/position = Vector2( 732, 284.344 )
+states/Jump/position = Vector2( 725, 356.344 )
 states/Walk/node = SubResource( 25 )
-states/Walk/position = Vector2( 732, 104 )
-transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ) ]
+states/Walk/position = Vector2( 725, 104 )
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Attack", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Jump", "GetHit", SubResource( 75 ), "Walk", "Idleblend", SubResource( 79 ), "Walk", "Idle", SubResource( 80 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -16.4905, 45.319 )
+graph_offset = Vector2( 98.5138, -15.2457 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -438,10 +459,12 @@ parameters/conditions/Air = false
 parameters/conditions/Attack = false
 parameters/conditions/GetHit = false
 parameters/conditions/Idle = false
+parameters/conditions/Idleblend = false
 parameters/conditions/Jump = false
 parameters/conditions/Walk = false
 parameters/conditions/dead = false
 parameters/conditions/ducking = false
+parameters/Idleblend/blend_position = Vector2( 1, 0 )
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 1, -139 )
