@@ -117,7 +117,7 @@ position = Vector2( 2451, 283 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2983, 455 )
+position = Vector2( 2149, 440 )
 
 [node name="JumpArea1" type="Area2D" parent="." groups=["JumpArea"]]
 
