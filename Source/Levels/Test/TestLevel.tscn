@@ -120,10 +120,16 @@ position = Vector2( 2451, 283 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2153, 459 )
+position = Vector2( 2174, 459 )
 
-[node name="Area2D" type="Area2D" parent="." groups=["End"]]
+[node name="JumpArea1" type="Area2D" parent="." groups=["JumpArea"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea1"]
+position = Vector2( 2017, 356 )
+shape = SubResource( 7 )
+
+[node name="JumpArea2" type="Area2D" parent="." groups=["JumpArea"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2"]
 position = Vector2( 1407, 360 )
 shape = SubResource( 7 )
