@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Levels/Level.gd"
 }, {
-"base": "Reference",
+"base": "Level",
 "class": "Level1",
 "language": "GDScript",
 "path": "res://Source/Levels/Level1/Level1.gd"
@@ -153,7 +153,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Source/AutoLoads/Global.gd"
-PlayerVariables="*res://Source/AutoLoads/PlayerVariables.gd"
+Game="*res://Source/AutoLoads/Game.gd"
 
 [debug]
 
