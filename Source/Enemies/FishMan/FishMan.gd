@@ -48,7 +48,8 @@ func _attack() -> void:
 	if not _dead and _can_attack:
 		var projectile_instance = projectile.instance()
 		projectile_instance.position = $Position2D/Node2D.global_position
-		projectile_instance.player_direction = player_direction()
+		print(_move_direction)
+		projectile_instance.direction = _move_direction
 		get_tree().get_root().add_child(projectile_instance)
 		_can_attack = false
 		animationPlayer.play("Attack")
