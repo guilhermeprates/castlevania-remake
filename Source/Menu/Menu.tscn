@@ -235,7 +235,7 @@ texture = ExtResource( 6 )
 position = Vector2( 1638, 661 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 39 )
-frame = 18
+frame = 26
 playing = true
 
 [node name="Start" type="Button" parent="."]
@@ -257,4 +257,8 @@ KONAMI INDUSTRY CO. ,LTD.
 NINTENDO OF AMERICA INC."
 align = 1
 
+[node name="TimerBlink" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[connection signal="timeout" from="TimerBlink" to="." method="_on_TimerBlink_timeout"]
