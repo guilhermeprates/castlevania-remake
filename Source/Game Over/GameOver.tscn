@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Source/HUD/PressStart2P.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Source/Items/Sprites/LargeHeart.png" type="Texture" id=2]
+[ext_resource path="res://Source/Game Over/GameOver.gd" type="Script" id=3]
+[ext_resource path="res://Source/Game Over/Icon.gd" type="Script" id=4]
+[ext_resource path="res://Source/Game Over/End.tres" type="Theme" id=5]
+[ext_resource path="res://Source/HUD/HUD.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 1 )
+
+[node name="GameOver" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="HUD" parent="." instance=ExtResource( 6 )]
+
+[node name="Title" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 456.0
+margin_bottom = -544.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Title"]
+margin_right = 1920.0
+margin_bottom = 80.0
+
+[node name="Label" type="Label" parent="Title/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+
+[node name="Options" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -124.0
+margin_right = 216.0
+margin_bottom = 447.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Options"]
+margin_right = 400.0
+margin_bottom = 571.0
+size_flags_vertical = 3
+custom_constants/separation = 70
+alignment = 1
+
+[node name="Continue" type="Button" parent="Options/VBoxContainer2"]
+margin_top = 200.0
+margin_right = 400.0
+margin_bottom = 250.0
+theme = ExtResource( 5 )
+custom_fonts/font = SubResource( 2 )
+text = "CONTINUE"
+align = 0
+
+[node name="End" type="Button" parent="Options/VBoxContainer2"]
+margin_top = 320.0
+margin_right = 400.0
+margin_bottom = 370.0
+theme = ExtResource( 5 )
+custom_fonts/font = SubResource( 3 )
+text = "END"
+align = 0
+
+[node name="Icon" type="Sprite" parent="Options/VBoxContainer2"]
+position = Vector2( -64, 256 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16.0536, 16.3836 )
+script = ExtResource( 4 )
+
+[connection signal="pressed" from="Options/VBoxContainer2/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="Options/VBoxContainer2/End" to="." method="_on_End_pressed"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Power.png-7a68db7983123385f3d2702eb1e63d00.stex"
+path="res://.import/hp.png-3aadab2a06cf2d70aaee3765d632b5ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Source/Enemies/FishMan/Power.png"
-dest_files=[ "res://.import/Power.png-7a68db7983123385f3d2702eb1e63d00.stex" ]
+source_file="res://Source/HUD/hp.png"
+dest_files=[ "res://.import/hp.png-3aadab2a06cf2d70aaee3765d632b5ab.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

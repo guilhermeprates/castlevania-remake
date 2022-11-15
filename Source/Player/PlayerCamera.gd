@@ -29,7 +29,7 @@ func _check_facing() -> void:
 		tween.interpolate_property(
 			self, 
 			"position:x", 
-			position.x, 
+			position.x,
 			target_offset,
 			SHIFT_DURATION, 
 			SHIFT_TRANS,

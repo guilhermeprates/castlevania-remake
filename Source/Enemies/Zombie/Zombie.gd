@@ -7,6 +7,7 @@ onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/Collis
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	_experience = 100
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 
 func _physics_process(delta: float) -> void:
@@ -32,10 +33,11 @@ func _look_for_player() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Whip") and not _dead:
+		Game.player_score += _experience
 		_dead = true
 		hitboxCollisionShape2D.set_deferred("disable", true)
 		yield(get_tree().create_timer(0.2), "timeout")
-		animationPlayer.play("death")
+		animationPlayer.play("Death")
 		emit_signal("on_kill_enemy", position)
 		yield(get_tree().create_timer(0.4), "timeout")
 		queue_free()
