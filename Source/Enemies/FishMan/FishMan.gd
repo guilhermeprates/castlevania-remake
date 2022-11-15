@@ -7,12 +7,13 @@ export (float, 0, 10) var attack_rate: float = 5.0
 var _jump: bool = true
 var _can_attack: bool = false
 
-onready var timer: Timer = $Timer
+onready var attackTimer: Timer = $AttackTimer
 onready var collisionShape: CollisionShape2D = $CollisionShape2D
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
 onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/CollisionShape2D
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+onready var atackOriginPoint: Node2D = $Position2D/AttackOriginPoint
 onready var projectile = preload("res://Source/Projectile/Projectile.tscn")
 
 func _ready() -> void:
@@ -47,17 +48,17 @@ func _jump() -> void:
 func _attack() -> void:
 	if not _dead and _can_attack:
 		var projectile_instance = projectile.instance()
-		projectile_instance.position = $Position2D/Node2D.global_position
+		projectile_instance.position = atackOriginPoint.global_position
 		print(_move_direction)
 		projectile_instance.direction = _move_direction
 		get_tree().get_root().add_child(projectile_instance)
 		_can_attack = false
 		animationPlayer.play("Attack")
-		timer.start(0.3) 
-		yield(timer, "timeout")
+		attackTimer.start(0.3) 
+		yield(attackTimer, "timeout")
 		animationPlayer.play("Walk")
-		timer.start(attack_rate) 
-		yield(timer, "timeout")
+		attackTimer.start(attack_rate) 
+		yield(attackTimer, "timeout")
 		_can_attack = true
 
 func _look_for_player() -> void:

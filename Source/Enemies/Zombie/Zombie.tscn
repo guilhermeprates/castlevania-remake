@@ -3,10 +3,10 @@
 [ext_resource path="res://Source/Enemies/Zombie/Zombie.gd" type="Script" id=1]
 [ext_resource path="res://Source/Enemies/Zombie/Zombie.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 18.5, 45.5 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 18.5, 45.5 )
 
 [sub_resource type="Animation" id=9]
@@ -48,6 +48,10 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, -1.5 )
+shape = SubResource( 4 )
+
 [node name="Position2D" type="Position2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
@@ -63,10 +67,6 @@ collision_mask = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Hitbox"]
 position = Vector2( 0, -0.5 )
 shape = SubResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, -1.5 )
-shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Walk"

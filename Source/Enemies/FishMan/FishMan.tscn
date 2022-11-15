@@ -3,10 +3,10 @@
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.gd" type="Script" id=1]
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 33.5 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 16, 33.5 )
 
 [sub_resource type="Animation" id=10]
@@ -65,6 +65,10 @@ collision_mask = 9
 script = ExtResource( 1 )
 attack_rate = 4.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -27, 8 )
+shape = SubResource( 1 )
+
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( -29, 0 )
 
@@ -82,17 +86,13 @@ collision_mask = 9
 position = Vector2( 2, 8 )
 shape = SubResource( 3 )
 
-[node name="Node2D" type="Node2D" parent="Position2D"]
+[node name="AttackOriginPoint" type="Node2D" parent="Position2D"]
 position = Vector2( 23, -11 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -27, 8 )
-shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 10 )
 anims/Death = SubResource( 11 )
 anims/Walk = SubResource( 6 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
 wait_time = 5.0

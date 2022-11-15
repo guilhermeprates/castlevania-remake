@@ -71,7 +71,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Position2D"]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 3
+frame = 2
 
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 
