@@ -1,7 +1,9 @@
 class_name Bat
 extends Enemy
 
-var _time = 0
+var _time: float = 0
+var _amplitude: int = 300
+var _frequency: int = 5
 
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
@@ -22,8 +24,7 @@ func _physics_process(delta: float) -> void:
 
 func _move(delta: float) -> void:
 	_time += delta
-	var movement = cos(_time * 5) * 500
-	_velocity.y += movement * delta
+	_velocity.y = cos(_time * _frequency) * _amplitude
 	_velocity.x = SPEED * _move_direction
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 

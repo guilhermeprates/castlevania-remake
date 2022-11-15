@@ -248,6 +248,7 @@ special_attack={
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="items"
 2d_physics/layer_4="world"
+2d_physics/layer_5="flying_enemies"
 
 [physics]
 
