@@ -9,7 +9,7 @@ func enter():
 func exit():
 	print ("Exit Ducking Attack State")
 	state_machine.my_player.animationTree.set("parameters/conditions/DuckingAttack", false)
-
+	state_machine.my_player.disable_whip_collision_shape()
 
 
 func tick(delta):

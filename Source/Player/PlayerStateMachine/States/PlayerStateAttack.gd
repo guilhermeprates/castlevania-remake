@@ -2,7 +2,6 @@ extends BaseState
 
 func enter():
 	print ("Enter Attack State")
-#	state_machine.my_player.enable_whipcollitionshape()
 	state_machine.my_player.animationTree.set("parameters/conditions/Attack", true)
 	state_machine.my_player.set_movement_momentum()
 
@@ -10,7 +9,7 @@ func enter():
 func exit():
 	print ("Exit Attack State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Attack", false)
-#	state_machine.my_player.disable_whipcollitionshape()
+	state_machine.my_player.disable_whip_collision_shape()
 
 
 func tick(delta):
@@ -30,7 +29,11 @@ func transition_to_air():
 
 func _on_Player_on_animation_ended() -> void:
 	if(state_machine.current_state == state_machine.get_node("Attack")):
-		if((state_machine.last_state == state_machine.get_node("Idle")) || (state_machine.last_state == state_machine.get_node("Walk"))):
+		if(state_machine.my_player.is_on_floor()):
 			transition_to_idle()
-		if(state_machine.last_state == state_machine.get_node("Air")):
+		else:
 			transition_to_air()
+#		if((state_machine.last_state == state_machine.get_node("Idle")) || (state_machine.last_state == state_machine.get_node("Walk"))):
+#			transition_to_idle()
+#		if(state_machine.last_state == state_machine.get_node("Air")):
+#			transition_to_air()

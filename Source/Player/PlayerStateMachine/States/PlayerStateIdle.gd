@@ -16,10 +16,10 @@ func tick(delta):
 	if (state_machine.my_player._velocity.x != 0):
 		transition_to_walk()
 	
-	if(Input.get_action_strength("jump")):
+	if(Input.is_action_just_pressed("jump")):
 		transition_to_jump()
 	
-	if(Input.get_action_strength("attack")):
+	if(Input.is_action_just_pressed("attack")):
 		transition_to_attack()
 	
 	if(Input.get_action_strength("ui_down")):

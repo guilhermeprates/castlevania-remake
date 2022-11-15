@@ -11,23 +11,26 @@ const HORIZONTAL_JUMP_FORCE = 200
 const JUMP_FORCE: int = 700
 const GRAVITY: int = 2500
 
-var knockback_dir = 1 
+#var knockback_dir = 1 
 
 export(int) var health_points: int = 16
 export(int) var hearts: int = 0
 export(int) var base_attack: int = 1
 
 
-var _knockback = Vector2.ZERO
+
 var _velocity: Vector2 = Vector2.ZERO
-var _dead: bool = false
-var _jumping: bool = false
-var _attacking: bool = false
-var _ducking: bool = false
 var _grounded: bool = true
-var _getting_hit: bool = false
 var _intangible: bool = false
-var _freezeControl = false 
+var _is_facing_right = true
+
+#var _dead: bool = false
+#var _jumping: bool = false
+#var _attacking: bool = false
+#var _ducking: bool = false
+#var _getting_hit: bool = false
+#var _freezeControl = false 
+#var _knockback = Vector2.ZERO
 
 onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 onready var sprite: Sprite = $Position2D/Sprite
@@ -60,6 +63,10 @@ func _on_body_entered_back(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		_intangible = true
 		position2D.scale.x *= -1
+		if(_is_facing_right):
+			_is_facing_right = false
+		else:
+			_is_facing_right = true
 		emit_signal("on_player_damaged")
 
 
@@ -70,8 +77,10 @@ func _reset_velocity() -> void:
 func flip_sprite():
 	if _velocity.x > 0: 
 		position2D.scale.x = 1
+		_is_facing_right = true
 	elif _velocity.x < 0:
-		position2D.scale.x = -1 
+		position2D.scale.x = -1
+		_is_facing_right = false 
 
 
 func back_from_hit():
@@ -152,7 +161,10 @@ func set_movement_momentum():
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func set_knockback():
-	_velocity = Vector2(1,-1) * 500
+	if(_is_facing_right):
+		_velocity = Vector2(-0.5,-1.5) * 500
+	else:
+		_velocity = Vector2(0.5,-1.5) * 500
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 

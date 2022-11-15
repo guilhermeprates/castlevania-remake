@@ -12,8 +12,9 @@ func exit():
 
 
 
+
 func tick(delta):
-	if(Input.get_action_strength("attack")):
+	if(Input.is_action_just_pressed("attack")):
 		transition_to_attack()
 
 

@@ -3,6 +3,7 @@ extends BaseState
 func enter():
 	print ("Enter Ducking State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Ducking", true)
+	state_machine.my_player._reset_velocity()
 
 
 
@@ -13,7 +14,7 @@ func exit():
 
 
 func tick(delta):
-	if(Input.is_action_just_released("ui_down")):
+	if(!Input.is_action_pressed("ui_down")):
 		transition_to_idle()
 	if(Input.get_action_strength("attack")):
 		transition_to_ducking_attack()
