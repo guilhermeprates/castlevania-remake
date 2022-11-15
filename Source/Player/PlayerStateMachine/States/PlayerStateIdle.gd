@@ -21,6 +21,9 @@ func tick(delta):
 	
 	if(Input.get_action_strength("attack")):
 		transition_to_attack()
+	
+	if(Input.get_action_strength("ui_down")):
+		transition_to_ducking()
 
 
 func physics_tick(delta):
@@ -41,3 +44,6 @@ func transition_to_jump():
 
 func transition_to_attack():
 	state_machine.change_state("Attack")
+
+func transition_to_ducking():
+	state_machine.change_state("Ducking")

@@ -12,6 +12,8 @@ onready var attack_state = $Attack
 onready var air_state = $Air
 onready var get_hit_state = $GetHit
 onready var death_state = $Death
+onready var ducking_state = $Ducking
+onready var ducking_attack_state = $DuckingAttack
 
 func _ready() -> void:
 	current_state = idle_state

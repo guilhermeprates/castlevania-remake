@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_200.png" type="Texture" id=2]
@@ -11,9 +11,11 @@
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAttack.gd" type="Script" id=9]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateGetHit.gd" type="Script" id=10]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDeath.gd" type="Script" id=11]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDucking.gd" type="Script" id=12]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDuckingAttack.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34, 64.5 )
+extents = Vector2( 31, 62.5 )
 
 [sub_resource type="RectangleShape2D" id=62]
 extents = Vector2( 18, 65.5 )
@@ -130,14 +132,17 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.34 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2, 0.34, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "enable_whip_collision_shape"
 }, {
 "args": [  ],
 "method": "disable_whip_collision_shape"
+}, {
+"args": [  ],
+"method": "animation_ended"
 } ]
 }
 
@@ -307,16 +312,19 @@ switch_mode = 2
 advance_condition = "dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "DuckingAttack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 switch_mode = 2
 auto_advance = true
+advance_condition = "Ducking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
-advance_condition = "ducking"
+advance_condition = "Idle"
 priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
+advance_condition = "Ducking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=65]
 advance_condition = "Air"
@@ -434,12 +442,13 @@ active = true
 parameters/playback = SubResource( 23 )
 parameters/conditions/Air = false
 parameters/conditions/Attack = false
+parameters/conditions/Ducking = false
+parameters/conditions/DuckingAttack = false
 parameters/conditions/GetHit = false
 parameters/conditions/Idle = false
 parameters/conditions/Jump = false
 parameters/conditions/Walk = false
 parameters/conditions/dead = false
-parameters/conditions/ducking = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 5, -147 )
@@ -492,8 +501,15 @@ script = ExtResource( 8 )
 [node name="Walk" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
 
+[node name="Ducking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 12 )
+
+[node name="DuckingAttack" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 13 )
+
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Attack" method="_on_Player_on_animation_ended"]
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_animation_ended"]
+[connection signal="on_animation_ended" from="." to="PlayerStateMachine/DuckingAttack" method="_on_Player_on_animation_ended"]
 [connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Air" method="_on_Player_on_grounded_updated"]
 [connection signal="on_grounded_updated" from="." to="PlayerStateMachine/GetHit" method="_on_Player_on_grounded_updated"]
 [connection signal="on_player_damaged" from="." to="PlayerStateMachine" method="_on_Player_on_player_damaged"]
