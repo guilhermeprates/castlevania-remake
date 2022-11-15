@@ -33,8 +33,8 @@ onready var state_machine: PlayerStateMachine = $PlayerStateMachine
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
-onready var playerHitBox: Area2D = $PlayerHitBox
-onready var playerHitBoxCollisionShape: CollisionShape2D = $PlayerHitBox/CollisionShape2D
+onready var playerHitBox: Area2D = $Position2D/PlayerHitBox
+onready var playerHitBoxCollisionShape: CollisionShape2D = $Position2D/PlayerHitBox/CollisionShape2D
 onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
 onready var playback = animationTree.get("parameters/playback")
 
