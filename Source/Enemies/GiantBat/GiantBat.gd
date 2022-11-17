@@ -3,11 +3,10 @@ extends Boss
 
 enum State { IDLE, FLYING, ATTACKING, DEAD }
 
+const RADIUS = 250
+
 var _time: int = 0
 var _state = State.IDLE
-
-var _trigged: bool = false
-var _attack_trigged: bool = false
 
 onready var attackTimer: Timer = $AttackTimer
 onready var position2D: Position2D = $Position2D
@@ -53,6 +52,11 @@ func _attack(delta: float) -> void:
 		print("STATE ATTACK")
 		_look_for_player()
 		animationPlayer.play("Flying") 
+#		_velocity = Vector2(
+#			sin(_time * SPEED) * RADIUS,
+#			cos(_time * SPEED) * RADIUS
+#		) + Vector2(250, 250)
+#		move_and_slide(_velocity, Vector2.UP)
 
 func _fliying(delta: float) -> void:
 	if boss_event_trigged:
