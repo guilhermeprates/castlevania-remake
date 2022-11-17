@@ -74,7 +74,7 @@ margin_top = 106.667
 margin_right = 1439.75
 margin_bottom = 151.667
 
-[node name="HealthLabel" type="Label" parent="Control/HBoxContainer2"]
+[node name="LifePointsLabel" type="Label" parent="Control/HBoxContainer2"]
 margin_top = 7.0
 margin_right = 126.0
 margin_bottom = 37.0
@@ -150,7 +150,7 @@ margin_bottom = 46.0
 custom_fonts/font = SubResource( 3 )
 text = "ENEMY"
 
-[node name="PlayerLifeBar" type="TextureProgress" parent="Control"]
+[node name="PlayerHealthBar" type="TextureProgress" parent="Control"]
 margin_left = 250.0
 margin_top = 78.3333
 margin_right = 315.0
@@ -162,7 +162,7 @@ value = 14.0
 texture_under = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
 
-[node name="EnemyLifeBar" type="TextureProgress" parent="Control"]
+[node name="BossHealthBar" type="TextureProgress" parent="Control"]
 margin_left = 250.0
 margin_top = 111.667
 margin_right = 315.0
@@ -175,8 +175,8 @@ texture_progress = ExtResource( 5 )
 
 [node name="SubweaponBar" parent="Control" instance=ExtResource( 7 )]
 margin_left = 750.0
-margin_top = 83.3333
-margin_right = 861.25
-margin_bottom = 145.5
+margin_top = 83.0
+margin_right = 892.0
+margin_bottom = 163.0
 
 [connection signal="timeout" from="Control/HBoxContainer4/Timer" to="." method="_on_Timer_timeout"]

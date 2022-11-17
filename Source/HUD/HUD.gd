@@ -1,19 +1,24 @@
 extends CanvasLayer
 
-onready var heartsLabel = $Control/HBoxContainer/HeartsLabel
-onready var healthLabel = $Control/HBoxContainer2/HealthLabel
+var _timer = 300
+
+onready var playerHeartsLabel = $Control/HBoxContainer/HeartsLabel
+onready var playerHealthPointsLabel = $Control/HBoxContainer2/LifePointsLabel
+onready var playerScoreLabel = $Control/HBoxContainer3/ScoreLabel
 onready var timerLabel = $Control/HBoxContainer4/TimerLabel
-onready var lifeBarPlayer = $Control/PlayerLifeBar
-var timer = 300
+onready var playerHealthBar = $Control/PlayerHealthBar
+onready var bossHealthBar = $Control/BossHealthBar
 
 func _process(delta: float) -> void:
-	var hearts = PlayerVariables.hearts
-	var health_points = PlayerVariables.health_points
-	heartsLabel.text = "-" + str(hearts)
-	healthLabel.text = "P-" + str(health_points)
+	playerHeartsLabel.text = "-" + str(Game.player_hearts)
+	playerHealthPointsLabel.text = "P-" + str(Game.player_life_points)
+	playerScoreLabel.text = "SCORE-"+ str(Game.player_score)
+	playerHealthBar.value = Game.player_health_points
+	bossHealthBar.value = Game.boss_health_points
 
-	
 func _on_Timer_timeout() -> void:
-	timer -= 1
-	timerLabel.text = "TIME 0" + str(timer)
+	_timer -= 1
+	timerLabel.text = "TIME 0" + str(_timer)
+
+
 
