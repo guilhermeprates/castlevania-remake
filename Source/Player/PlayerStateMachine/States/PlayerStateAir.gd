@@ -4,11 +4,13 @@ func enter():
 	print ("Enter Air State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Air", true)
 	state_machine.my_player.set_movement_momentum()
+	state_machine.my_player.enable_short_hitboxes()
 
 
 func exit():
 	print ("Exit Air State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Air", false)
+	state_machine.my_player.disable_short_hitboxes()
 
 
 

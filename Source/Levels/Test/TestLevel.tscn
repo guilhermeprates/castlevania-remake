@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Source/LevelObjects/LargeCandle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Source/Tiles/tile_intro2.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Source/Enemies/Bat/Bat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Source/Enemies/BlackPanther/BlackPanther.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Source/LevelObjects/Stairway.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Source/Enemies/GiantBat/GiantBat.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
@@ -130,3 +131,6 @@ shape = SubResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2"]
 position = Vector2( 1407, 360 )
 shape = SubResource( 7 )
+
+[node name="Stairway" parent="." instance=ExtResource( 13 )]
+position = Vector2( 3012, 363 )

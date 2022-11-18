@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_200.png" type="Texture" id=2]
@@ -17,11 +17,20 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 62.5 )
 
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 31, 47 )
+
 [sub_resource type="RectangleShape2D" id=62]
 extents = Vector2( 18, 65.5 )
 
+[sub_resource type="RectangleShape2D" id=78]
+extents = Vector2( 18, 49.5 )
+
 [sub_resource type="RectangleShape2D" id=71]
 extents = Vector2( 17, 65.5 )
+
+[sub_resource type="RectangleShape2D" id=79]
+extents = Vector2( 17, 49.5 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 33.25, 15.75 )
@@ -415,6 +424,11 @@ script = ExtResource( 1 )
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0.5 )
 shape = SubResource( 1 )
+disabled = true
+
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 15 )
+shape = SubResource( 77 )
 
 [node name="Position2D" type="Position2D" parent="."]
 
@@ -435,11 +449,20 @@ region_filter_clip = true
 position = Vector2( 18, 0.5 )
 shape = SubResource( 62 )
 
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="Position2D/FrontalHitBox"]
+position = Vector2( 18, 16.5 )
+shape = SubResource( 78 )
+disabled = true
+
 [node name="BackHitBox" type="Area2D" parent="Position2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/BackHitBox"]
 position = Vector2( -17, 0.5 )
 shape = SubResource( 71 )
+
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="Position2D/BackHitBox"]
+position = Vector2( -17, 16.5 )
+shape = SubResource( 79 )
 
 [node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
 position = Vector2( 200, 0 )

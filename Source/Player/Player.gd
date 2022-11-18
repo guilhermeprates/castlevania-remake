@@ -38,17 +38,31 @@ onready var sprite: Sprite = $Position2D/Sprite
 onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
+
+######## Collider References ################
+onready var playerMainCollision : CollisionShape2D = $PlayerCollisionShape
+onready var playerShortCollison: CollisionShape2D = $ShortCollisionShape
+
 onready var playerFrontalHitBox: Area2D = $Position2D/FrontalHitBox
 onready var playerFrontalHitBoxCollision: CollisionShape2D = $Position2D/FrontalHitBox/CollisionShape2D
+onready var shortFrontalHitBoxCollision: CollisionShape2D = $Position2D/FrontalHitBox/ShortCollisionShape
+
 onready var playerBackHitBox: Area2D = $Position2D/BackHitBox
 onready var playerBackHitBoxCollision: CollisionShape2D = $Position2D/BackHitBox/CollisionShape2D
+onready var shortBackHitBoxCollision: CollisionShape2D = $Position2D/BackHitBox/ShortCollisionShape
+
 onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
+
+
+
+
 onready var playback = animationTree.get("parameters/playback")
 
 func _ready() -> void:
 	Game.player_health_points = health_points
 	state_machine.initialize_state_machine(self)
 	_set_connections()
+	disable_short_hitboxes()
 
 func _physics_process(delta: float) -> void:
 	ground_check()
@@ -112,14 +126,28 @@ func take_damage():
 	health_points -= 1
 	Game.player_health_points = health_points
 
-func disable_player_hitboxes():
-	playerFrontalHitBoxCollision.set_deferred("disable", true)
-	playerBackHitBoxCollision.set_deferred("disable", true)
+
+func enable_short_hitboxes():
+	playerShortCollison.disabled = false
+	shortFrontalHitBoxCollision.disabled = false
+	shortBackHitBoxCollision.disabled = false
+	
+	playerMainCollision.disabled = true
+	playerFrontalHitBoxCollision.disabled = true
+	playerBackHitBoxCollision.disabled = true
+	
 
 
-func enable_player_hitboxes():
-	playerFrontalHitBoxCollision.set_deferred("disable", false)
-	playerBackHitBoxCollision.set_deferred("disable", false)
+
+func disable_short_hitboxes():
+	playerMainCollision.disabled = false
+	playerFrontalHitBoxCollision.disabled = false
+	playerBackHitBoxCollision.disabled = false
+	
+#	playerShortCollison.disabled = true
+	shortFrontalHitBoxCollision.disabled = true
+	shortBackHitBoxCollision.disabled = true
+
 
 
 
@@ -139,11 +167,11 @@ func set_movement(delta):
 	_velocity.x = right - left
 	_velocity.x = _velocity.x * SPEED
 	_velocity.y += GRAVITY * delta
-	_velocity = move_and_slide(_velocity, Vector2.UP)
+	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
 func set_gravity(delta):
 	_velocity.y += GRAVITY * delta
-	_velocity = move_and_slide(_velocity, Vector2.UP)
+	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
 func set_upward_jump():
 	_velocity.y = -JUMP_FORCE
@@ -158,7 +186,7 @@ func set_forward_jump():
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func set_movement_momentum():
-	_velocity = move_and_slide(_velocity, Vector2.UP)
+	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
 func set_knockback():
 	if(_is_facing_right):
@@ -172,6 +200,7 @@ func set_knockback():
 func _set_connections() -> void:
 	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered_front")
 	playerBackHitBox.connect("body_entered", self, "_on_body_entered_back")
+
 
 
 func enable_whip_collision_shape() -> void:

@@ -3,14 +3,14 @@ extends BaseState
 func enter():
 	print ("Enter Ducking Attack State")
 	state_machine.my_player.animationTree.set("parameters/conditions/DuckingAttack", true)
-
+	state_machine.my_player.enable_short_hitboxes()
 
 
 func exit():
 	print ("Exit Ducking Attack State")
 	state_machine.my_player.animationTree.set("parameters/conditions/DuckingAttack", false)
 	state_machine.my_player.disable_whip_collision_shape()
-
+	state_machine.my_player.disable_short_hitboxes()
 
 func tick(delta):
 	pass

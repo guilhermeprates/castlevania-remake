@@ -4,12 +4,14 @@ func enter():
 	print ("Enter Ducking State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Ducking", true)
 	state_machine.my_player._reset_velocity()
+	state_machine.my_player.enable_short_hitboxes()
 
 
 
 func exit():
 	print ("Exit Ducking State")
 	state_machine.my_player.animationTree.set("parameters/conditions/Ducking", false)
+	state_machine.my_player.disable_short_hitboxes()
 
 
 
