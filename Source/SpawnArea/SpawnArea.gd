@@ -15,8 +15,8 @@ func _ready() -> void:
 	_player = get_node(player)
 	
 func _process(delta: float) -> void:
-	if (is_instance_valid(_enemy)): return
-	if distance_to_player() < target_distance:
+	var user_is_far = distance_to_player() > target_distance
+	if !is_instance_valid(_enemy) and user_is_far:
 		var enemy_instance = enemy.instance()
 		enemy_instance.position = position
 		_enemy = enemy_instance
