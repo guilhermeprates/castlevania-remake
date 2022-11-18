@@ -23,6 +23,11 @@ func _ready() -> void:
 	add_to_group("Enemy")
 	_player_node = get_node(player)
 
+func _process(delta: float) -> void:
+	var user_is_far = distance_to_player() > 2000
+	if user_is_far:
+		queue_free()
+
 func distance_to_player() -> float:
 	if (_player_node == null): return 0.0
 	var direction_to_target = _player_node.position - position

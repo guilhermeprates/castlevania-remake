@@ -149,4 +149,3 @@ shape = SubResource( 8 )
 position = Vector2( 703, 430 )
 player = NodePath("../Player")
 enemy = ExtResource( 9 )
-target_distance = 1000
