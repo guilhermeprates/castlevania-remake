@@ -29,6 +29,8 @@ func _move(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _look_for_player() -> void:
+	if (_player_node == null): 
+		return
 	if _player_node.position.x < position.x:
 		position2D.scale.x = -1
 		_move_direction = -1
