@@ -11,7 +11,7 @@ func exit():
 	state_machine.my_player.animationTree.set("parameters/conditions/Idle", false)
 
 func tick(delta):
-
+	
 	
 	if (state_machine.my_player._velocity.x != 0):
 		transition_to_walk()
@@ -26,10 +26,9 @@ func tick(delta):
 		transition_to_ducking()
 
 
-func physics_tick(delta):
-#	var down = Input.get_action_raw_strength("ui_down")
-#	state_machine.my_player.animationTree.set("parameters/Idleblend/blend_position", down)
 
+
+func physics_tick(delta):
 	state_machine.my_player.set_movement(delta)
 	state_machine.my_player.set_gravity(delta)
 
@@ -47,3 +46,6 @@ func transition_to_attack():
 
 func transition_to_ducking():
 	state_machine.change_state("Ducking")
+
+func transition_to_stairway():
+	state_machine.change_state("Stairway")

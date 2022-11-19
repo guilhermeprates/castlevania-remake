@@ -1,18 +1,21 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_200.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateIdle.gd" type="Script" id=4]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateIdle.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd" type="Script" id=5]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateWalk.gd" type="Script" id=6]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAir.gd" type="Script" id=7]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateJump.gd" type="Script" id=8]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAttack.gd" type="Script" id=9]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateGetHit.gd" type="Script" id=10]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDeath.gd" type="Script" id=11]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDucking.gd" type="Script" id=12]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateDuckingAttack.gd" type="Script" id=13]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateWalk.gd" type="Script" id=6]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateAir.gd" type="Script" id=7]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateJump.gd" type="Script" id=8]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateAttack.gd" type="Script" id=9]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateGetHit.gd" type="Script" id=10]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateDeath.gd" type="Script" id=11]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateDucking.gd" type="Script" id=12]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateDuckingAttack.gd" type="Script" id=13]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsDown.gd" type="Script" id=15]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsUp.gd" type="Script" id=16]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsIdle.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 62.5 )
@@ -272,6 +275,24 @@ tracks/0/keys = {
 "values": [ 16 ]
 }
 
+[sub_resource type="Animation" id=80]
+resource_name = "Stairs-Up"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 25, 17 ]
+}
+
 [sub_resource type="Animation" id=21]
 resource_name = "Walk"
 length = 0.3
@@ -312,6 +333,9 @@ animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=81]
+animation = "Stairs-Up"
 
 [sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Walk"
@@ -392,6 +416,12 @@ advance_condition = "GetHit"
 [sub_resource type="AnimationNodeStateMachineTransition" id=76]
 advance_condition = "Attack"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+advance_condition = "Stairway"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+advance_condition = "Idle"
+
 [sub_resource type="AnimationNodeStateMachine" id=22]
 states/Air/node = SubResource( 64 )
 states/Air/position = Vector2( 565.697, 391.344 )
@@ -409,15 +439,17 @@ states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( 393, 104 )
 states/Jump/node = SubResource( 40 )
 states/Jump/position = Vector2( 732, 284.344 )
+states/Stairs-Up/node = SubResource( 81 )
+states/Stairs-Up/position = Vector2( 164.171, 100.319 )
 states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 732, 104 )
-transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ) ]
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ), "Idle", "Stairs-Up", SubResource( 82 ), "Stairs-Up", "Idle", SubResource( 83 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 49.1711, 184.319 )
+graph_offset = Vector2( 63.171, 8.319 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 8
 script = ExtResource( 1 )
 
@@ -483,6 +515,7 @@ anims/GetHit = SubResource( 43 )
 anims/Idle = SubResource( 16 )
 anims/Jump = SubResource( 39 )
 anims/RESET = SubResource( 20 )
+anims/Stairs-Up = SubResource( 80 )
 anims/Walk = SubResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -497,6 +530,7 @@ parameters/conditions/DuckingAttack = false
 parameters/conditions/GetHit = false
 parameters/conditions/Idle = false
 parameters/conditions/Jump = false
+parameters/conditions/Stairway = false
 parameters/conditions/Walk = false
 parameters/conditions/dead = false
 
@@ -556,6 +590,15 @@ script = ExtResource( 12 )
 
 [node name="DuckingAttack" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 13 )
+
+[node name="StairsIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 17 )
+
+[node name="StairsUp" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 16 )
+
+[node name="StairsDown" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 15 )
 
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Attack" method="_on_Player_on_animation_ended"]
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_animation_ended"]

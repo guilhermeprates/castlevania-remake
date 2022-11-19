@@ -13,8 +13,6 @@ func exit():
 	state_machine.my_player.disable_short_hitboxes()
 
 
-
-
 func tick(delta):
 	if(Input.is_action_just_pressed("attack")):
 		transition_to_attack()

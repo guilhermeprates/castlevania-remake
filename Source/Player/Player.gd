@@ -32,7 +32,7 @@ var _is_facing_right = true
 #var _freezeControl = false 
 #var _knockback = Vector2.ZERO
 
-onready var state_machine: PlayerStateMachine = $PlayerStateMachine
+onready var state_machine = $PlayerStateMachine
 onready var sprite: Sprite = $Position2D/Sprite
 
 onready var camera: Camera2D = $PlayerCamera
@@ -169,6 +169,16 @@ func set_movement(delta):
 	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
+func set_stairway_movement(delta):
+	var up = Input.get_action_strength("ui_up")
+	var down = Input.get_action_strength("ui_down")
+		
+	_velocity.x = up - down
+	_velocity.x = _velocity.x * SPEED * 0.7
+#	_velocity.y += GRAVITY * delta
+	_velocity = move_and_slide(_velocity, Vector2.UP, true)
+
+
 func set_gravity(delta):
 	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP, true)
@@ -195,6 +205,8 @@ func set_knockback():
 		_velocity = Vector2(0.5,-1.5) * 500
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
+func stairway_found():
+	state_machine.is_stairway_nearby = true
 
 
 func _set_connections() -> void:

@@ -14,6 +14,14 @@ onready var get_hit_state = $GetHit
 onready var death_state = $Death
 onready var ducking_state = $Ducking
 onready var ducking_attack_state = $DuckingAttack
+onready var stairway_state = $Stairway
+onready var stairs_idle_state = $StairsIdle
+onready var stairs_up_state = $StairsUp
+onready var stairs_down_state = $StairsDown
+
+
+onready var is_stairway_nearby = false
+onready var up_input
 
 func _ready() -> void:
 	current_state = idle_state
@@ -28,10 +36,22 @@ func initialize_state_machine(player):
 
 func _process(delta: float) -> void:
 	current_state.tick(delta)
+	
+	up_input = Input.is_action_pressed("ui_up")
+	stairway_transition()
 
 
 func _physics_process(delta: float) -> void:
 	current_state.physics_tick(delta)
+
+
+
+func stairway_transition():
+	if(is_stairway_nearby && current_state != stairway_state):
+		if(up_input):
+			change_state("StairsUp")
+
+
 
 func change_state(new_state_name: String):
 	current_state.exit()
