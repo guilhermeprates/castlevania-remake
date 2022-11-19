@@ -30,7 +30,14 @@ func transition_to_air():
 func _on_Player_on_animation_ended() -> void:
 	if(state_machine.current_state == state_machine.get_node("Attack")):
 		if(state_machine.my_player.is_on_floor()):
-			transition_to_idle()
+			if(state_machine.last_state == state_machine.stairs_idle_state):
+				state_machine.change_state("StairsIdle")
+			elif(state_machine.last_state == state_machine.stairs_up_state):
+				state_machine.change_state("StairsIdle")
+			elif(state_machine.last_state == state_machine.stairs_down_state):
+				state_machine.change_state("StairsIdle")
+			else:
+					transition_to_idle()
 		else:
 			transition_to_air()
 #		if((state_machine.last_state == state_machine.get_node("Idle")) || (state_machine.last_state == state_machine.get_node("Walk"))):

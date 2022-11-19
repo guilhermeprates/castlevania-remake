@@ -4,6 +4,10 @@ extends KinematicBody2D
 signal on_grounded_updated(is_grounded)
 signal on_animation_ended()
 signal on_player_damaged()
+signal on_stairway_bottom_found()
+signal on_stairway_top_found()
+signal on_stairway_bottom_top_exited()
+signal on_stairway_exited()
 
 
 const SPEED: int = 150
@@ -174,8 +178,8 @@ func set_stairway_movement(delta):
 	var down = Input.get_action_strength("ui_down")
 		
 	_velocity.x = up - down
-	_velocity.x = _velocity.x * SPEED * 0.7
-#	_velocity.y += GRAVITY * delta
+	_velocity.x = _velocity.x * SPEED * 0.9
+	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
 
@@ -205,8 +209,19 @@ func set_knockback():
 		_velocity = Vector2(0.5,-1.5) * 500
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
-func stairway_found():
-	state_machine.is_stairway_nearby = true
+func stairway_bottom_found():
+	emit_signal("on_stairway_bottom_found")
+
+
+func stairway_top_found():
+	emit_signal("on_stairway_top_found")
+	
+
+func stairway_bottom_top_exited():
+	emit_signal("on_stairway_bottom_top_exited")
+
+func stairway_exited():
+	emit_signal("on_stairway_exited")
 
 
 func _set_connections() -> void:

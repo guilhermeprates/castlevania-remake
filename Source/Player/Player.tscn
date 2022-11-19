@@ -1,7 +1,7 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Source/Player/simon_belmont_200.png" type="Texture" id=2]
+[ext_resource path="res://Source/Player/simon_belmont_with_clothes.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateIdle.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd" type="Script" id=5]
@@ -275,6 +275,54 @@ tracks/0/keys = {
 "values": [ 16 ]
 }
 
+[sub_resource type="Animation" id=84]
+resource_name = "Stairs-Down"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 24, 17 ]
+}
+
+[sub_resource type="Animation" id=90]
+resource_name = "Stairs-Idle-Down"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+
+[sub_resource type="Animation" id=85]
+resource_name = "Stairs-Idle-Up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 25 ]
+}
+
 [sub_resource type="Animation" id=80]
 resource_name = "Stairs-Up"
 length = 0.3
@@ -333,6 +381,21 @@ animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=89]
+animation = "Stairs-Down"
+
+[sub_resource type="AnimationNodeAnimation" id=91]
+animation = "Stairs-Idle-Down"
+
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "Stairs-Idle-Up"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=93]
+blend_point_0/node = SubResource( 91 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 92 )
+blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeAnimation" id=81]
 animation = "Stairs-Up"
@@ -417,16 +480,52 @@ advance_condition = "GetHit"
 advance_condition = "Attack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=82]
-advance_condition = "Stairway"
+advance_condition = "StairsUp"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=83]
 advance_condition = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+advance_condition = "StairsUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=98]
+advance_condition = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=99]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=100]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=101]
+advance_condition = "StairsUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=102]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=103]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=104]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=105]
+advance_condition = "Attack"
 
 [sub_resource type="AnimationNodeStateMachine" id=22]
 states/Air/node = SubResource( 64 )
 states/Air/position = Vector2( 565.697, 391.344 )
 states/Attack/node = SubResource( 36 )
-states/Attack/position = Vector2( 393, 284.344 )
+states/Attack/position = Vector2( 393, 391.344 )
 states/Death/node = SubResource( 45 )
 states/Death/position = Vector2( 732, -1 )
 states/Ducking/node = SubResource( 53 )
@@ -439,13 +538,17 @@ states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( 393, 104 )
 states/Jump/node = SubResource( 40 )
 states/Jump/position = Vector2( 732, 284.344 )
+states/Stairs-Down/node = SubResource( 89 )
+states/Stairs-Down/position = Vector2( -95.829, 391.344 )
+states/Stairs-Idle/node = SubResource( 93 )
+states/Stairs-Idle/position = Vector2( -95.829, 219.319 )
 states/Stairs-Up/node = SubResource( 81 )
-states/Stairs-Up/position = Vector2( 164.171, 100.319 )
+states/Stairs-Up/position = Vector2( -95.829, 104 )
 states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 732, 104 )
-transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ), "Idle", "Stairs-Up", SubResource( 82 ), "Stairs-Up", "Idle", SubResource( 83 ) ]
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ), "Idle", "Stairs-Up", SubResource( 82 ), "Stairs-Up", "Idle", SubResource( 83 ), "Stairs-Up", "Stairs-Idle", SubResource( 94 ), "Stairs-Idle", "Stairs-Up", SubResource( 95 ), "Stairs-Idle", "Stairs-Down", SubResource( 96 ), "Stairs-Down", "Stairs-Idle", SubResource( 97 ), "Stairs-Down", "Idle", SubResource( 98 ), "Idle", "Stairs-Down", SubResource( 99 ), "Stairs-Up", "Attack", SubResource( 100 ), "Attack", "Stairs-Up", SubResource( 101 ), "Stairs-Idle", "Attack", SubResource( 102 ), "Attack", "Stairs-Idle", SubResource( 103 ), "Attack", "Stairs-Down", SubResource( 104 ), "Stairs-Down", "Attack", SubResource( 105 ) ]
 start_node = "Idle"
-graph_offset = Vector2( 63.171, 8.319 )
+graph_offset = Vector2( -256.829, 167.319 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -515,6 +618,9 @@ anims/GetHit = SubResource( 43 )
 anims/Idle = SubResource( 16 )
 anims/Jump = SubResource( 39 )
 anims/RESET = SubResource( 20 )
+anims/Stairs-Down = SubResource( 84 )
+anims/Stairs-Idle-Down = SubResource( 90 )
+anims/Stairs-Idle-Up = SubResource( 85 )
 anims/Stairs-Up = SubResource( 80 )
 anims/Walk = SubResource( 21 )
 
@@ -530,9 +636,12 @@ parameters/conditions/DuckingAttack = false
 parameters/conditions/GetHit = false
 parameters/conditions/Idle = false
 parameters/conditions/Jump = false
-parameters/conditions/Stairway = false
+parameters/conditions/StairsDown = false
+parameters/conditions/StairsIdle = false
+parameters/conditions/StairsUp = false
 parameters/conditions/Walk = false
 parameters/conditions/dead = false
+parameters/Stairs-Idle/blend_position = 0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 5, -147 )
@@ -606,3 +715,7 @@ script = ExtResource( 15 )
 [connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Air" method="_on_Player_on_grounded_updated"]
 [connection signal="on_grounded_updated" from="." to="PlayerStateMachine/GetHit" method="_on_Player_on_grounded_updated"]
 [connection signal="on_player_damaged" from="." to="PlayerStateMachine" method="_on_Player_on_player_damaged"]
+[connection signal="on_stairway_bottom_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_found"]
+[connection signal="on_stairway_bottom_top_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_top_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_top_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_top_found"]
