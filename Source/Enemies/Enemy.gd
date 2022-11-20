@@ -4,7 +4,7 @@ extends KinematicBody2D
 # warning-ignore:unused_signal
 signal on_kill_enemy(position)
 
-const SPEED: int = 150
+const SPEED: int = 200
 const GRAVITY: int = 2500
 
 export(NodePath) var player: NodePath

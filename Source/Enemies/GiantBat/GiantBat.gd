@@ -7,8 +7,10 @@ const RADIUS: int = 100
 
 var _time: int = 0
 var _state = State.IDLE
+var _y_direction: int = 1
+var _last_player_position: Vector2 = Vector2.ZERO
 
-onready var startTimer: Timer = $StartTimer
+onready var preparingAttackTimer: Timer = $PreparingAttackTimer
 onready var attackTimer: Timer = $AttackTimer
 onready var position2D: Position2D = $Position2D
 onready var hitbox: Area2D = $Position2D/Hitbox
@@ -16,6 +18,8 @@ onready var hitboxCollisionShape2D: CollisionShape2D = $Position2D/Hitbox/Collis
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var leftRayCast: RayCast2D = $LeftRayCast2D
 onready var rightRayCast: RayCast2D = $RightRayCast2D
+onready var topRayCast: RayCast2D = $TopRayCast2D
+onready var bottomRayCast: RayCast2D = $BottomRayCast2D
 
 func _ready() -> void:
 	_experience = 3000
@@ -23,7 +27,8 @@ func _ready() -> void:
 	_setup_attack_timer()
 
 func _physics_process(delta: float) -> void:
-	_time = delta 
+	_time = delta
+	_check_first_move()
 	_check_direction()
 	match(_state):
 		State.IDLE:
@@ -35,22 +40,35 @@ func _physics_process(delta: float) -> void:
 		State.DEAD:
 			_die(delta)
 
+func _check_first_move():
+	if _state == State.IDLE and boss_event_trigged:
+		_update_state(State.FLYING)
+
 func _check_direction():
 	if leftRayCast.is_colliding():
-		print("LEFT COLLIDE")
-#		var collider = leftRayCast.get_collider()
-#		if collider is TileMap:
-		_move_direction = 1
+		var collider = leftRayCast.get_collider()
+		if !collider.is_in_group("Player"):
+			_move_direction = 1
+			_update_state(State.FLYING)
 	if rightRayCast.is_colliding():
-		print("RIGHT COLLIDE")
-#		var collider = rightRayCast.get_collider()
-#		if collider is TileMap:
-		_move_direction = -1
+		var collider = rightRayCast.get_collider()
+		if !collider.is_in_group("Player"):
+			_move_direction = -1
+			_update_state(State.FLYING)
+	if topRayCast.is_colliding():
+		var collider = topRayCast.get_collider()
+		if !collider.is_in_group("Player"):
+			_y_direction = 1
+	if bottomRayCast.is_colliding():
+		var collider = bottomRayCast.get_collider()
+		if !collider.is_in_group("Player"):
+			_y_direction = -1
+		
 
 func _setup_attack_timer() -> void:
-	attackTimer.set_wait_time(3.0)
+	attackTimer.set_wait_time(5.0)
 	attackTimer.set_one_shot(false)
-	attackTimer.connect("timeout", self, "_update_state", [State.ATTACKING])
+	attackTimer.connect("timeout", self, "_prepare_attack")
 	attackTimer.start()
 
 func _setup_connections() -> void:
@@ -60,22 +78,29 @@ func _update_state(state) -> void:
 	_state = state
 
 func _idle(delta: float) -> void:
-#	print("STATE IDLE")
 	animationPlayer.play("Idle")
+
+func _prepare_attack() -> void:
+	preparingAttackTimer.start(0.2)
+	yield(attackTimer, "timeout")
+	_update_state(State.ATTACKING)
 
 func _attack(delta: float) -> void:
 	if boss_event_trigged:
-#		print("STATE ATTACK")
+		print("ATTACK")
 		animationPlayer.play("Flying")
-#		_velocity.y = cos(_time * 5) * 100
-		_velocity.x = SPEED * _move_direction
-		_velocity = move_and_slide(_velocity, Vector2.UP)	
+		var direction = to_local(_player_node.global_position).normalized()
+		_velocity += (SPEED * 2) * direction  * delta
+		_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _fliying(delta: float) -> void:
 	if boss_event_trigged:
-#		print("STATE FLYING")
+		print("FLYING")
 		animationPlayer.play("Flying")
-	
+		_velocity.y = (cos(_time * 5) * 100) * _y_direction
+		_velocity.x = SPEED * _move_direction
+		_velocity = move_and_slide(_velocity, Vector2.UP)
+
 func _die(delta: float) -> void:
 	if boss_event_trigged:
 		print("STATE DEAD")
@@ -97,10 +122,11 @@ func _look_for_player() -> void:
 	_moving = distance_to_player() < target_distance
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		pass
-	if area.is_in_group("Whip") and not _dead:
-		health_points =- 1
-		Game.boss_health_points = health_points
-		if health_points == 0:
-			_update_state(State.DEAD)
+	if _state != State.DEAD:
+		if area.is_in_group("Player") and _state != State.FLYING:
+			_update_state(State.FLYING)
+		if area.is_in_group("Whip"):
+			health_points =- 1
+			Game.boss_health_points = health_points
+			if health_points == 0:
+				_update_state(State.DEAD)
