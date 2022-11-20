@@ -15,4 +15,4 @@ func _on_TimerBlink_timeout() -> void:
 	blink += 1
 	$Start.visible = not $Start.visible
 	if blink > 15:
-		get_tree().change_scene("res://Source/Levels/Intro/Intro.tscn")
+		get_tree().change_scene("res://Source/Levels/CutScene/CutScene.tscn")

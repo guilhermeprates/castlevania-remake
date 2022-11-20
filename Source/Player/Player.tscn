@@ -1,22 +1,39 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Source/Player/simon_belmont_200.png" type="Texture" id=2]
+[ext_resource path="res://Source/Player/simon_belmont_with_clothes.png" type="Texture" id=2]
 [ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateIdle.gd" type="Script" id=4]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateIdle.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd" type="Script" id=5]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateWalk.gd" type="Script" id=6]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAir.gd" type="Script" id=7]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateJump.gd" type="Script" id=8]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/PlayerStateAttack.gd" type="Script" id=9]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/GetHit.gd" type="Script" id=10]
-[ext_resource path="res://Source/Player/PlayerStateMachine/States/Death.gd" type="Script" id=11]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateWalk.gd" type="Script" id=6]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateAir.gd" type="Script" id=7]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateJump.gd" type="Script" id=8]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateAttack.gd" type="Script" id=9]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateGetHit.gd" type="Script" id=10]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateDeath.gd" type="Script" id=11]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateDucking.gd" type="Script" id=12]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Events and Actions/PlayerStateDuckingAttack.gd" type="Script" id=13]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsDown.gd" type="Script" id=15]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsUp.gd" type="Script" id=16]
+[ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsIdle.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 34, 64.5 )
+extents = Vector2( 31, 62.5 )
+
+[sub_resource type="RectangleShape2D" id=77]
+extents = Vector2( 31, 47 )
 
 [sub_resource type="RectangleShape2D" id=62]
-extents = Vector2( 34.25, 64.5 )
+extents = Vector2( 18, 65.5 )
+
+[sub_resource type="RectangleShape2D" id=78]
+extents = Vector2( 18, 49.5 )
+
+[sub_resource type="RectangleShape2D" id=71]
+extents = Vector2( 17, 65.5 )
+
+[sub_resource type="RectangleShape2D" id=79]
+extents = Vector2( 17, 49.5 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 33.25, 15.75 )
@@ -70,6 +87,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "animation_ended"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D/AttackHitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 200, 0 ) ]
 }
 
 [sub_resource type="Animation" id=44]
@@ -127,15 +156,30 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.34 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2, 0.34, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "enable_whip_collision_shape"
 }, {
 "args": [  ],
 "method": "disable_whip_collision_shape"
+}, {
+"args": [  ],
+"method": "animation_ended"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Position2D/AttackHitBox:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, 30 ), Vector2( 200, 0 ) ]
 }
 
 [sub_resource type="Animation" id=50]
@@ -231,6 +275,72 @@ tracks/0/keys = {
 "values": [ 16 ]
 }
 
+[sub_resource type="Animation" id=84]
+resource_name = "Stairs-Down"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 24, 17 ]
+}
+
+[sub_resource type="Animation" id=90]
+resource_name = "Stairs-Idle-Down"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 24 ]
+}
+
+[sub_resource type="Animation" id=85]
+resource_name = "Stairs-Idle-Up"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 25 ]
+}
+
+[sub_resource type="Animation" id=80]
+resource_name = "Stairs-Up"
+length = 0.3
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 25, 17 ]
+}
+
 [sub_resource type="Animation" id=21]
 resource_name = "Walk"
 length = 0.3
@@ -260,9 +370,6 @@ animation = "Death"
 [sub_resource type="AnimationNodeAnimation" id=52]
 animation = "Ducking-Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=59]
-animation = "Ducking-Walk"
-
 [sub_resource type="AnimationNodeAnimation" id=53]
 animation = "Ducking"
 
@@ -274,6 +381,24 @@ animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=89]
+animation = "Stairs-Down"
+
+[sub_resource type="AnimationNodeAnimation" id=91]
+animation = "Stairs-Idle-Down"
+
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "Stairs-Idle-Up"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id=93]
+blend_point_0/node = SubResource( 91 )
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource( 92 )
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeAnimation" id=81]
+animation = "Stairs-Up"
 
 [sub_resource type="AnimationNodeAnimation" id=25]
 animation = "Walk"
@@ -296,32 +421,30 @@ advance_condition = "Idle"
 advance_condition = "Jump"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
+advance_condition = "GetHit"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
 switch_mode = 2
-advance_condition = "alive"
+advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
 switch_mode = 2
 advance_condition = "dead"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "DuckingAttack"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 switch_mode = 2
 auto_advance = true
+advance_condition = "Ducking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
-advance_condition = "ducking"
+advance_condition = "Idle"
 priority = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-switch_mode = 2
-auto_advance = true
+advance_condition = "Ducking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=65]
 advance_condition = "Air"
@@ -341,48 +464,108 @@ advance_condition = "Jump"
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
 advance_condition = "Idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=73]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=74]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+advance_condition = "GetHit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+advance_condition = "StairsUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+advance_condition = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=94]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=95]
+advance_condition = "StairsUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=96]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=97]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=98]
+advance_condition = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=99]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=100]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=101]
+advance_condition = "StairsUp"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=102]
+advance_condition = "Attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=103]
+advance_condition = "StairsIdle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=104]
+advance_condition = "StairsDown"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=105]
+advance_condition = "Attack"
+
 [sub_resource type="AnimationNodeStateMachine" id=22]
 states/Air/node = SubResource( 64 )
-states/Air/position = Vector2( 565.697, 284.344 )
+states/Air/position = Vector2( 565.697, 391.344 )
 states/Attack/node = SubResource( 36 )
-states/Attack/position = Vector2( 393, 284.344 )
+states/Attack/position = Vector2( 393, 391.344 )
 states/Death/node = SubResource( 45 )
-states/Death/position = Vector2( 132.697, 252.344 )
+states/Death/position = Vector2( 732, -1 )
 states/Ducking/node = SubResource( 53 )
-states/Ducking/position = Vector2( 393, -4.17773 )
+states/Ducking/position = Vector2( 393, -109.178 )
 states/Ducking-Attack/node = SubResource( 52 )
-states/Ducking-Attack/position = Vector2( 619.697, -4.17773 )
-states/Ducking-Walk/node = SubResource( 59 )
-states/Ducking-Walk/position = Vector2( 187.697, -4.17773 )
+states/Ducking-Attack/position = Vector2( 648.697, -109.178 )
 states/GetHit/node = SubResource( 46 )
-states/GetHit/position = Vector2( 132.697, 104 )
+states/GetHit/position = Vector2( 565.697, -1 )
 states/Idle/node = SubResource( 24 )
 states/Idle/position = Vector2( 393, 104 )
 states/Jump/node = SubResource( 40 )
 states/Jump/position = Vector2( 732, 284.344 )
+states/Stairs-Down/node = SubResource( 89 )
+states/Stairs-Down/position = Vector2( -95.829, 391.344 )
+states/Stairs-Idle/node = SubResource( 93 )
+states/Stairs-Idle/position = Vector2( -95.829, 219.319 )
+states/Stairs-Up/node = SubResource( 81 )
+states/Stairs-Up/position = Vector2( -95.829, 104 )
 states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 732, 104 )
-transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Ducking", "Ducking-Walk", SubResource( 60 ), "Ducking-Walk", "Ducking", SubResource( 61 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ) ]
+transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ), "Idle", "Stairs-Up", SubResource( 82 ), "Stairs-Up", "Idle", SubResource( 83 ), "Stairs-Up", "Stairs-Idle", SubResource( 94 ), "Stairs-Idle", "Stairs-Up", SubResource( 95 ), "Stairs-Idle", "Stairs-Down", SubResource( 96 ), "Stairs-Down", "Stairs-Idle", SubResource( 97 ), "Stairs-Down", "Idle", SubResource( 98 ), "Idle", "Stairs-Down", SubResource( 99 ), "Stairs-Up", "Attack", SubResource( 100 ), "Attack", "Stairs-Up", SubResource( 101 ), "Stairs-Idle", "Attack", SubResource( 102 ), "Attack", "Stairs-Idle", SubResource( 103 ), "Attack", "Stairs-Down", SubResource( 104 ), "Stairs-Down", "Attack", SubResource( 105 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -16.4905, 45.319 )
+graph_offset = Vector2( -256.829, 167.319 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 collision_mask = 8
 script = ExtResource( 1 )
 
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0.5 )
 shape = SubResource( 1 )
+disabled = true
+
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2( 1, 15 )
+shape = SubResource( 77 )
 
 [node name="Position2D" type="Position2D" parent="."]
-
-[node name="PlayerHitBox" type="Area2D" parent="Position2D" groups=["Player"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/PlayerHitBox"]
-position = Vector2( 0.75, 0.5 )
-shape = SubResource( 62 )
 
 [node name="Sprite" type="Sprite" parent="Position2D"]
 position = Vector2( 46, -4 )
@@ -395,8 +578,29 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 1120, 1300 )
 region_filter_clip = true
 
+[node name="FrontalHitBox" type="Area2D" parent="Position2D" groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/FrontalHitBox"]
+position = Vector2( 18, 0.5 )
+shape = SubResource( 62 )
+
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="Position2D/FrontalHitBox"]
+position = Vector2( 18, 16.5 )
+shape = SubResource( 78 )
+disabled = true
+
+[node name="BackHitBox" type="Area2D" parent="Position2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/BackHitBox"]
+position = Vector2( -17, 0.5 )
+shape = SubResource( 71 )
+
+[node name="ShortCollisionShape" type="CollisionShape2D" parent="Position2D/BackHitBox"]
+position = Vector2( -17, 16.5 )
+shape = SubResource( 79 )
+
 [node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
-position = Vector2( 198, -2 )
+position = Vector2( 200, 0 )
 
 [node name="WhipCollisionShape" type="CollisionShape2D" parent="Position2D/AttackHitBox"]
 position = Vector2( -91, 0 )
@@ -414,6 +618,10 @@ anims/GetHit = SubResource( 43 )
 anims/Idle = SubResource( 16 )
 anims/Jump = SubResource( 39 )
 anims/RESET = SubResource( 20 )
+anims/Stairs-Down = SubResource( 84 )
+anims/Stairs-Idle-Down = SubResource( 90 )
+anims/Stairs-Idle-Up = SubResource( 85 )
+anims/Stairs-Up = SubResource( 80 )
 anims/Walk = SubResource( 21 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
@@ -423,12 +631,17 @@ active = true
 parameters/playback = SubResource( 23 )
 parameters/conditions/Air = false
 parameters/conditions/Attack = false
+parameters/conditions/Ducking = false
+parameters/conditions/DuckingAttack = false
+parameters/conditions/GetHit = false
 parameters/conditions/Idle = false
 parameters/conditions/Jump = false
+parameters/conditions/StairsDown = false
+parameters/conditions/StairsIdle = false
+parameters/conditions/StairsUp = false
 parameters/conditions/Walk = false
-parameters/conditions/alive = true
 parameters/conditions/dead = false
-parameters/conditions/ducking = false
+parameters/Stairs-Idle/blend_position = 0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 5, -147 )
@@ -481,6 +694,28 @@ script = ExtResource( 8 )
 [node name="Walk" type="Node" parent="PlayerStateMachine"]
 script = ExtResource( 6 )
 
+[node name="Ducking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 12 )
+
+[node name="DuckingAttack" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 13 )
+
+[node name="StairsIdle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 17 )
+
+[node name="StairsUp" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 16 )
+
+[node name="StairsDown" type="Node" parent="PlayerStateMachine"]
+script = ExtResource( 15 )
+
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Attack" method="_on_Player_on_animation_ended"]
 [connection signal="on_animation_ended" from="." to="PlayerStateMachine/Jump" method="_on_Player_on_animation_ended"]
+[connection signal="on_animation_ended" from="." to="PlayerStateMachine/DuckingAttack" method="_on_Player_on_animation_ended"]
 [connection signal="on_grounded_updated" from="." to="PlayerStateMachine/Air" method="_on_Player_on_grounded_updated"]
+[connection signal="on_grounded_updated" from="." to="PlayerStateMachine/GetHit" method="_on_Player_on_grounded_updated"]
+[connection signal="on_player_damaged" from="." to="PlayerStateMachine" method="_on_Player_on_player_damaged"]
+[connection signal="on_stairway_bottom_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_found"]
+[connection signal="on_stairway_bottom_top_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_top_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_top_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_top_found"]

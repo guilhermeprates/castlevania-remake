@@ -1,0 +1,112 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg11.png" type="Texture" id=1]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg3.png" type="Texture" id=2]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg1.png" type="Texture" id=3]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg2.png" type="Texture" id=4]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg4.png" type="Texture" id=5]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg10.png" type="Texture" id=6]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg9.png" type="Texture" id=7]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg7.png" type="Texture" id=8]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg14.png" type="Texture" id=9]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg8.png" type="Texture" id=10]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg5.png" type="Texture" id=11]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg6.png" type="Texture" id=12]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg17.png" type="Texture" id=13]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg13.png" type="Texture" id=14]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg15.png" type="Texture" id=15]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg16.png" type="Texture" id=16]
+[ext_resource path="res://Source/Levels/CutScene/FramesCutScene/bg12.png" type="Texture" id=17]
+[ext_resource path="res://Source/Levels/CutScene/CutScene.gd" type="Script" id=18]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 14 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 1467, 1080 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 17 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ), SubResource( 1 ) ],
+"loop": true,
+"name": "cutscene",
+"speed": 4.0
+} ]
+
+[node name="CutScene" type="Node2D"]
+script = ExtResource( 18 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.30879, 1.09352 )
+frames = SubResource( 18 )
+animation = "cutscene"
+frame = 21
+playing = true
+centered = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -64,11 +64,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Levels/Level1/Level1.gd"
 }, {
-"base": "Camera2D",
-"class": "LevelCamera",
-"language": "GDScript",
-"path": "res://Source/Levels/LevelCamera.gd"
-}, {
 "base": "Area2D",
 "class": "LevelObject",
 "language": "GDScript",
@@ -119,11 +114,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Levels/Test/TestLevel.gd"
 }, {
-"base": "Control",
-"class": "TitleScreen",
-"language": "GDScript",
-"path": "res://Source/TitleScreen/TitleScreen.gd"
-}, {
 "base": "Enemy",
 "class": "Zombie",
 "language": "GDScript",
@@ -141,7 +131,6 @@ _global_script_class_icons={
 "Item": "",
 "Level": "",
 "Level1": "",
-"LevelCamera": "",
 "LevelObject": "",
 "Menu": "",
 "MoneyBag": "",
@@ -152,24 +141,19 @@ _global_script_class_icons={
 "SpawnArea": "",
 "SubWeapon": "",
 "TestLevel": "",
-"TitleScreen": "",
 "Zombie": ""
 }
 
 [application]
 
 config/name="Castlevania Remake"
-run/main_scene="res://Source/Levels/Test/TestLevel.tscn"
+run/main_scene="res://Source/Menu/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Source/AutoLoads/Global.gd"
 Game="*res://Source/AutoLoads/Game.gd"
-
-[debug]
-
-settings/stdout/print_fps=true
 
 [display]
 
