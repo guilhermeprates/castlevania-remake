@@ -11,8 +11,8 @@ signal on_stairway_exited()
 
 
 const SPEED: int = 150
-const HORIZONTAL_JUMP_FORCE = 200
-const JUMP_FORCE: int = 700
+const HORIZONTAL_JUMP_FORCE = 300
+const JUMP_FORCE: int = 900
 const GRAVITY: int = 2500
 
 #var knockback_dir = 1 
@@ -56,9 +56,6 @@ onready var playerBackHitBoxCollision: CollisionShape2D = $Position2D/BackHitBox
 onready var shortBackHitBoxCollision: CollisionShape2D = $Position2D/BackHitBox/ShortCollisionShape
 
 onready var whipCollisionShape: CollisionShape2D = $Position2D/AttackHitBox/WhipCollisionShape
-
-
-
 
 onready var playback = animationTree.get("parameters/playback")
 

@@ -7,7 +7,6 @@ const SPEED: int = 100
 const GRAVITY: int = 2500
 
 export(NodePath) var player: NodePath
-export(NodePath) var center_point: NodePath
 export(int) var target_distance: int = 1000
 export(int) var health_points: int = 12
 
@@ -26,7 +25,6 @@ func _ready() -> void:
 	Game.boss_health_points = health_points
 	add_to_group("Boss")
 	_player_node = get_node(player)
-	_center_node = get_node(center_point)
 
 func distance_to_player() -> float:
 	var direction_to_target = _player_node.position - position

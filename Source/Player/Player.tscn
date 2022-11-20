@@ -646,10 +646,9 @@ parameters/Stairs-Idle/blend_position = 0
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( 5, -147 )
 current = true
-zoom = Vector2( 0.5, 0.5 )
 limit_left = -5000
 limit_top = -5000
-limit_right = 5000
+limit_right = 6250
 limit_bottom = 5000
 limit_smoothed = true
 drag_margin_h_enabled = true
