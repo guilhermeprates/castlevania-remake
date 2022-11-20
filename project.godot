@@ -147,7 +147,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Castlevania Remake"
-run/main_scene="res://Source/Levels/Test/TestLevel.tscn"
+run/main_scene="res://Source/Levels/Level1/Level1.tscn"
 config/icon="res://icon.png"
 
 [autoload]

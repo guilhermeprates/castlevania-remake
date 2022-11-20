@@ -11,7 +11,7 @@
 [ext_resource path="res://Source/Enemies/Zombie/Zombie.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Source/Enemies/Bat/Bat.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Source/Enemies/BlackPanther/BlackPanther.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Source/LevelObjects/Stairway.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Source/LevelObjects/Stairs/Stairway.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Source/Enemies/GiantBat/GiantBat.tscn" type="PackedScene" id=14]
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
