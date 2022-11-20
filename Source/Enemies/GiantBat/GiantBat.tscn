@@ -89,7 +89,7 @@ collision_mask = 9
 
 [node name="TopRayCast2D" type="RayCast2D" parent="."]
 enabled = true
-cast_to = Vector2( 0, -40 )
+cast_to = Vector2( 0, -80 )
 collision_mask = 9
 
 [node name="BottomRayCast2D" type="RayCast2D" parent="."]

@@ -1,7 +1,7 @@
 class_name GiantBat
 extends Boss
 
-enum State { IDLE, FLYING, ATTACKING, DEAD }
+enum State { IDLE, FLYING, PREPARE_ATTACK, ATTACKING, DEAD }
 
 const RADIUS: int = 100
 
@@ -35,6 +35,8 @@ func _physics_process(delta: float) -> void:
 			_idle(delta)
 		State.FLYING:
 			_fliying(delta)
+		State.PREPARE_ATTACK:
+			_prepare_attack(delta)
 		State.ATTACKING:
 			_attack(delta)
 		State.DEAD:
@@ -43,6 +45,7 @@ func _physics_process(delta: float) -> void:
 func _check_first_move():
 	if _state == State.IDLE and boss_event_trigged:
 		_update_state(State.FLYING)
+#		attackTimer.start()
 
 func _check_direction():
 	if leftRayCast.is_colliding():
@@ -66,36 +69,46 @@ func _check_direction():
 		
 
 func _setup_attack_timer() -> void:
-	attackTimer.set_wait_time(5.0)
+#	preparingAttackTimer.set_wait_time(4.0)
+#	preparingAttackTimer.set_one_shot(false)
+#	preparingAttackTimer.connect("timeout", self, "_update_state", [State.PREPARE_ATTACK])
+	attackTimer.set_wait_time(6.0)
 	attackTimer.set_one_shot(false)
-	attackTimer.connect("timeout", self, "_prepare_attack")
-	attackTimer.start()
+	attackTimer.connect("timeout", self, "_update_state", [State.ATTACKING])
 
 func _setup_connections() -> void:
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 
 func _update_state(state) -> void:
+	if state == State.ATTACKING:
+		attackTimer.stop()
+	elif state == State.FLYING:
+		attackTimer.start()
+	else:
+		attackTimer.stop()
 	_state = state
 
 func _idle(delta: float) -> void:
 	animationPlayer.play("Idle")
 
-func _prepare_attack() -> void:
-	preparingAttackTimer.start(0.2)
-	yield(attackTimer, "timeout")
-	_update_state(State.ATTACKING)
+func _prepare_attack(delta: float) -> void:
+	if boss_event_trigged:
+		print("PREPARE ATTACK")
+		animationPlayer.play("Flying")
+		_velocity = Vector2.ZERO
+		_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _attack(delta: float) -> void:
 	if boss_event_trigged:
 		print("ATTACK")
 		animationPlayer.play("Flying")
 		var direction = to_local(_player_node.global_position).normalized()
-		_velocity += (SPEED * 2) * direction  * delta
+		_velocity += (SPEED * 1.5) * direction  * delta
 		_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _fliying(delta: float) -> void:
 	if boss_event_trigged:
-		print("FLYING")
+#		print("FLYING")
 		animationPlayer.play("Flying")
 		_velocity.y = (cos(_time * 5) * 100) * _y_direction
 		_velocity.x = SPEED * _move_direction
@@ -103,7 +116,6 @@ func _fliying(delta: float) -> void:
 
 func _die(delta: float) -> void:
 	if boss_event_trigged:
-		print("STATE DEAD")
 		hitboxCollisionShape2D.set_deferred("disable", true)
 		yield(get_tree().create_timer(0.2), "timeout")
 		animationPlayer.play("Death")
@@ -124,7 +136,7 @@ func _look_for_player() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if _state != State.DEAD:
 		if area.is_in_group("Player") and _state != State.FLYING:
-			_update_state(State.FLYING)
+			attackTimer.start()
 		if area.is_in_group("Whip"):
 			health_points =- 1
 			Game.boss_health_points = health_points
