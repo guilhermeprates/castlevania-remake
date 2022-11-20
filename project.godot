@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/LevelObjects/LevelObject.gd"
 }, {
+"base": "Control",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://Source/Menu/Menu.gd"
+}, {
 "base": "Item",
 "class": "MoneyBag",
 "language": "GDScript",
@@ -98,6 +103,11 @@ _global_script_classes=[ {
 "class": "Projectile",
 "language": "GDScript",
 "path": "res://Source/Projectile/Projectile.gd"
+}, {
+"base": "Area2D",
+"class": "SpawnArea",
+"language": "GDScript",
+"path": "res://Source/SpawnArea/SpawnArea.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "SubWeapon",
@@ -133,11 +143,13 @@ _global_script_class_icons={
 "Level1": "",
 "LevelCamera": "",
 "LevelObject": "",
+"Menu": "",
 "MoneyBag": "",
 "Player": "",
 "PlayerCamera": "",
 "PlayerStateMachine": "",
 "Projectile": "",
+"SpawnArea": "",
 "SubWeapon": "",
 "TestLevel": "",
 "TitleScreen": "",

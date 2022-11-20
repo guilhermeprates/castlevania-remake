@@ -16,6 +16,7 @@ func _ready() -> void:
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 	
 func _physics_process(delta: float) -> void:
+	_time += delta
 	if not _dead: 
 		if not _moving:
 			_look_for_player()
@@ -23,12 +24,13 @@ func _physics_process(delta: float) -> void:
 			_move(delta)
 
 func _move(delta: float) -> void:
-	_time += delta
 	_velocity.y = cos(_time * _frequency) * _amplitude
 	_velocity.x = SPEED * _move_direction
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _look_for_player() -> void:
+	if (_player_node == null): 
+		return
 	if _player_node.position.x < position.x:
 		position2D.scale.x = -1
 		_move_direction = -1

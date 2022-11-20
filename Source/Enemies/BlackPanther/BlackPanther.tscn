@@ -90,7 +90,7 @@ position = Vector2( -1, -29 )
 texture = ExtResource( 2 )
 flip_h = true
 hframes = 12
-frame = 11
+frame = 8
 
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 position = Vector2( 0, 11 )

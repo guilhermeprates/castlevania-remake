@@ -62,6 +62,8 @@ func _attack() -> void:
 		_can_attack = true
 
 func _look_for_player() -> void:
+	if (_player_node == null): 
+		return
 	if _player_node.position.x < position.x:
 		position2D.scale.x = -1
 		_move_direction = -1

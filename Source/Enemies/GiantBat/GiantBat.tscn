@@ -71,16 +71,40 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Position2D"]
 texture = ExtResource( 2 )
 hframes = 6
-frame = 1
 
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Position2D/Hitbox"]
 shape = SubResource( 2 )
 
+[node name="LeftRayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( -40, 0 )
+collision_mask = 9
+
+[node name="RightRayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 40, 0 )
+collision_mask = 9
+
+[node name="TopRayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, -80 )
+collision_mask = 9
+
+[node name="BottomRayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 40 )
+collision_mask = 9
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Death = SubResource( 5 )
 anims/Flying = SubResource( 4 )
 anims/Idle = SubResource( 3 )
 
+[node name="PreparingAttackTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 8.0
