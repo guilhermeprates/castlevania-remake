@@ -27,9 +27,11 @@ extents = Vector2( 7.5, 34.5 )
 
 [node name="Door" type="Area2D"]
 scale = Vector2( 2.7, 2.7 )
+collision_layer = 8
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 4 )
+frame = 1
 offset = Vector2( 16, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

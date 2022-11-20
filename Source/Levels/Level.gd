@@ -8,6 +8,7 @@ onready var collectableScene = preload("res://Source/Items/Collectable.tscn")
 func _ready() -> void:
 	for node in get_children():
 		if node is LevelObject:
+			node.queue_free()
 			node.connect("on_break_level_object", self, "_spawn_item")
 		if node is SpawnArea:
 			node.connect("on_spawn_enemy", self, "_spawn_enemy")
