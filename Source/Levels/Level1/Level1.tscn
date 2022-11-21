@@ -577,6 +577,6 @@ player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
 [node name="WaterArea" parent="." instance=ExtResource( 25 )]
-position = Vector2( 7102, 1570 )
+position = Vector2( 7233, 1571 )
 scale = Vector2( 2, 2 )
 z_index = 1
