@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Items/Collectable.gd"
 }, {
+"base": "Node2D",
+"class": "CutScene",
+"language": "GDScript",
+"path": "res://Source/Levels/CutScene/CutScene.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Enemy",
 "language": "GDScript",
@@ -44,10 +49,20 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Enemies/FishMan/FishMan.gd"
 }, {
+"base": "Control",
+"class": "GameOver",
+"language": "GDScript",
+"path": "res://Source/Game Over/GameOver.gd"
+}, {
 "base": "Boss",
 "class": "GiantBat",
 "language": "GDScript",
 "path": "res://Source/Enemies/GiantBat/GiantBat.gd"
+}, {
+"base": "Node2D",
+"class": "Intro",
+"language": "GDScript",
+"path": "res://Source/Levels/Intro/Intro.gd"
 }, {
 "base": "Resource",
 "class": "Item",
@@ -125,9 +140,12 @@ _global_script_class_icons={
 "BlackPanther": "",
 "Boss": "",
 "Collectable": "",
+"CutScene": "",
 "Enemy": "",
 "FishMan": "",
+"GameOver": "",
 "GiantBat": "",
+"Intro": "",
 "Item": "",
 "Level": "",
 "Level1": "",

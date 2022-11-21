@@ -22,7 +22,7 @@ export(int) var hearts: int = 0
 export(int) var base_attack: int = 1
 
 
-
+var _in_castle_area: bool = false
 var _velocity: Vector2 = Vector2.ZERO
 var _grounded: bool = true
 var _intangible: bool = false
@@ -68,7 +68,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	ground_check()
 
-
 func _on_body_entered_front(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		_intangible = true
@@ -84,7 +83,10 @@ func _on_body_entered_back(body: Node2D) -> void:
 			_is_facing_right = true
 		emit_signal("on_player_damaged")
 
-
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("CastleArea"):
+		_in_castle_area = true
+ 
 ##### Métodos####
 func _reset_velocity() -> void:
 	_velocity = Vector2.ZERO
@@ -163,6 +165,7 @@ func animation_ended():
 	emit_signal("on_animation_ended")
 
 func set_movement(delta):
+	if _in_castle_area: return
 	var right = Input.get_action_strength("ui_right")
 	var left = Input.get_action_strength("ui_left")
 	_velocity.x = right - left
@@ -224,7 +227,7 @@ func stairway_exited():
 func _set_connections() -> void:
 	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered_front")
 	playerBackHitBox.connect("body_entered", self, "_on_body_entered_back")
-
+	playerBackHitBox.connect("area_entered", self, "_on_area_entered")
 
 
 func enable_whip_collision_shape() -> void:

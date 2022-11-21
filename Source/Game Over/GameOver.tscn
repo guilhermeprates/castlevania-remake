@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Source/HUD/PressStart2P.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Source/Items/Sprites/LargeHeart.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Source/Game Over/Icon.gd" type="Script" id=4]
 [ext_resource path="res://Source/Game Over/End.tres" type="Theme" id=5]
 [ext_resource path="res://Source/HUD/HUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Source/Game Over/GameOverScreen.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -85,6 +86,10 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16.0536, 16.3836 )
 script = ExtResource( 4 )
+
+[node name="GameOverOST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+autoplay = true
 
 [connection signal="pressed" from="Options/VBoxContainer2/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Options/VBoxContainer2/End" to="." method="_on_End_pressed"]
