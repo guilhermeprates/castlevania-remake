@@ -103,7 +103,7 @@ script = ExtResource( 18 )
 scale = Vector2( 1.30879, 1.09352 )
 frames = SubResource( 18 )
 animation = "cutscene"
-frame = 14
+frame = 18
 playing = true
 centered = false
 

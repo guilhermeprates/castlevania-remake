@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Enemies/FishMan/FishMan.gd"
 }, {
+"base": "Control",
+"class": "GameOver",
+"language": "GDScript",
+"path": "res://Source/Game Over/GameOver.gd"
+}, {
 "base": "Boss",
 "class": "GiantBat",
 "language": "GDScript",
@@ -133,6 +138,7 @@ _global_script_class_icons={
 "CutScene": "",
 "Enemy": "",
 "FishMan": "",
+"GameOver": "",
 "GiantBat": "",
 "Item": "",
 "Level": "",

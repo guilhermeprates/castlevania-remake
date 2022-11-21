@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Source/Tiles/tile_intro2.png" type="Texture" id=1]
 [ext_resource path="res://Source/Tiles/tile01_64.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Source/Enemies/Bat/Bat.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Source/Water/Water.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Source/Levels/Level1/VampireKiller_Stage1.wav" type="AudioStream" id=26]
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -258,6 +259,10 @@ extents = Vector2( 92, 355 )
 [node name="Level1" type="Node2D"]
 position = Vector2( -5007, 26 )
 script = ExtResource( 19 )
+
+[node name="Stage1OST" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+autoplay = true
 
 [node name="HUD" parent="." instance=ExtResource( 15 )]
 
