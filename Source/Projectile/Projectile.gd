@@ -1,7 +1,7 @@
 class_name Projectile
 extends Area2D
 
-const SPEED: int = 200
+const SPEED: int = 230
 
 var _end: bool = false
 var _start: bool = false

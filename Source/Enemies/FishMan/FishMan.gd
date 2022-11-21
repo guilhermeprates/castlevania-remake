@@ -6,9 +6,9 @@ export (float, 0, 10) var attack_rate: float = 5.0
 
 var _jump: bool = true
 var _splashed: bool = false
-var _can_attack: bool = false
 
 onready var splashSFX: AudioStreamPlayer = $SplashSFX
+onready var fireRateTimer: Timer = $FireRateTimer
 onready var attackTimer: Timer = $AttackTimer
 onready var collisionShape: CollisionShape2D = $CollisionShape2D
 onready var position2D: Position2D = $Position2D
@@ -23,6 +23,7 @@ func _ready() -> void:
 	animationPlayer.play("Walk")
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
 	_result = hitbox.connect("area_exited", self, "_on_area_exited")
+	attackTimer.connect("timeout", self, "_attack")
 
 func _physics_process(delta: float) -> void:
 	if not _dead: 
@@ -31,11 +32,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			if _jump:
 				_jump()
-			if !_can_attack:
-				_move(delta)
-			else:
-				_attack()
-	
+			_move(delta)
+
 func _move(delta: float) -> void:
 	if is_on_floor():
 		_velocity.x = SPEED * _move_direction
@@ -44,26 +42,23 @@ func _move(delta: float) -> void:
 
 func _jump() -> void:
 	_jump = false
-	_can_attack = true
+	attackTimer.start()
 	_velocity.y += -1600
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _attack() -> void:
-#	if !is_on_floor(): return
-	if not _dead and _can_attack:
+	if not _dead:
 		var projectile_instance = projectile.instance()
 		projectile_instance.position = atackOriginPoint.global_position
 		print(_move_direction)
 		projectile_instance.direction = _move_direction
 		get_tree().get_root().add_child(projectile_instance)
-		_can_attack = false
 		animationPlayer.play("Attack")
-		attackTimer.start(0.3) 
-		yield(attackTimer, "timeout")
+		fireRateTimer.start(0.3) 
+		yield(fireRateTimer, "timeout")
 		animationPlayer.play("Walk")
-		attackTimer.start(attack_rate) 
-		yield(attackTimer, "timeout")
-		_can_attack = true
+		fireRateTimer.start(attack_rate) 
+		yield(fireRateTimer, "timeout")
 
 func _look_for_player() -> void:
 	if (_player_node == null): 

@@ -545,11 +545,13 @@ enemy = ExtResource( 20 )
 position = Vector2( 6383, 1574 )
 player = NodePath("../Player")
 enemy = ExtResource( 23 )
+target_distance = 500
 
 [node name="SpawnArea12" parent="." instance=ExtResource( 21 )]
-position = Vector2( 7002, 1575 )
+position = Vector2( 7500, 1575 )
 player = NodePath("../Player")
 enemy = ExtResource( 23 )
+target_distance = 500
 
 [node name="SpawnArea13" parent="." instance=ExtResource( 21 )]
 position = Vector2( 7356, 375 )
@@ -575,6 +577,12 @@ enemy = ExtResource( 20 )
 position = Vector2( 10319, 771 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
+
+[node name="SpawnArea18" parent="." instance=ExtResource( 21 )]
+position = Vector2( 7750, 1575 )
+player = NodePath("../Player")
+enemy = ExtResource( 23 )
+target_distance = 500
 
 [node name="WaterArea" parent="." instance=ExtResource( 25 )]
 position = Vector2( 7233, 1571 )
