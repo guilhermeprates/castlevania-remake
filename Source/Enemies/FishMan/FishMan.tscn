@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.gd" type="Script" id=1]
 [ext_resource path="res://Source/Enemies/FishMan/FishMan.png" type="Texture" id=2]
+[ext_resource path="res://Source/Enemies/FishMan/Splash.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 33.5 )
@@ -97,3 +98,6 @@ anims/Walk = SubResource( 6 )
 
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="SplashSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

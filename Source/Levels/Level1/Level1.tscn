@@ -479,7 +479,7 @@ position = Vector2( 10683, 292 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 10424, 793 )
+position = Vector2( 8053, 1174 )
 
 [node name="BossEventArea" type="Area2D" parent="." groups=["BossEventArea"]]
 position = Vector2( 11144, 523 )

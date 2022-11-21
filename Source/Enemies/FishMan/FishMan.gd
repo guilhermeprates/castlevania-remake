@@ -5,8 +5,10 @@ export (int, 1000, 10000) var attack_speed: int = 1000
 export (float, 0, 10) var attack_rate: float = 5.0
 
 var _jump: bool = true
+var _splashed: bool = false
 var _can_attack: bool = false
 
+onready var splashSFX: AudioStreamPlayer = $SplashSFX
 onready var attackTimer: Timer = $AttackTimer
 onready var collisionShape: CollisionShape2D = $CollisionShape2D
 onready var position2D: Position2D = $Position2D
@@ -20,6 +22,7 @@ func _ready() -> void:
 	_experience = 300
 	animationPlayer.play("Walk")
 	var _result = hitbox.connect("area_entered", self, "_on_area_entered")
+	_result = hitbox.connect("area_exited", self, "_on_area_exited")
 
 func _physics_process(delta: float) -> void:
 	if not _dead: 
@@ -83,3 +86,9 @@ func _on_area_entered(area: Area2D) -> void:
 		emit_signal("on_kill_enemy", position)
 		yield(get_tree().create_timer(0.4), "timeout")
 		queue_free()
+
+func _on_area_exited(area: Area2D) -> void:
+	if _splashed: return
+	if area.is_in_group("WaterArea") and not _dead:
+		_splashed = true
+		splashSFX.play()
