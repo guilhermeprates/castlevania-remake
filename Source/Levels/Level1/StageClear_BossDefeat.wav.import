@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/PoisonMind_BossMusic.wav-031b797bd01275add5b89504b5a3a9bb.sample"
+path="res://.import/StageClear_BossDefeat.wav-38e74b9dee9932789cdcd1298c827260.sample"
 
 [deps]
 
-source_file="res://Source/Enemies/GiantBat/PoisonMind_BossMusic.wav"
-dest_files=[ "res://.import/PoisonMind_BossMusic.wav-031b797bd01275add5b89504b5a3a9bb.sample" ]
+source_file="res://Source/Levels/Level1/StageClear_BossDefeat.wav"
+dest_files=[ "res://.import/StageClear_BossDefeat.wav-38e74b9dee9932789cdcd1298c827260.sample" ]
 
 [params]
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_with_clothes.png" type="Texture" id=2]
-[ext_resource path="res://Source/Player/PlayerCamera.gd" type="Script" id=3]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateIdle.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd" type="Script" id=5]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateWalk.gd" type="Script" id=6]
@@ -644,8 +643,9 @@ parameters/conditions/dead = false
 parameters/Stairs-Idle/blend_position = 0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-position = Vector2( 5, -147 )
+offset = Vector2( 0, -300 )
 current = true
+zoom = Vector2( 0.75, 1 )
 limit_left = -5000
 limit_top = 0
 limit_right = 6250
@@ -655,12 +655,10 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 1.0
-drag_margin_left = 0.1
-drag_margin_top = 0.75
-drag_margin_right = 0.1
+drag_margin_top = 0.6
+drag_margin_bottom = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
-script = ExtResource( 3 )
 
 [node name="ShiftTween" type="Tween" parent="PlayerCamera"]
 playback_speed = 2.0
