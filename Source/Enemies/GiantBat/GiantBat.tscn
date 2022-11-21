@@ -62,7 +62,6 @@ scale = Vector2( 2, 2 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
-center_point = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -72,6 +71,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Position2D"]
 texture = ExtResource( 2 )
 hframes = 6
+frame = 2
 
 [node name="Hitbox" type="Area2D" parent="Position2D"]
 

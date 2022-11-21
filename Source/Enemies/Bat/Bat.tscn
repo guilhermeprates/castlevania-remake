@@ -42,6 +42,7 @@ tracks/0/keys = {
 }
 
 [node name="Bat" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
 collision_layer = 2
 script = ExtResource( 1 )
 

@@ -42,10 +42,11 @@ func _move(delta: float) -> void:
 func _jump() -> void:
 	_jump = false
 	_can_attack = true
-	_velocity.y += -1300
+	_velocity.y += -1600
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 func _attack() -> void:
+#	if !is_on_floor(): return
 	if not _dead and _can_attack:
 		var projectile_instance = projectile.instance()
 		projectile_instance.position = atackOriginPoint.global_position
