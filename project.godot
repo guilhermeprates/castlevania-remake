@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Source/Enemies/GiantBat/GiantBat.gd"
 }, {
+"base": "Node2D",
+"class": "Intro",
+"language": "GDScript",
+"path": "res://Source/Levels/Intro/Intro.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -140,6 +145,7 @@ _global_script_class_icons={
 "FishMan": "",
 "GameOver": "",
 "GiantBat": "",
+"Intro": "",
 "Item": "",
 "Level": "",
 "Level1": "",
