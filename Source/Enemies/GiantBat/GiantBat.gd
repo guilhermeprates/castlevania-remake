@@ -135,10 +135,12 @@ func _look_for_player() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if _state != State.DEAD:
-#		if area.is_in_group("Player") and _state != State.FLYING:
+		if area.is_in_group("Player") and _state != State.FLYING:
+			_state = State.FLYING
 #			attackTimer.start()
 		if area.is_in_group("Whip"):
 			health_points -= 1
 			Game.boss_health_points = health_points
 			if health_points == 0:
+				hitboxCollisionShape2D.set_deferred("disable", true)
 				_update_state(State.DEAD)

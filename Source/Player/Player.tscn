@@ -647,6 +647,7 @@ shape = SubResource( 79 )
 
 [node name="AttackHitBox" type="Area2D" parent="Position2D" groups=["Whip"]]
 position = Vector2( 200, 0 )
+collision_mask = 17
 
 [node name="WhipCollisionShape" type="CollisionShape2D" parent="Position2D/AttackHitBox"]
 position = Vector2( -81.625, 0 )

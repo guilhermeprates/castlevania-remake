@@ -43,9 +43,7 @@ func _check_fall() -> void:
 		var collider = bottomRayCast.get_collider()
 		if collider.is_in_group("WaterArea"):
 			_fell_out = true
-			print("AAAA")
 			print(_move_direction)
-			print("OOOO")
 			_move_direction = -_move_direction
 
 func _move(delta: float) -> void:
