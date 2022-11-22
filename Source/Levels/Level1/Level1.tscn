@@ -271,6 +271,14 @@ extents = Vector2( 92, 355 )
 position = Vector2( -5000, 87 )
 script = ExtResource( 19 )
 
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [node name="Stage1OST" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )
 autoplay = true

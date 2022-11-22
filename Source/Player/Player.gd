@@ -77,8 +77,13 @@ func _on_body_entered_back(body: Node2D) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("CastleArea"):
 		_in_castle_area = true
+	if area.is_in_group("SavePoint"):
+		Game.last_savepoint_position = area.position
+	if area.is_in_group("WaterArea"):
+		health_points = 0
+		Game.player_health_points = health_points
  
-func reset():
+func reset() -> void:
 	state_machine.reset_state()
 	_reset_velocity()
 

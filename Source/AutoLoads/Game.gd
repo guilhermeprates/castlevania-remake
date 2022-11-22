@@ -1,11 +1,12 @@
 extends Node
 
 var current_stage: int = 1
-var player_health_points: int = 16
+var player_health_points: int = 2
 var player_hearts: int = 0
 var player_life_points: int = 3
 var player_score: int = 0
 var boss_health_points: int = 14
+var last_savepoint_position: Vector2 = Vector2.ZERO
 
 func is_game_over() -> bool:
 	return player_life_points < 1
