@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Source/Tiles/tile_intro2.png" type="Texture" id=1]
 [ext_resource path="res://Source/Tiles/tile01_64.png" type="Texture" id=2]
@@ -292,6 +292,9 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 92, 355 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 18, 11.5 )
 
 [node name="Level1" type="Node2D"]
 position = Vector2( -5000, 87 )
@@ -669,3 +672,54 @@ position = Vector2( 6367, 364 )
 
 [node name="SavePoint3" parent="." instance=ExtResource( 37 )]
 position = Vector2( 8378, 372 )
+
+[node name="JumpArea6" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 4099, 598 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea6"]
+shape = SubResource( 20 )
+
+[node name="JumpArea5" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 2946, 602 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea5"]
+shape = SubResource( 20 )
+
+[node name="JumpArea4" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 3013, 475 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea4"]
+position = Vector2( -1, -1 )
+shape = SubResource( 20 )
+
+[node name="JumpArea3" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 3648, 473 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea3"]
+shape = SubResource( 20 )
+
+[node name="JumpArea2" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 3718, 599 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2"]
+position = Vector2( 1, 1 )
+shape = SubResource( 20 )
+
+[node name="JumpArea" type="Area2D" parent="." groups=["JumpArea"]]
+position = Vector2( 2757, 606 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
+position = Vector2( 1, 0 )
+shape = SubResource( 20 )
