@@ -4,16 +4,17 @@
 [ext_resource path="res://Source/LevelObjects/Stairs/StairwayManager.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 187.737, 9.36915 )
+resource_local_to_scene = true
+extents = Vector2( 292.83, 9.36915 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 17.25, 11.75 )
+extents = Vector2( 11.75, 6.75 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 20.25, 8.5 )
+extents = Vector2( 9, 8.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 166.17, 9.75 )
+extents = Vector2( 266.933, 9.75 )
 
 [node name="Stairway" type="StaticBody2D"]
 collision_layer = 16
@@ -21,59 +22,87 @@ collision_mask = 16
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -101.125, 36.3749 )
-rotation = -0.785398
+position = Vector2( 58.9374, 236.938 )
+rotation = 0.785398
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -221, 143 )
+position = Vector2( -30, 143 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 2, 175 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 34, 207 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite7" type="Sprite" parent="."]
+position = Vector2( 66, 239 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite8" type="Sprite" parent="."]
+position = Vector2( 98, 271 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite9" type="Sprite" parent="."]
+position = Vector2( 130, 303 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite10" type="Sprite" parent="."]
+position = Vector2( 162, 335 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite11" type="Sprite" parent="."]
+position = Vector2( 194, 367 )
+scale = Vector2( -1, 1 )
+texture = ExtResource( 1 )
+
+[node name="Sprite12" type="Sprite" parent="."]
+position = Vector2( 226, 399 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( -189, 111 )
+position = Vector2( -61, 110 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 
 [node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( -157, 79 )
+position = Vector2( -93, 79 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 
 [node name="Sprite4" type="Sprite" parent="."]
 position = Vector2( -125, 47 )
-texture = ExtResource( 1 )
-
-[node name="Sprite5" type="Sprite" parent="."]
-position = Vector2( -93, 15 )
-texture = ExtResource( 1 )
-
-[node name="Sprite6" type="Sprite" parent="."]
-position = Vector2( -61, -17 )
-texture = ExtResource( 1 )
-
-[node name="Sprite7" type="Sprite" parent="."]
-position = Vector2( -29, -49 )
-texture = ExtResource( 1 )
-
-[node name="Sprite8" type="Sprite" parent="."]
-position = Vector2( 3, -81 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 
 [node name="BottomDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomDetector"]
-position = Vector2( -258.75, 144.75 )
+position = Vector2( 257, 404 )
 shape = SubResource( 2 )
 
 [node name="TopDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopDetector"]
-position = Vector2( 29.75, -105.5 )
+position = Vector2( -155, 21 )
 shape = SubResource( 3 )
 
 [node name="MiddleDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiddleDetector"]
-position = Vector2( -129, 18.9999 )
-rotation = -0.785398
+position = Vector2( 59.25, 199.25 )
+rotation = 0.785398
 shape = SubResource( 4 )
 
 [connection signal="body_entered" from="BottomDetector" to="." method="_on_BottomDetector_body_entered"]

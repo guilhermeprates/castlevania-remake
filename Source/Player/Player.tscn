@@ -428,7 +428,7 @@ advance_condition = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
 switch_mode = 2
-advance_condition = "dead"
+advance_condition = "Death"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
 advance_condition = "DuckingAttack"
@@ -547,7 +547,7 @@ states/Walk/node = SubResource( 25 )
 states/Walk/position = Vector2( 732, 104 )
 transitions = [ "Idle", "Walk", SubResource( 26 ), "Walk", "Idle", SubResource( 27 ), "Idle", "Attack", SubResource( 37 ), "Attack", "Idle", SubResource( 38 ), "Idle", "Jump", SubResource( 41 ), "Idle", "GetHit", SubResource( 47 ), "GetHit", "Idle", SubResource( 48 ), "GetHit", "Death", SubResource( 49 ), "Ducking", "Ducking-Attack", SubResource( 54 ), "Ducking-Attack", "Ducking", SubResource( 55 ), "Ducking", "Idle", SubResource( 56 ), "Idle", "Ducking", SubResource( 57 ), "Jump", "Air", SubResource( 65 ), "Air", "Attack", SubResource( 66 ), "Attack", "Air", SubResource( 67 ), "Walk", "Attack", SubResource( 68 ), "Walk", "Jump", SubResource( 69 ), "Air", "Idle", SubResource( 70 ), "Walk", "GetHit", SubResource( 72 ), "Jump", "GetHit", SubResource( 73 ), "Air", "GetHit", SubResource( 74 ), "Attack", "GetHit", SubResource( 75 ), "Jump", "Attack", SubResource( 76 ), "Idle", "Stairs-Up", SubResource( 82 ), "Stairs-Up", "Idle", SubResource( 83 ), "Stairs-Up", "Stairs-Idle", SubResource( 94 ), "Stairs-Idle", "Stairs-Up", SubResource( 95 ), "Stairs-Idle", "Stairs-Down", SubResource( 96 ), "Stairs-Down", "Stairs-Idle", SubResource( 97 ), "Stairs-Down", "Idle", SubResource( 98 ), "Idle", "Stairs-Down", SubResource( 99 ), "Stairs-Up", "Attack", SubResource( 100 ), "Attack", "Stairs-Up", SubResource( 101 ), "Stairs-Idle", "Attack", SubResource( 102 ), "Attack", "Stairs-Idle", SubResource( 103 ), "Attack", "Stairs-Down", SubResource( 104 ), "Stairs-Down", "Attack", SubResource( 105 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -256.829, 167.319 )
+graph_offset = Vector2( -116.829, -96.681 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
@@ -630,6 +630,7 @@ active = true
 parameters/playback = SubResource( 23 )
 parameters/conditions/Air = false
 parameters/conditions/Attack = false
+parameters/conditions/Death = false
 parameters/conditions/Ducking = false
 parameters/conditions/DuckingAttack = false
 parameters/conditions/GetHit = false
@@ -639,7 +640,6 @@ parameters/conditions/StairsDown = false
 parameters/conditions/StairsIdle = false
 parameters/conditions/StairsUp = false
 parameters/conditions/Walk = false
-parameters/conditions/dead = false
 parameters/Stairs-Idle/blend_position = 0
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
@@ -715,4 +715,6 @@ script = ExtResource( 15 )
 [connection signal="on_stairway_bottom_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_found"]
 [connection signal="on_stairway_bottom_top_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_top_exited"]
 [connection signal="on_stairway_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine/StairsUp" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine/StairsDown" method="_on_Player_on_stairway_exited"]
 [connection signal="on_stairway_top_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_top_found"]

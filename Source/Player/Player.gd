@@ -174,8 +174,8 @@ func set_movement(delta):
 	_velocity = move_and_slide(_velocity, Vector2.UP, true)
 
 func set_stairway_movement(delta):
-	var up = Input.get_action_strength("ui_up")
-	var down = Input.get_action_strength("ui_down")
+	var up = Input.get_action_strength("ui_right")
+	var down = Input.get_action_strength("ui_left")
 		
 	_velocity.x = up - down
 	_velocity.x = _velocity.x * SPEED * 0.9
