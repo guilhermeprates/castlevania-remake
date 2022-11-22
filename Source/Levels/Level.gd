@@ -5,6 +5,8 @@ export(Array, Resource) var items: Array = []
 
 onready var collectableScene = preload("res://Source/Items/Collectable.tscn")
 
+var _stage_clear: bool = false
+
 func _ready() -> void:
 	for node in get_children():
 		if node is LevelObject:
@@ -28,4 +30,3 @@ func _spawn_enemy(enemy: Enemy) -> void:
 
 func _collect_item() -> void:
 	Game.player_hearts += 1
-	print(str(Game.player_hearts))

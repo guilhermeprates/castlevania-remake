@@ -3,6 +3,7 @@ extends Level
 
 onready var stage1OST: AudioStreamPlayer = $Stage1OST
 onready var bossFightOST: AudioStreamPlayer = $BossFightOST
+onready var stageClearSFX: AudioStreamPlayer = $StageClearSFX
 onready var giantBat: GiantBat = $GiantBat
 onready var bossEventArea: Area2D = $BossEventArea
 onready var firstSavePoint: Area2D = $SavePoint
@@ -38,7 +39,6 @@ func _on_death_timeout() -> void:
 		player.position = last_savepoint_position
 		player.health_points = 16
 		Game.player_health_points = 16
-	
 
 func _on_boss_event_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -48,7 +48,12 @@ func _on_boss_event_body_entered(body: Node2D) -> void:
 				bossFightOST.play()
 			giantBat.boss_event_trigged = true
 
+func _on_kill_boss(position: Vector2) -> void:
+	bossFightOST.stop()
+	stageClearSFX.play()
+
 func _set_connections() -> void:
 	bossEventArea.connect("body_entered", self, "_on_boss_event_body_entered")
+	giantBat.connect("on_kill_boss", self, "_on_kill_boss")
 	gameOverTimer.connect("timeout", self, "_on_gameover_timeout")
 	deathTimer.connect("timeout", self, "_on_death_timeout")
