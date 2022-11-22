@@ -103,4 +103,5 @@ func _on_Player_on_stairway_bottom_top_exited() -> void:
 
 
 func _on_Player_on_stairway_exited() -> void:
+	print("stairway exited")
 	stairway_exited = true

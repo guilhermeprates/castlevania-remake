@@ -32,14 +32,14 @@ func physics_tick(delta):
 
 func transition_to_stairs_walk():
 	if(state_machine.climb_started_from == state_machine.STAIRWAY.BOTTOM):
-		if(state_machine.my_player._velocity.x > 0):
+		if(state_machine.my_player._velocity.y < 0):
 			state_machine.change_state("StairsUp")
-		if(state_machine.my_player._velocity.x < 0):
+		if(state_machine.my_player._velocity.y > 0):
 			state_machine.change_state("StairsDown")
 	elif(state_machine.climb_started_from == state_machine.STAIRWAY.TOP):
-		if(state_machine.my_player._velocity.x < 0):
+		if(state_machine.my_player._velocity.y > 0):
 			state_machine.change_state("StairsDown")
-		if(state_machine.my_player._velocity.x > 0):
+		if(state_machine.my_player._velocity.y < 0):
 			state_machine.change_state("StairsUp")
 
 func transition_to_attack():

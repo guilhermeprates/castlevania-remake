@@ -715,4 +715,6 @@ script = ExtResource( 15 )
 [connection signal="on_stairway_bottom_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_found"]
 [connection signal="on_stairway_bottom_top_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_bottom_top_exited"]
 [connection signal="on_stairway_exited" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine/StairsUp" method="_on_Player_on_stairway_exited"]
+[connection signal="on_stairway_exited" from="." to="PlayerStateMachine/StairsDown" method="_on_Player_on_stairway_exited"]
 [connection signal="on_stairway_top_found" from="." to="PlayerStateMachine" method="_on_Player_on_stairway_top_found"]
