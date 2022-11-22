@@ -48,7 +48,7 @@ scale = Vector2( 1.5, 1.5 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
-target_distance = 750
+target_distance = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, -1.5 )
