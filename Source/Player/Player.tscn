@@ -1,7 +1,8 @@
-[gd_scene load_steps=91 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_with_clothes.png" type="Texture" id=2]
+[ext_resource path="res://Source/Player/PlayerSounds/SoundEffects/Whip.wav" type="AudioStream" id=3]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateIdle.gd" type="Script" id=4]
 [ext_resource path="res://Source/Player/PlayerStateMachine/PlayerStateMachine.gd" type="Script" id=5]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Movement/PlayerStateWalk.gd" type="Script" id=6]
@@ -74,11 +75,14 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.34, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.21, 0.34, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "enable_whip_collision_shape"
+}, {
+"args": [  ],
+"method": "play_whipsfx"
 }, {
 "args": [  ],
 "method": "disable_whip_collision_shape"
@@ -555,6 +559,9 @@ graph_offset = Vector2( -116.829, -96.681 )
 collision_mask = 8
 script = ExtResource( 1 )
 
+[node name="WhipSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0.5 )
 shape = SubResource( 1 )
@@ -663,9 +670,6 @@ editor_draw_drag_margin = true
 [node name="ShiftTween" type="Tween" parent="PlayerCamera"]
 playback_speed = 2.0
 playback/speed = 2.0
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2( -206, -112 )
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource( 5 )
