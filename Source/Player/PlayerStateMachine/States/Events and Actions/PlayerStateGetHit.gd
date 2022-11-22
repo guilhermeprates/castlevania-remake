@@ -20,6 +20,11 @@ func exit():
 
 func tick(delta):
 	count += delta
+	if(count > 2):
+		if(Game.player_health_points <= 0):
+			transition_to_death()
+		else: 
+			transition_to_idle()
 
 
 func physics_tick(delta):
@@ -29,7 +34,12 @@ func physics_tick(delta):
 func transition_to_idle():
 	state_machine.change_state("Idle")
 
+func transition_to_death():
+	state_machine.change_state("Death")
 
 func _on_Player_on_grounded_updated(is_grounded) -> void:
 	if(count > 0.1):
-		transition_to_idle()
+		if(Game.player_health_points <= 0):
+			transition_to_death()
+		else: 
+			transition_to_idle()
