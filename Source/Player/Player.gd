@@ -31,6 +31,8 @@ onready var camera: Camera2D = $PlayerCamera
 onready var position2D: Position2D = $Position2D
 onready var animationTree: AnimationTree = $AnimationTree
 onready var whipSFX: AudioStreamPlayer = $WhipSFX
+onready var damageSFX: AudioStreamPlayer = $DamageSFX
+onready var deathSFX: AudioStreamPlayer = $DeathSFX
 
 ######## Collider References ################
 onready var playerMainCollision : CollisionShape2D = $PlayerCollisionShape
@@ -214,3 +216,13 @@ func play_whipsfx() -> void:
 	var playing = whipSFX.playing
 	if not playing:
 		whipSFX.play()
+
+func play_damagesfx() -> void:
+	var playing = damageSFX.playing
+	if not playing:
+		damageSFX.play()
+
+func play_deathsfx() -> void:
+	var playing = deathSFX.playing
+	if not playing:
+		deathSFX.play()
