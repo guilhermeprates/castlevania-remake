@@ -6,7 +6,9 @@ export (float, 0, 10) var attack_rate: float = 5.0
 
 var _jump: bool = true
 var _splashed: bool = false
+var _fell_out: bool = false
 
+onready var bottomRayCast: RayCast2D = $BottomRayCast2D
 onready var splashSFX: AudioStreamPlayer = $SplashSFX
 onready var fireRateTimer: Timer = $FireRateTimer
 onready var attackTimer: Timer = $AttackTimer
@@ -30,9 +32,21 @@ func _physics_process(delta: float) -> void:
 		if not _moving:
 			_look_for_player()
 		else:
+			_check_fall()
 			if _jump:
 				_jump()
 			_move(delta)
+
+func _check_fall() -> void:
+	if _fell_out: return
+	if bottomRayCast.is_colliding():
+		var collider = bottomRayCast.get_collider()
+		if collider.is_in_group("WaterArea"):
+			_fell_out = true
+			print("AAAA")
+			print(_move_direction)
+			print("OOOO")
+			_move_direction = -_move_direction
 
 func _move(delta: float) -> void:
 	if is_on_floor():
@@ -50,7 +64,6 @@ func _attack() -> void:
 	if not _dead:
 		var projectile_instance = projectile.instance()
 		projectile_instance.position = atackOriginPoint.global_position
-		print(_move_direction)
 		projectile_instance.direction = _move_direction
 		get_tree().get_root().add_child(projectile_instance)
 		animationPlayer.play("Attack")
@@ -61,8 +74,7 @@ func _attack() -> void:
 		yield(fireRateTimer, "timeout")
 
 func _look_for_player() -> void:
-	if (_player_node == null): 
-		return
+	if (_player_node == null): return
 	if _player_node.position.x < position.x:
 		position2D.scale.x = -1
 		_move_direction = -1
