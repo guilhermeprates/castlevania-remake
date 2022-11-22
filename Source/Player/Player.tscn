@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Source/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Source/Player/simon_belmont_with_clothes.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsUp.gd" type="Script" id=16]
 [ext_resource path="res://Source/Player/PlayerStateMachine/States/Stairway/PlayerStateStairsIdle.gd" type="Script" id=17]
 [ext_resource path="res://Source/Player/PlayerSounds/Soundtrack/Simon'sDeath.wav" type="AudioStream" id=18]
+[ext_resource path="res://Source/Items/SoundEffects/Heart.wav" type="AudioStream" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 62.5 )
@@ -38,7 +39,7 @@ extents = Vector2( 17, 65.5 )
 extents = Vector2( 17, 49.5 )
 
 [sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 33.25, 15.75 )
+extents = Vector2( 42.625, 15.75 )
 
 [sub_resource type="Animation" id=63]
 resource_name = "Air"
@@ -598,6 +599,9 @@ stream = ExtResource( 14 )
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 
+[node name="CollectSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+
 [node name="PlayerCollisionShape" type="CollisionShape2D" parent="."]
 position = Vector2( 1, 0.5 )
 shape = SubResource( 1 )
@@ -645,7 +649,7 @@ shape = SubResource( 79 )
 position = Vector2( 200, 0 )
 
 [node name="WhipCollisionShape" type="CollisionShape2D" parent="Position2D/AttackHitBox"]
-position = Vector2( -91, 0 )
+position = Vector2( -81.625, 0 )
 shape = SubResource( 19 )
 disabled = true
 

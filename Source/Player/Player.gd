@@ -63,9 +63,20 @@ func _on_body_entered_front(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
 		_intangible = true
 		emit_signal("on_player_damaged")
+	if body is Boss and not _intangible:
+		_intangible = true
+		emit_signal("on_player_damaged")
 
 func _on_body_entered_back(body: Node2D) -> void:
 	if body is Enemy and not _intangible:
+		_intangible = true
+		position2D.scale.x *= -1
+		if(_is_facing_right):
+			_is_facing_right = false
+		else:
+			_is_facing_right = true
+		emit_signal("on_player_damaged")
+	if body is Boss and not _intangible:
 		_intangible = true
 		position2D.scale.x *= -1
 		if(_is_facing_right):
