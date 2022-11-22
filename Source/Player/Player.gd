@@ -78,6 +78,10 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("CastleArea"):
 		_in_castle_area = true
  
+func reset():
+	state_machine.reset_state()
+	_reset_velocity()
+
 func _reset_velocity() -> void:
 	_velocity = Vector2.ZERO
 
@@ -115,7 +119,6 @@ func back_from_hit():
 func take_damage():
 	health_points -= 1
 	Game.player_health_points = health_points
-
 
 func enable_short_hitboxes():
 	playerShortCollison.disabled = false
@@ -155,12 +158,10 @@ func set_movement(delta):
 func set_stairway_movement(delta):
 	var up = Input.get_action_strength("ui_right")
 	var down = Input.get_action_strength("ui_left")
-		
 	_velocity.x = up - down
 	_velocity.x = _velocity.x * SPEED * 0.9
 	_velocity.y += GRAVITY * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP, true)
-
 
 func set_gravity(delta):
 	_velocity.y += GRAVITY * delta
@@ -204,7 +205,6 @@ func _set_connections() -> void:
 	playerFrontalHitBox.connect("body_entered", self, "_on_body_entered_front")
 	playerBackHitBox.connect("body_entered", self, "_on_body_entered_back")
 	playerBackHitBox.connect("area_entered", self, "_on_area_entered")
-
 
 func enable_whip_collision_shape() -> void:
 	whipCollisionShape.disabled = false
