@@ -551,7 +551,7 @@ position = Vector2( 10695, 205 )
 player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 10593, 794 )
+position = Vector2( 74, 798 )
 
 [node name="BossEventArea" type="Area2D" parent="." groups=["BossEventArea"]]
 position = Vector2( 11144, 523 )
@@ -561,19 +561,19 @@ position = Vector2( -1, -6 )
 shape = SubResource( 18 )
 
 [node name="SpawnArea" parent="." instance=ExtResource( 21 )]
-position = Vector2( 1220, 769 )
+position = Vector2( 1418, 773 )
 scale = Vector2( 2, 2 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
 [node name="SpawnArea2" parent="." instance=ExtResource( 21 )]
-position = Vector2( 1334, 767 )
+position = Vector2( 1502, 771 )
 scale = Vector2( 2, 2 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
 [node name="SpawnArea3" parent="." instance=ExtResource( 21 )]
-position = Vector2( 1445, 765 )
+position = Vector2( 1600, 765 )
 scale = Vector2( 2, 2 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
@@ -599,17 +599,17 @@ player = NodePath("../Player")
 enemy = ExtResource( 22 )
 
 [node name="SpawnArea8" parent="." instance=ExtResource( 21 )]
-position = Vector2( 5181, 757 )
+position = Vector2( 5181, 769 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
 [node name="SpawnArea9" parent="." instance=ExtResource( 21 )]
-position = Vector2( 5319, 755 )
+position = Vector2( 5319, 769 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
 [node name="SpawnArea10" parent="." instance=ExtResource( 21 )]
-position = Vector2( 5490, 754 )
+position = Vector2( 5490, 770 )
 player = NodePath("../Player")
 enemy = ExtResource( 20 )
 
