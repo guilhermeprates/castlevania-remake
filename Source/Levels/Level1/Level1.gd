@@ -43,7 +43,7 @@ func _on_death_timeout() -> void:
 func _on_boss_event_body_entered(body: Node2D) -> void:
 	if body is Player:
 		stage1OST.stop()
-		if giantBat != null:
+		if !_stage_clear:
 			if !giantBat.boss_event_trigged:
 				bossFightOST.play()
 			giantBat.boss_event_trigged = true
@@ -51,6 +51,7 @@ func _on_boss_event_body_entered(body: Node2D) -> void:
 func _on_kill_boss(position: Vector2) -> void:
 	bossFightOST.stop()
 	stageClearSFX.play()
+	_stage_clear = true
 
 func _set_connections() -> void:
 	bossEventArea.connect("body_entered", self, "_on_boss_event_body_entered")
